@@ -1,0 +1,267 @@
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('../fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url('../fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+:root {
+	--overlay-color: #bbe6e0;
+}
+
+br {
+	/* make brrs unselectable */
+	user-select: none;
+}
+
+body {
+	/* default font */
+	font-family: 'Roboto Condensed', serif;
+	font-size: 20px;
+
+	/* background */
+	background: linear-gradient(135deg, #c1d6d8 25%, transparent 25%) -30px 0,
+		linear-gradient(-135deg, #c1d6d8 25%, transparent 25%) -30px 0,
+		linear-gradient(45deg, #c1d6d8 25%, transparent 25%),
+		linear-gradient(-45deg, #c1d6d8 25%, transparent 25%);
+	background-size: 100px 100px;
+	background-color: #eee;
+
+	/* other */
+	margin: 0;
+}
+
+#navbar {
+	/* scroll transition time */
+	transition: top 0.2s;
+
+	/* sizing/structure */
+	font-size: 16px;
+	height: 70px;
+	padding: 0;
+	align-items: center;
+
+
+	/* background */
+	background-color: #fff;
+
+
+	/* dynamic display settings */
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+
+	/* fixed positioning */
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+
+	/* add shadow effect below navbar */
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+	/* make text unselectable */
+	user-select: none;
+}
+
+.nav-list {
+	position: relative;
+	box-sizing: border-box;
+	padding: 0;
+  overflow: hidden;
+}
+
+.nav-list:before {
+	content: '|';
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: auto;
+	height: 100%;
+	background: white;
+	color: transparent;
+	z-index: 1;
+}
+
+.nav-list-item {
+	display: inline-block;
+}
+
+.nav-list-item:before {
+	content: '|';
+	display: inline-block;
+}
+
+
+.nav-link {
+	/* text styling */
+	color: black;
+	text-decoration: none;
+
+	/* text padding */
+	padding: 0 12px;
+
+	/* dynamic display settings */
+	display: inline;
+}
+
+.nav-text:hover {
+	/* styling */
+	text-shadow: 0px 0px 1px black;
+}
+
+#navbar-logo {
+	/* sizing */
+	height: 60%;
+
+	/* padding */
+	padding-left: 10px;
+	padding-right: 5px;
+}
+
+#navbar-logo>img {
+	/* sizing */
+	height: 100%;
+}
+
+#content {
+	padding-top: 70px;
+	/* Adjust this value to match the height of your navbar */
+}
+
+#content>.sticker-box {
+	/* background */
+	background: linear-gradient(135deg, var(--overlay-color) 25%, transparent 25%) -30px 0,
+		linear-gradient(-135deg, var(--overlay-color) 25%, transparent 25%) -30px 0,
+		linear-gradient(45deg, var(--overlay-color) 25%, transparent 25%),
+		linear-gradient(-45deg, var(--overlay-color) 25%, transparent 25%);
+	background-color: #eee;
+	background-size: 80px 80px;
+
+	/* box structure */
+	padding: 7px 11px;
+	border: 0px;
+	border-radius: 10px;
+
+	/* display options */
+	overflow: auto;
+	display: flex;
+	width: fit-content;
+
+	/* add shadow effect around box */
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sticker-box>.sticker {
+	/* margin */
+	margin-left: 20px;
+
+	/* location */
+	align-self: flex-end;
+
+	/* sizing */
+	max-height: 200px;
+}
+
+#content>.box {
+	/* background */
+	background: linear-gradient(135deg, var(--overlay-color) 25%, transparent 25%) -30px 0,
+		linear-gradient(-135deg, var(--overlay-color) 25%, transparent 25%) -30px 0,
+		linear-gradient(45deg, var(--overlay-color) 25%, transparent 25%),
+		linear-gradient(-45deg, var(--overlay-color) 25%, transparent 25%);
+	background-color: #eee;
+	background-size: 80px 80px;
+
+	/* box structure */
+	padding: 7px 11px;
+	border: 0px;
+	border-radius: 10px;
+
+	/* display options */
+	overflow: auto;
+	width: border-box;
+	height: fit-content;
+
+	/* add shadow effect around box */
+	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+}
+
+iframe {
+	background-color: var(--overlay-color);
+	border: 0;
+	width: 100%;
+}
+
+.box>img {
+	width: 100%;
+}
+
+#content {
+	/* margin */
+	margin: auto;
+	margin-top: 20px;
+	padding-left: 12px;
+	padding-right: 12px;
+
+	max-width: 1000px;
+
+	/* text styling */
+	font-weight: 500;
+}
+
+/* overrides for small screen */
+@media (max-width: 600px) {
+	#content>.sticker-box {
+		display: block;
+		width: auto;
+	}
+
+  .sticker-box>.sticker {
+		margin-left: 20px;
+		float: left;
+    max-height: 140px;
+	}
+
+  body {
+	  font-size: 16px;
+  }
+
+  #navbar {
+	  font-size: 14px;
+  }
+
+  #navbar-logo {
+    /* sizing */
+    height: 50%;
+
+    /* padding */
+    padding-right: 3px;
+  }
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #abd6d0;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #eee;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #bbe6e0;
+	border-radius: 6px;
+}
+
+::-webkit-scrollbar-corner {
+	background-color: #f1f1f1;
+}
