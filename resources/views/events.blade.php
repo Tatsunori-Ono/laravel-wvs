@@ -10,7 +10,7 @@
 <div style="--overlay-color: #b6d3fc;" class="box">
     <h2> Timetable</h2>
     <p>A timetable of all the events we're hosting this term.</p>
-    <img src="{{ asset('images/timetable.webp') }}">
+    <img alt="Timetable for Warwick Vocaloid Society" src="{{ asset('images/timetable.webp') }}">
 </div>
 
 <br>
