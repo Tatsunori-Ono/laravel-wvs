@@ -1,3 +1,5 @@
+@extends('layouts.base')
+
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
