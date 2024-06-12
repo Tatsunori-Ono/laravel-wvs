@@ -18,4 +18,7 @@ export default {
     },
 
     plugins: [forms],
+
+    //ダークモードにしたい場合、ここをコメントアウト
+    darkMode: 'class',
 };

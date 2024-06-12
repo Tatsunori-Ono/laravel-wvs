@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
     plugins: [
@@ -10,5 +11,10 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        react(),
     ],
+    esbuild: {
+        loader: 'jsx',  // Add this line to enable JSX syntax
+        include: /src\/.*\.js$/,  // Apply this loader only to JS files in the src folder
+    },
 });

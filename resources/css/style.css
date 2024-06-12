@@ -33,6 +33,13 @@ body {
 
 	/* other */
 	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+h2 {
+	font-weight: bold;
 }
 
 #navbar {
@@ -102,6 +109,19 @@ body {
 	/* text styling */
 	color: black;
 	text-decoration: none;
+
+	/* text padding */
+	padding: 0 12px;
+
+	/* dynamic display settings */
+	display: inline;
+}
+
+.nav-link-blue {
+	/* text styling */
+	color: #342fcb;
+	font-weight: bold;
+	text-decoration: underline;
 
 	/* text padding */
 	padding: 0 12px;
@@ -264,4 +284,28 @@ iframe {
 
 ::-webkit-scrollbar-corner {
 	background-color: #f1f1f1;
+}
+
+/* Ordered list styling */
+ol {
+    list-style-type: decimal;
+    margin-left: 20px; /* Adjust as necessary for your design */
+    padding-left: 20px; /* Adjust as necessary for your design */
+}
+
+/* Footer */
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 10px;
+	margin-top: auto;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer div {
+    font-size: 14px;
 }

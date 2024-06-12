@@ -3,9 +3,13 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\ContactFormController;
+
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Session;
+
+use App\Http\Controllers\JukeboxQueueController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -23,12 +27,22 @@ Route::get('/showcase', function () {
     return view('showcase');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
+//非メンバー向けの連絡先
+Route::get('/external-contact', function () {
+    return view('external-contact');
 });
 
-Route::get('/recyclable-boxes', function () {
-    return view('recyclable-boxes');
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy');
+});
+
+Route::prefix('contacts') //頭にcontactsをつける
+    ->middleware(['auth']) //認証
+    ->name('contacts.') //ルート名
+    ->controller(ContactFormController::class) //コントローラ指定
+    ->group(function(){ //グループ化
+        Route::get('/','index')->name('index'); //名前付きルート
+        Route::get('/create','create')->name('create');
 });
 
 Route::get('/', function () {
@@ -56,3 +70,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/jukebox', function () {
+    return view('jukebox');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('/queue', [JukeboxQueueController::class, 'addToQueue']);
+    Route::get('/queue', [JukeboxQueueController::class, 'getQueue']);
+    Route::post('/queue/play-next', [JukeboxQueueController::class, 'playNextVideo']);
+});

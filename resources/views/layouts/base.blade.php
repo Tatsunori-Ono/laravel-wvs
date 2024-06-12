@@ -30,7 +30,7 @@
             </li>
             <li class="nav-list-item">
                 @section('contact_nav')
-                <a href="{{ url('/contact') }}" class="nav-link">{{ __('nav.contact') }}</a>
+                <a href="{{ url('/external-contact') }}" class="nav-link">{{ __('nav.contact') }}</a>
                 @show
             </li>
             <li class="nav-list-item">
@@ -39,21 +39,26 @@
                 @show
             </li>
             <li class="nav-list-item">
-                <a href="{{ route('login') }}" class="nav-link"> {{ __('nav.login') }} </>
+                @section('privacy-policy_nav')
+                <a href="{{ url('/privacy-policy') }}" class="nav-link">{{ __('nav.privacy-policy') }}</a>
+                @show
             </li>
             <li class="nav-list-item">
-                <a href="{{ route('register') }}" class="nav-link"> {{ __('nav.register') }} </>
+                <a href="{{ route('login') }}" class="nav-link-blue"> {{ __('nav.login') }} </a>
+            </li>
+            <li class="nav-list-item">
+                <a href="{{ route('register') }}" class="nav-link-blue"> {{ __('nav.register') }} </a>
+            </li>
+            <li class="nav-list-item">
+                <span class="nav-link">{{ __('messages.welcome') }}</span>
             </li>
             <li class="nav-list-item">
                 <!-- 言語切り替えボタン -->
-                <span>{{ __('nav.language') }}</span>
-                <a href="{{ route('change_language', ['locale' => 'en']) }}">EN</a> /
-                <a href="{{ route('change_language', ['locale' => 'ja']) }}">JA</a>
+                <span class="nav-link">{{ __('nav.language') }}</span>
+                <a href="{{ route('change_language', ['locale' => 'en']) }}" class="text-blue-500">EN</a> /
+                <a href="{{ route('change_language', ['locale' => 'ja']) }}" class="text-blue-500">JA</a>
             </li>
         </ul>
-        
-        | <br> <h1>{{ __('messages.welcome') }}</h1> <br>
-        
     </nav>
 
     <!-- Content -->
@@ -61,6 +66,9 @@
         @yield('content')
     </div>
     <br>
+
+    <!-- Footer -->
+    @include('layouts/footer')
 
     <!-- Scripts -->
 </body>
