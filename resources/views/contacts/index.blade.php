@@ -35,6 +35,10 @@
                         </tbody>
                     </table>
                     </div>
+
+                    <!-- ページネーション -->
+                    {{ $contacts->links() }}
+
                 </div>
             </div>
         </div>

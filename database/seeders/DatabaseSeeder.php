@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class, 
         ]);
 
-        ContactForm::factory(10)->create();
+        ContactForm::factory(15)->create();
 
         User::factory()->create([
             'name' => 'Test User',
