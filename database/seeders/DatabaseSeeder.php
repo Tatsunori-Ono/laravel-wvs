@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ContactForm;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,7 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            TestSeeder::class,
+            UserSeeder::class, 
+        ]);
+
+        ContactForm::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Test User',

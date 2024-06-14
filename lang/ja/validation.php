@@ -154,7 +154,13 @@ return [
     */
 
     'attributes' => [
-        'password' => 'パスワード'
+        'password' => 'パスワード',
+        'name' => '氏名',
+        'email' => 'メールアドレス',
+        'non_warwick_student' => 'ウォーリック大学の生徒か否か',
+        'subject' => '件名',
+        'contact' => 'お問い合わせ内容',
+        'caution' => '注意事項',
     ],
 
 ];

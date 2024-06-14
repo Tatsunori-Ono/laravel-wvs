@@ -25,4 +25,9 @@ return [
     // edit画面
     'editing-page' => 'Editing Page',
     'edit' => 'Edit',
+    'update' => 'Update',
+
+    // show画面
+    'destroy' => 'Delete',
+    'confirm-delete' => 'Are you sure that you want to delete this record?',
 ];

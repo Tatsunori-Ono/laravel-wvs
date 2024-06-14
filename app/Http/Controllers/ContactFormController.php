@@ -5,6 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\ContactForm;
+use League\Flysystem\CalculateChecksumFromStream;
+
+// サービスへの切り離し（ファットコントローラー防止）
+use App\Services\CheckFormService;
+
+// バリデーション（フォームリクエスト）
+use App\Http\Requests\StoreContactRequest;
 
 class ContactFormController extends Controller
 {
@@ -30,7 +37,7 @@ class ContactFormController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreContactRequest $request)
     {
         ContactForm::create([
             'name' => $request->name,
@@ -50,11 +57,7 @@ class ContactFormController extends Controller
     {
         $contact = ContactForm::find($id);
 
-        if($contact->non_warwick_student === 0){
-            $non_warwick_student = __('contact.warwick-student');
-        } else {
-            $non_warwick_student = __('contact.non-warwick-student');
-        }
+        $non_warwick_student = CheckFormService::checkNonWarwickStudent($contact);
 
         return view('contacts.show', compact('contact', 'non_warwick_student'));
     }
@@ -74,7 +77,16 @@ class ContactFormController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $contact = ContactForm::find($id);
+
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->non_warwick_student = $request->non_warwick_student;
+        $contact->subject = $request->subject;
+        $contact->contact = $request->contact;
+        $contact->save();
+
+        return to_route('contacts.index');
     }
 
     /**
@@ -82,6 +94,9 @@ class ContactFormController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $contact = ContactForm::find($id);
+        $contact->delete();
+
+        return to_route('contacts.index');
     }
 }

@@ -25,4 +25,9 @@ return [
     // edit画面
     'editing-page' => '編集画面',
     'edit' => '編集する',
+    'update' => '更新する',
+
+    // show画面
+    'destroy' => '削除する',
+    'confirm-delete' => '本当に削除していいですか？',
 ];

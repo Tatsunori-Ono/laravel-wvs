@@ -13,18 +13,20 @@ class UserFactory extends Factory
 {
     /**
      * The current password being used by the factory.
+     * ファクトリが使用している現在のパスワード
      */
     protected static ?string $password;
 
     /**
      * Define the model's default state.
+     * モデルのデフォルト状態の定義
      *
      * @return array<string, mixed>
      */
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->name(15),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
@@ -34,6 +36,7 @@ class UserFactory extends Factory
 
     /**
      * Indicate that the model's email address should be unverified.
+     * モデルのメールアドレスが未検証であることを示す
      */
     public function unverified(): static
     {

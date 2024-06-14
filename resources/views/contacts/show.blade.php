@@ -49,12 +49,23 @@
                                         <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{$contact->contact}}</div>
                                     </div>
                                     </div>
-
+              
                                     <div class="p-2 w-full">
-                                    <form action="{{route('contacts.edit', ['id'=>$contact->id])}}", method="get">
-                                            <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{__('contact.edit')}}</button>
-                                    </form>
+                                    <div class="relative">
+                                        <form action="{{route('contacts.edit', ['id'=>$contact->id])}}", method="get">
+                                            <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">{{__('contact.edit')}}</button>
+                                        </form>
                                     </div>
+                                    </div>
+                                    
+                                    <form id="delete_{{$contact->id}}" action="{{route('contacts.destroy', ['id'=>$contact->id])}}" method="post">
+                                        @csrf
+                                        <div class="p-2 w-full flex justify-center">
+                                            <a href="#" data-id="{{$contact->id}}" onclick="deletePost(this)" class="flex text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">
+                                                {{__('contact.destroy')}}
+                                            </a>
+                                        </div>
+                                    </form>
 
                                     <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
                                     <a class="text-pink-500">warwickvocaloid@gmail.com</a>
@@ -79,4 +90,15 @@
             </div>
         </div>
     </div>
+
+<!-- 確認メッセージ -->
+<script>
+    function deletePost(e){
+        'use strict'
+        if(confirm('{{ __('contact.confirm-delete') }}')){
+            document.getElementById('delete_' + e.dataset.id).submit()
+        }
+    }
+</script>
+
 </x-app-layout>

@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <section class="text-gray-600 body-font relative">
 
-                        <form action="{{ route('contacts.store') }}" method="post">
+                        <form action="{{ route('contacts.update', ['id'=>$contact->id]) }}" method="post">
 
                             @csrf
 
@@ -56,7 +56,7 @@
                                     </div>
 
                                     <div class="p-2 w-full">
-                                    <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{__('contact.submit')}}</button>
+                                        <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{__('contact.update')}}</button>
                                     </div>
 
                                     <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
