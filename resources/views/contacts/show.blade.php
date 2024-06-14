@@ -11,10 +11,6 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <section class="text-gray-600 body-font relative">
 
-                        <form action="{{ route('contacts.store') }}" method="post">
-
-                            @csrf
-
                             <div class="container px-5 mx-auto">
                                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                 <div class="flex flex-wrap -m-2">
@@ -22,47 +18,36 @@
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="name" class="leading-7 text-sm text-gray-600">{{__('contact.name')}}</label>
-                                        <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$contact->name}}</div>
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="email" class="leading-7 text-sm text-gray-600">{{__('contact.email')}}</label>
-                                        <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$contact->email}}</div>
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label class="leading-7 text-sm text-gray-600">{{__('contact.warwick')}}</label><br>
-                                        <input type="radio" name="non_warwick_student" value="0" style="margin-right: .5rem;">{{__('contact.warwick-student')}}<br>
-                                        <input type="radio" name="non_warwick_student" value="1" style="margin-right: .5rem;">{{__('contact.non-warwick-student')}}
+                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$non_warwick_student}}</div>
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="subject" class="leading-7 text-sm text-gray-600">{{__('contact.subject')}}</label>
-                                        <input type="text" id="subject" name="subject" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$contact->subject}}</div>
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="contact" class="leading-7 text-sm text-gray-600">{{__('contact.content')}}</label>
-                                        <textarea id="contact" name="contact" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{$contact->contact}}</div>
                                     </div>
-                                    </div>
-
-                                    <div class="p-2 w-full">
-                                    <div class="relative">
-                                        <input type="checkbox" id="caution" name="caution" style="margin-right: .5rem;">{{__('contact.warning')}}
-                                    </div>
-                                    </div>
-
-                                    <div class="p-2 w-full">
-                                    <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{__('contact.submit')}}</button>
                                     </div>
 
                                     <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
@@ -82,7 +67,6 @@
                                 </div>
                                 </div>
                             </div>
-                        </form>
 
                     </section>
                 </div>

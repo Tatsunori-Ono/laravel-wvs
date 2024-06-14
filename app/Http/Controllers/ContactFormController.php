@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\ContactForm;
+
 class ContactFormController extends Controller
 {
     /**
@@ -11,7 +13,10 @@ class ContactFormController extends Controller
      */
     public function index()
     {
-        return view('contacts.index');
+        $contacts = ContactForm::select('id', 'name', 'subject', 'created_at')
+        ->get();
+
+        return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -27,7 +32,15 @@ class ContactFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ContactForm::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'non_warwick_student' => $request->non_warwick_student,
+            'subject' => $request->subject,
+            'contact' => $request->contact,
+        ]);
+
+        return to_route('contacts.index');
     }
 
     /**
@@ -35,7 +48,15 @@ class ContactFormController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $contact = ContactForm::find($id);
+
+        if($contact->non_warwick_student === 0){
+            $non_warwick_student = __('contact.warwick-student');
+        } else {
+            $non_warwick_student = __('contact.non-warwick-student');
+        }
+
+        return view('contacts.show', compact('contact', 'non_warwick_student'));
     }
 
     /**

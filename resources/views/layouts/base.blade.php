@@ -39,11 +39,6 @@
                 @show
             </li>
             <li class="nav-list-item">
-                @section('privacy-policy_nav')
-                <a href="{{ url('/privacy-policy') }}" class="nav-link">{{ __('nav.privacy-policy') }}</a>
-                @show
-            </li>
-            <li class="nav-list-item">
                 <a href="{{ route('login') }}" class="nav-link-blue"> {{ __('nav.login') }} </a>
             </li>
             <li class="nav-list-item">

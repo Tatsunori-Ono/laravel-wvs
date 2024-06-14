@@ -4,9 +4,12 @@
         <a href="https://discord.gg/NXYVdzZpr5" target="_blank">Discord</a> |
         <a href="https://www.tiktok.com/@warwick.vocasoc" target="_blank">TikTok</a> |
         <a href="https://www.youtube.com/@WarwickVocaloid" target="_blank">YouTube</a> |
-        <a href="https://www.warwicksu.com/societies-sports/societies/72239/" target="_blank">SU Webpage</a>
+        <a href="https://www.warwicksu.com/societies-sports/societies/72239/" target="_blank">{{__('footer.su')}}</a>
     </div>
-    <div style="margin-top: 10px;">
+    <div style="margin-top: 5px;">
+        <a href="{{ url('/privacy-policy') }}">{{ __('footer.privacy-policy') }}</a>        
+    </div>
+    <div style="margin-top: 5px;">
         &copy; Warwick Vocaloid Society 2023
     </div>
 </footer>
