@@ -21,4 +21,8 @@ return [
     'content' => 'お問い合わせ内容',
     'warning' => '注意事項に同意する',
     'submit' => '送信',
+
+    // edit画面
+    'editing-page' => '編集画面',
+    'edit' => '編集する',
 ];

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('contact.create') }}
+            {{ __('contact.editing-page') }}
         </h2>
     </x-slot>
 
@@ -11,6 +11,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <section class="text-gray-600 body-font relative">
 
+                        <form action="{{ route('contacts.store') }}" method="post">
+
+                            @csrf
+
                             <div class="container px-5 mx-auto">
                                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                 <div class="flex flex-wrap -m-2">
@@ -18,42 +22,41 @@
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="name" class="leading-7 text-sm text-gray-600">{{__('contact.name')}}</label>
-                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$contact->name}}</div>
+                                        <input type="text" id="name" name="name" value="{{$contact->name}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="email" class="leading-7 text-sm text-gray-600">{{__('contact.email')}}</label>
-                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$contact->email}}</div>
+                                        <input type="email" id="email" name="email" value="{{$contact->email}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label class="leading-7 text-sm text-gray-600">{{__('contact.warwick')}}</label><br>
-                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$non_warwick_student}}</div>
+                                        <input type="radio" name="non_warwick_student" value="0" style="margin-right: .5rem;" @if($contact->non_warwick_student === 0) checked @endif>{{__('contact.warwick-student')}}<br>
+                                        <input type="radio" name="non_warwick_student" value="1" style="margin-right: .5rem;" @if($contact->non_warwick_student === 1) checked @endif>{{__('contact.non-warwick-student')}}
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="subject" class="leading-7 text-sm text-gray-600">{{__('contact.subject')}}</label>
-                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{$contact->subject}}</div>
+                                        <input type="text" id="subject" name="subject" value="{{$contact->subject}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
                                         <label for="contact" class="leading-7 text-sm text-gray-600">{{__('contact.content')}}</label>
-                                        <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{$contact->contact}}</div>
+                                        <textarea id="contact" name="contact" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{$contact->contact}}</textarea>
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
-                                    <form action="{{route('contacts.edit', ['id'=>$contact->id])}}", method="get">
-                                            <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{__('contact.edit')}}</button>
-                                    </form>
+                                    <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{__('contact.submit')}}</button>
                                     </div>
 
                                     <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
@@ -73,6 +76,7 @@
                                 </div>
                                 </div>
                             </div>
+                        </form>
 
                     </section>
                 </div>

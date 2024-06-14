@@ -22,5 +22,7 @@ return [
     'warning' => 'I agree to the terms and conditions.',
     'submit' => 'Send',
 
-
+    // edit画面
+    'editing-page' => 'Editing Page',
+    'edit' => 'Edit',
 ];
