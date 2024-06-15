@@ -1,12 +1,22 @@
 @extends('layouts.base')
 
 <x-guest-layout>
+
+    <style>
+        /* 必須項目のスタイリング */
+        .required:after{ 
+            content:'*'; 
+            color:red;
+            padding-left:1px;
+        }
+    </style>
+
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('register.name')" />
+            <x-input-label for="name" :value="__('register.name')" class="required"/>
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
@@ -20,14 +30,14 @@
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('register.email')" />
+            <x-input-label for="email" :value="__('register.email')" class="required"/>
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('register.password')" />
+            <x-input-label for="password" :value="__('register.password')" class="required"/>
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
@@ -39,13 +49,18 @@
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('register.confirm-password')" />
+            <x-input-label for="password_confirmation" :value="__('register.confirm-password')" class="required"/>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+            <x-text-input id="password_confirmation" class="required block mt-1 w-full"
                             type="password"
                             name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+
+        <!-- 必須項目 -->
+        <div class="mt-4 text-red-400 text-base">
+            {{__('register.required')}}
         </div>
 
         <div class="flex items-center justify-end mt-4">

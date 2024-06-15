@@ -8,4 +8,5 @@ return [
     'already-registered' => '既に登録されていますか？',
     'register' => '登録',
     'warwick-id' => 'ウォーリックID (ウォーリック生の場合のみ)',
+    'required' => '* 必須項目',
 ];
