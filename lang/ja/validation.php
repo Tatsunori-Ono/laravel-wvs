@@ -161,6 +161,9 @@ return [
         'subject' => '件名',
         'contact' => 'お問い合わせ内容',
         'caution' => '注意事項',
+
+        //アカウント新規登録
+        'warwick_id' => 'ウォーリックID',
     ],
 
 ];

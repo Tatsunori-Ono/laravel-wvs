@@ -11,6 +11,13 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- Warwick ID -->
+        <div class="mt-4">
+            <x-input-label for="warwick_id" :value="__('register.warwick-id')" />
+            <x-text-input id="warwick_id" class="block mt-1 w-full" type="text" name="warwick_id" :value="old('warwick_id')" autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('warwick_id')" class="mt-2" />
+        </div>
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('register.email')" />

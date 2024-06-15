@@ -10,6 +10,7 @@ return [
     'date' => 'Created at',
     'details-title' => 'Details',
     'details' => 'Show more',
+    'search' => 'Search',
 
     // create画面
     'name' => 'Name',

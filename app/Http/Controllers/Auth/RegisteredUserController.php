@@ -31,12 +31,15 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            // ウォーリックIDは必ず7桁
+            'warwick_id' => ['nullable', 'digits:7'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'warwick_id' => $request->warwick_id,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);

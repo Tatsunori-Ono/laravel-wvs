@@ -10,6 +10,7 @@ return [
     'date' => '登録日',
     'details-title' => '詳細',
     'details' => '詳細を表示',
+    'search' => '検索する',
 
     // create画面
     'name' => '氏名',

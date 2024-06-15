@@ -18,12 +18,19 @@ class ContactFormController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // $contacts = ContactForm::select('id', 'name', 'subject', 'created_at')
         // ->get();
 
-        $contacts = ContactForm::select('id', 'name', 'subject', 'created_at')
+        //ページネーション
+        // $contacts = ContactForm::select('id', 'name', 'subject', 'created_at')
+        // ->paginate(10);
+
+        $search = $request->search;
+        $query = ContactForm::search($search);
+
+        $contacts = $query->select('id', 'name', 'subject', 'created_at')
         ->paginate(10);
 
         return view('contacts.index', compact('contacts'));
