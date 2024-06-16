@@ -3,6 +3,15 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('contact.create') }}
         </h2>
+
+        <style>
+            /* 必須項目のスタイリング */
+            .required:after{ 
+                content:'*'; 
+                color:red;
+                padding-left:1px;
+            }
+        </style>
     </x-slot>
 
     <div class="py-12">
@@ -21,7 +30,7 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="name" class="leading-7 text-sm text-gray-600">{{__('contact.name')}}</label>
+                                        <label for="name" class="required leading-7 text-sm text-gray-600">{{__('contact.name')}}</label>
                                         <input type="text" id="name" name="name" value="{{old('name')}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                     </div>
@@ -29,7 +38,7 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="email" class="leading-7 text-sm text-gray-600">{{__('contact.email')}}</label>
+                                        <label for="email" class="required leading-7 text-sm text-gray-600">{{__('contact.email')}}</label>
                                         <input type="email" id="email" name="email" value="{{old('email')}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
@@ -37,16 +46,16 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label class="leading-7 text-sm text-gray-600">{{__('contact.warwick')}}</label><br>
-                                        <input type="radio" name="non_warwick_student" value="0" style="margin-right: .5rem;" {{old('non_warwick_student') == 0 ? 'checked' : ''}}>{{__('contact.warwick-student')}}<br>
-                                        <input type="radio" name="non_warwick_student" value="1" style="margin-right: .5rem;" {{old('non_warwick_student') == 1 ? 'checked' : ''}}>{{__('contact.non-warwick-student')}}
+                                        <label class="required leading-7 text-sm text-gray-600">{{__('contact.warwick')}}</label><br>
+                                        <input type="radio" name="non_warwick_student" value="0" style="margin-right: .5rem;" {{old('non_warwick_student') == '0' ? 'checked' : ''}}>{{__('contact.warwick-student')}}<br>
+                                        <input type="radio" name="non_warwick_student" value="1" style="margin-right: .5rem;" {{old('non_warwick_student') == '1' ? 'checked' : ''}}>{{__('contact.non-warwick-student')}}
                                         <x-input-error :messages="$errors->get('non_warwick_student')" class="mt-2" />
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="subject" class="leading-7 text-sm text-gray-600">{{__('contact.subject')}}</label>
+                                        <label for="subject" class="required leading-7 text-sm text-gray-600">{{__('contact.subject')}}</label>
                                         <input type="text" id="subject" name="subject" value="{{old('subject')}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <x-input-error :messages="$errors->get('subject')" class="mt-2" />
                                     </div>
@@ -54,7 +63,7 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="contact" class="leading-7 text-sm text-gray-600">{{__('contact.content')}}</label>
+                                        <label for="contact" class="required leading-7 text-sm text-gray-600">{{__('contact.content')}}</label>
                                         <textarea id="contact" name="contact" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{old('contact')}}</textarea>
                                         <x-input-error :messages="$errors->get('contact')" class="mt-2" />
                                     </div>
@@ -62,9 +71,15 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <input type="checkbox" id="caution" name="caution" style="margin-right: .5rem;">{{__('contact.warning')}}
+                                        <input type="checkbox" id="caution" name="caution" style="margin-right: .2rem;" >
+                                        <label class="required">{{__('contact.warning')}}</label>
                                         <x-input-error :messages="$errors->get('caution')" class="mt-2" />
                                     </div>
+                                    </div>
+
+                                    <!-- 必須項目の注意書き -->
+                                    <div class="mt-4 text-red-400 text-base">
+                                        {{__('register.required')}}
                                     </div>
                                     
                                     <div class="p-2 w-full">

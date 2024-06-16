@@ -58,7 +58,7 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <!-- 必須項目 -->
+        <!-- 必須項目の注意書き -->
         <div class="mt-4 text-red-400 text-base">
             {{__('register.required')}}
         </div>
