@@ -307,5 +307,12 @@ footer a:hover {
 }
 
 footer div {
-    font-size: 5px;
+    font-size: 14.5px;
+}
+
+/* 必須項目のスタイリング */
+.required:after{ 
+	content:'*'; 
+	color:red;
+	padding-left:1px;
 }
