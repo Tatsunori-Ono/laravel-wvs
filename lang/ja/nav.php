@@ -8,4 +8,6 @@ return [
     'language' => 'Change the Language:',
     'login' => 'ログイン',
     'register' => '新規登録',
+    'welcome' => 'ようこそ、',
+    'logout' => 'ログアウト',
 ];
