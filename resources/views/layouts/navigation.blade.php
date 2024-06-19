@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
+<nav x-data="{ open: false }" class="p-3 bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -21,8 +21,21 @@
                 </div>
             </div>
 
-            <!-- Settings Dropdown -->
+            <!-- Settings, Dark Mode Toggle, and Language Switcher -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+
+                <!-- Language Switcher -->
+                <div class="language-switcher inline-flex items-center ms-4">
+                    <a href="{{ route('change_language', ['locale' => 'en']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">EN</a>/
+                    <a href="{{ route('change_language', ['locale' => 'ja']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">JA</a>
+                </div>
+
+                <!-- Dark Mode Toggle Button -->
+                <button id="dark-mode-toggle" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                    <img id="dark-mode-icon" src="/images/icons/moon.svg" alt="Toggle Dark Mode" class="h-6 w-6">
+                </button>
+
+                <!-- Settings Dropdown -->
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -30,7 +43,7 @@
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                 </svg>
                             </div>
                         </button>
@@ -78,29 +91,84 @@
             </x-responsive-nav-link>
         </div>
 
-        <!-- Responsive Settings Options -->
+        <!-- Responsive Dark Mode Toggle and Language Switcher -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
-            <div class="px-4">
+            <div class="px-4 flex justify-between items-center">
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <button id="responsive-dark-mode-toggle" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                    <img id="responsive-dark-mode-icon" src="/images/icons/moon.svg" alt="Toggle Dark Mode" class="h-6 w-6">
+                </button>
             </div>
+            <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+            <div class="language-switcher flex mt-3">
+                <a href="{{ route('change_language', ['locale' => 'en']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">EN</a>
+                <a href="{{ route('change_language', ['locale' => 'ja']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">JA</a>
+            </div>
+        </div>
 
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('platform.profile') }}
+        <div class="mt-3 space-y-1">
+            <x-responsive-nav-link :href="route('profile.edit')">
+                {{ __('platform.profile') }}
+            </x-responsive-nav-link>
+
+            <!-- Authentication -->
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+
+                <x-responsive-nav-link :href="route('logout')"
+                        onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                    {{ __('platform.logout') }}
                 </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('platform.logout') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
 </nav>
+
+<!-- JavaScript to handle the dark mode toggle and persistence -->
+<script>
+    // Function to apply dark mode based on localStorage value
+    function applyDarkMode() {
+        if (localStorage.getItem('dark-mode') === 'enabled') {
+            document.documentElement.classList.add('dark');
+            document.getElementById('dark-mode-icon').src = '/images/icons/sun.svg';
+            document.getElementById('responsive-dark-mode-icon').src = '/images/icons/sun.svg';
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.getElementById('dark-mode-icon').src = '/images/icons/moon.svg';
+            document.getElementById('responsive-dark-mode-icon').src = '/images/icons/moon.svg';
+        }
+    }
+
+    // Apply dark mode on initial load
+    applyDarkMode();
+
+    // Toggle dark mode and save preference to localStorage
+    document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('dark-mode', 'disabled');
+            document.getElementById('dark-mode-icon').src = '/images/icons/moon.svg';
+            document.getElementById('responsive-dark-mode-icon').src = '/images/icons/moon.svg';
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('dark-mode', 'enabled');
+            document.getElementById('dark-mode-icon').src = '/images/icons/sun.svg';
+            document.getElementById('responsive-dark-mode-icon').src = '/images/icons/sun.svg';
+        }
+    });
+
+    document.getElementById('responsive-dark-mode-toggle').addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('dark-mode', 'disabled');
+            document.getElementById('dark-mode-icon').src = '/images/icons/moon.svg';
+            document.getElementById('responsive-dark-mode-icon').src = '/images/icons/moon.svg';
+        } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('dark-mode', 'enabled');
+            document.getElementById('dark-mode-icon').src = '/images/icons/sun.svg';
+            document.getElementById('responsive-dark-mode-icon').src = '/images/icons/sun.svg';
+        }
+    });
+</script>

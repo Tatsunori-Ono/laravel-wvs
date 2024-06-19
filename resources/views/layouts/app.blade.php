@@ -16,10 +16,6 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="language-switcher">
-            <a href="{{ route('change_language', ['locale' => 'en']) }}">EN</a>
-            <a href="{{ route('change_language', ['locale' => 'ja']) }}">JA</a>
-        </div>
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             @include('layouts.navigation')
 
