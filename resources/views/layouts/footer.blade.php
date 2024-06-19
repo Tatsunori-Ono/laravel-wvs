@@ -7,7 +7,8 @@
         <a href="https://www.warwicksu.com/societies-sports/societies/72239/" target="_blank">{{__('footer.su')}}</a>
     </div>
     <div style="margin-top: 4px;">
-        <a href="{{ url('/privacy-policy') }}">{{ __('footer.privacy-policy') }}</a>        
+        <a href="{{ url('/privacy-policy') }}">{{ __('footer.privacy-policy') }}</a> |
+        <a href="{{ url('/terms-and-conditions') }}">{{ __('footer.terms-and-conditions') }}</a>       
     </div>
     <div style="margin-top: 4px;">
         &copy; Warwick Vocaloid Society 2023

@@ -36,6 +36,10 @@ Route::get('/privacy-policy', function () {
     return view('privacy-policy');
 });
 
+Route::get('/terms-and-conditions', function () {
+    return view('terms-and-conditions');
+});
+
 Route::prefix('contacts') //頭にcontactsをつける
     ->middleware(['auth']) //認証と管理者権限
     ->name('contacts.') //ルート名

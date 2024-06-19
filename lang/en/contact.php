@@ -21,8 +21,9 @@ return [
     'warwick-student' => 'Warwick Student',
     'non-warwick-student' => 'Non-warwick Student',
     'content' => 'Your Inquiry',
-    'warning' => 'I agree to the terms and conditions.',
     'submit' => 'Send',
+    'agree' => 'I agree to the ',
+    'terms-and-conditions' => 'terms and conditions',
 
     // edit画面
     'editing-page' => 'Editing Page',

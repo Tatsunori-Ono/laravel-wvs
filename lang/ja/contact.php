@@ -21,8 +21,9 @@ return [
     'warwick-student' => 'はい',
     'non-warwick-student' => 'いいえ',
     'content' => 'お問い合わせ内容',
-    'warning' => '注意事項に同意する',
     'submit' => '送信',
+    'agree' => 'に同意する。',
+    'terms-and-conditions' => '利用規約',
 
     // edit画面
     'editing-page' => '編集画面',
