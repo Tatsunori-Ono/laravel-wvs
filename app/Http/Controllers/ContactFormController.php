@@ -13,6 +13,8 @@ use App\Services\CheckFormService;
 // バリデーション（フォームリクエスト）
 use App\Http\Requests\StoreContactRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 class ContactFormController extends Controller
 {
     /**
@@ -30,8 +32,17 @@ class ContactFormController extends Controller
         $search = $request->search;
         $query = ContactForm::search($search);
 
-        $contacts = $query->select('id', 'name', 'subject', 'created_at')
-        ->paginate(10);
+        if (Auth::user()->role === 'admin') {
+            // アドミン（管理者）は全ての問い合わせを閲覧できる。
+            $contacts = $query->search($search)
+                ->select('id', 'name', 'subject', 'created_at')
+                ->paginate(10);
+        } else {
+            // その他のユーザーは自分自身の問い合わせのみ閲覧できる。
+            $contacts = $query->where('user_id', Auth::id())
+                ->select('id', 'name', 'subject', 'created_at')
+                ->paginate(10);
+        }
 
         return view('contacts.index', compact('contacts'));
     }
@@ -55,6 +66,7 @@ class ContactFormController extends Controller
             'non_warwick_student' => $request->non_warwick_student,
             'subject' => $request->subject,
             'contact' => $request->contact,
+            'user_id' => Auth::id(),
         ]);
 
         return to_route('contacts.index');
@@ -67,6 +79,11 @@ class ContactFormController extends Controller
     {
         $contact = ContactForm::find($id);
 
+        // Check if the user is the owner of the inquiry or an admin
+        if (Auth::user()->id !== $contact->user_id && Auth::user()->role !== 'admin') {
+            return redirect()->route('contacts.index')->with('error', 'You do not have permission to view this contact.');
+        }
+
         $non_warwick_student = CheckFormService::checkNonWarwickStudent($contact);
 
         return view('contacts.show', compact('contact', 'non_warwick_student'));
@@ -77,6 +94,10 @@ class ContactFormController extends Controller
      */
     public function edit(string $id)
     {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to edit this contact.');
+        }
+    
         $contact = ContactForm::find($id);
 
         return view('contacts.edit', compact('contact'));
@@ -87,15 +108,19 @@ class ContactFormController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to update this contact.');
+        }
+    
         $contact = ContactForm::find($id);
-
+    
         $contact->name = $request->name;
         $contact->email = $request->email;
         $contact->non_warwick_student = $request->non_warwick_student;
         $contact->subject = $request->subject;
         $contact->contact = $request->contact;
         $contact->save();
-
+    
         return to_route('contacts.index');
     }
 
@@ -104,9 +129,13 @@ class ContactFormController extends Controller
      */
     public function destroy(string $id)
     {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to delete this contact.');
+        }
+    
         $contact = ContactForm::find($id);
         $contact->delete();
-
+    
         return to_route('contacts.index');
     }
 }

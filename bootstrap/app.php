@@ -3,7 +3,6 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Foundation\Http\Kernel;
 use App\Http\Middleware\SetLanguage;
 
 return Application::configure(basePath: dirname(__DIR__))

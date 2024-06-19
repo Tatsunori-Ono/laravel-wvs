@@ -38,12 +38,6 @@
                 <a href="{{ url('/showcase') }}" class="nav-link">{{ __('nav.showcase') }}</a>
                 @show
             </li>
-            <!-- <li class="nav-list-item">
-                <a href="{{ route('login') }}" class="nav-link-blue"> {{ __('nav.login') }} </a>
-            </li>
-            <li class="nav-list-item">
-                <a href="{{ route('register') }}" class="nav-link-blue"> {{ __('nav.register') }} </a>
-            </li> -->
             @if (auth()->check())
                 <li class="nav-list-item">
                     <span class="nav-link">{{ __('nav.welcome') }} {{ auth()->user()->name }}</span>

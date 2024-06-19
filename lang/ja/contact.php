@@ -11,6 +11,7 @@ return [
     'details-title' => '詳細',
     'details' => '詳細を表示',
     'search' => '検索する',
+    'no_inquiries' => '該当なし',
 
     // create画面
     'name' => '氏名',

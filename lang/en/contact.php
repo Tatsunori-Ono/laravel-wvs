@@ -11,6 +11,7 @@ return [
     'details-title' => 'Details',
     'details' => 'Show more',
     'search' => 'Search',
+    'no_inquiries' => 'No Inquiries Found',
 
     // create画面
     'name' => 'Name',

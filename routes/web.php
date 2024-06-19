@@ -37,17 +37,17 @@ Route::get('/privacy-policy', function () {
 });
 
 Route::prefix('contacts') //頭にcontactsをつける
-    ->middleware(['auth']) //認証
+    ->middleware(['auth']) //認証と管理者権限
     ->name('contacts.') //ルート名
     ->controller(ContactFormController::class) //コントローラ指定
     ->group(function(){ //グループ化
-        Route::get('/','index')->name('index'); //名前付きルート
-        Route::get('/create','create')->name('create');
-        Route::post('/','store')->name('store');
-        Route::get('/{id}', 'show')->name('show');
-        Route::get('/{id}/edit', 'edit')->name('edit');
-        Route::post('/{id}', 'update')->name('update');
-        Route::post('/{id}/destroy', 'destroy')->name('destroy');
+        Route::get('/','index')->name('index'); //index名前付きルート
+        Route::get('/create','create')->name('create'); //create名前付きルート
+        Route::post('/','store')->name('store'); //store名前付きルート
+        Route::get('/{id}', 'show')->name('show'); //show名前付きルート
+        Route::get('/{id}/edit', 'edit')->name('edit'); //edit名前付きルート
+        Route::post('/{id}', 'update')->name('update'); //update名前付きルート
+        Route::post('/{id}/destroy', 'destroy')->name('destroy'); //destroy名前付きルート
 });
 
 Route::get('/', function () {
@@ -85,3 +85,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/queue', [JukeboxQueueController::class, 'getQueue']);
     Route::post('/queue/play-next', [JukeboxQueueController::class, 'playNextVideo']);
 });
+
+// アドミン機能をテストするルート
+Route::get('/admin-test', function() {
+    return 'You are an admin';
+})->middleware('auth', 'admin');

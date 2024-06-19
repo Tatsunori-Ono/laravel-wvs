@@ -12,12 +12,19 @@ class ContactForm extends Model
     // フォームのname属性、一括割り当て
     protected $fillable = [
         'name',
+        'user_id',
         'email',
         'non_warwick_student',
         'subject',
         'contact',
         'caution',
     ];
+
+    // Userモデルとの関係性
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function scopeSearch($query, $search){
         if($search !== null) {
