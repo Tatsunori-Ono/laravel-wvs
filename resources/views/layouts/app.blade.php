@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
-        <title>{{ __('messages.welcome') }}</title>
+        <title>{{ __('platform.title') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

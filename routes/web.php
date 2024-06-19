@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\RentalController;
 
 use App\Http\Controllers\ProfileController;
 
@@ -52,6 +53,20 @@ Route::prefix('contacts') //頭にcontactsをつける
         Route::get('/{id}/edit', 'edit')->name('edit'); //edit名前付きルート
         Route::post('/{id}', 'update')->name('update'); //update名前付きルート
         Route::post('/{id}/destroy', 'destroy')->name('destroy'); //destroy名前付きルート
+});
+
+Route::prefix('rental')
+    ->middleware(['auth'])
+    ->name('rental.')
+    ->controller(RentalController::class)
+    ->group(function(){
+        Route::get('/','index')->name('index'); 
+        Route::get('/create','create')->name('create');
+        Route::post('/','store')->name('store'); 
+        Route::get('/{id}', 'show')->name('show');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::post('/{id}', 'update')->name('update');
+        Route::post('/{id}/destroy', 'destroy')->name('destroy');
 });
 
 Route::get('/', function () {

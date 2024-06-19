@@ -68,9 +68,13 @@
                             </div>
 
                             <div class="p-2 w-full">
-                                <div class="relative text-sm">
-                                    <input type="checkbox" id="caution" name="caution" style="margin-right: .2rem;" {{ old('caution') ? 'checked' : '' }}>
-                                    <label for="caution" class="required">{{ __('contact.warning') }}</label>
+                                <div class="relative">
+                                    <input type="checkbox" id="caution" name="caution" style="margin-right: .2rem;" >
+                                    @if(app()->getLocale() == 'ja')
+                                        <label class="required text-sm"><a href="{{ url('/terms-and-conditions') }}" class="text-blue-500">{{ __('contact.terms-and-conditions') }}</a>{{ __('contact.agree') }}</label>
+                                    @else
+                                        <label class="required text-sm">{{ __('contact.agree') }} <a href="{{ url('/terms-and-conditions') }}" class="text-blue-500">{{ __('contact.terms-and-conditions') }}</a>.</label>
+                                    @endif
                                     <x-input-error :messages="$errors->get('caution')" class="mt-2" />
                                 </div>
                             </div>
