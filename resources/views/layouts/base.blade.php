@@ -7,13 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ViteでコンパイルしたCSSとJSファイルを読み込む -->
-    @vite(['resources/css/app.css', 'resources/css/style.css', 'resources/js/navbar.js'])
+    @vite(['resources/css/app.css', 'resources/css/style.css', 'resources/css/loader.css', 'resources/js/navbar.js'])
+
+    <!--jQuery for Loader-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
     <!-- Title -->
     <title>@yield('title')</title>
 </head>
 
 <body>
+    <!--Loader-->
+    <div class="loader-wrapper">
+        <img class="image" src="/images/wvs-chan-little.png" alt="">
+    </div>
+    <script>
+        $(window).on("load",function(){
+        $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+
     <!-- Navbar -->
     <nav id="navbar">
         <a href="{{ url('/about') }}" id="navbar-logo"><img src="{{ asset('images/logo.webp') }}" alt="WVS Logo"></a>
