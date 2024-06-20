@@ -42,7 +42,7 @@ Route::get('/terms-and-conditions', function () {
 });
 
 Route::prefix('contacts') //頭にcontactsをつける
-    ->middleware(['auth']) //認証と管理者権限
+    ->middleware(['auth', 'verified']) //認証と管理者権限
     ->name('contacts.') //ルート名
     ->controller(ContactFormController::class) //コントローラ指定
     ->group(function(){ //グループ化
@@ -56,7 +56,7 @@ Route::prefix('contacts') //頭にcontactsをつける
 });
 
 Route::prefix('rental')
-    ->middleware(['auth'])
+    ->middleware(['auth', 'verified'])
     ->name('rental.')
     ->controller(RentalController::class)
     ->group(function(){
@@ -68,6 +68,10 @@ Route::prefix('rental')
         Route::post('/{id}', 'update')->name('update');
         Route::post('/{id}/destroy', 'destroy')->name('destroy');
 });
+
+Route::get('/donate', function () {
+    return view('donate');
+})->middleware(['auth', 'verified'])->name('donate');
 
 Route::get('/', function () {
     return redirect('/about');
@@ -83,9 +87,17 @@ Route::get('lang/{locale}', function ($locale) {
 
 Route::get('tests/test', [TestController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified', 'google2fa'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/2fa', function () {
+        return redirect(route('dashboard'));
+    })->name('2fa');
+    Route::post('/2fa', function () {
+        return redirect(route('dashboard'));
+    })->name('2fa');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

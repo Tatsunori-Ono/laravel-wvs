@@ -9,5 +9,6 @@ return [
     'login' => 'LOGIN',
     'register' => 'REGISTER',
     'welcome' => 'Welcome, ',
+    'platform' => 'WVS PLATFORM',
     'logout' => 'LOGOUT',
 ];

@@ -15,11 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('platform.dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="url('/about')" :active="request()->is('about')">
+                        {{ __('platform.main') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('rental.index')" :active="request()->routeIs('rental.index')">
                         {{ __('platform.rental') }}
                     </x-nav-link>
                     <x-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.index')">
                         {{ __('platform.contact') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
+                        {{ __('platform.donate') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -42,6 +48,11 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                            @if(Auth::user()->profile_photo_path)
+                                <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
+                            @else
+                                <img src="{{ asset('images/default-profile.png') }}" alt="Default Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
+                            @endif
                             <div>{{ Auth::user()->name }}</div>
 
                             <div class="ms-1">
@@ -89,14 +100,25 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('platform.dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/about')" :active="request()->is('about')">
+                {{ __('platform.main') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.index')">
                 {{ __('platform.contact') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
+                {{ __('platform.donate') }}
             </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Dark Mode Toggle and Language Switcher -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4 flex justify-between items-center">
+                @if(Auth::user()->profile_photo_path)
+                    <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
+                @else
+                    <img src="{{ asset('images/default-profile.png') }}" alt="Default Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
+                @endif
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <button id="responsive-dark-mode-toggle" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                     <img id="responsive-dark-mode-icon" src="/images/icons/moon.svg" alt="Toggle Dark Mode" class="h-6 w-6">

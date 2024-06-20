@@ -56,6 +56,9 @@
                     <span class="nav-link">{{ __('nav.welcome') }} {{ auth()->user()->name }}</span>
                 </li>
                 <li class="nav-list-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link-blue">{{ __('nav.platform') }}</a>
+                </li>
+                <li class="nav-list-item">
                     <a href="{{ route('logout') }}" class="nav-link-blue" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('nav.logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf

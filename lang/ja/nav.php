@@ -9,5 +9,6 @@ return [
     'login' => 'ログイン',
     'register' => '新規登録',
     'welcome' => 'ようこそ、',
+    'platform' => 'WVSプラットフォーム',
     'logout' => 'ログアウト',
 ];

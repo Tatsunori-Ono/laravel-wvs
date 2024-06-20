@@ -16,6 +16,17 @@ return Application::configure(basePath: dirname(__DIR__))
             SetLanguage::class,
             // Add other middleware here if necessary
         ]);
+
+        $middleware->alias([
+            'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+            'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
+            'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+            'can' => \Illuminate\Auth\Middleware\Authorize::class,
+            'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+            'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+            'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+            'google2fa' => \PragmaRX\Google2FALaravel\Middleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

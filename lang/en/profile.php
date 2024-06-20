@@ -4,6 +4,7 @@ return [
     //edit.blade
     "title" => "Profile",
     "save" => "Save",
+    "photo" => "Change the profile picture",
 
     //update-profile-information-form
     "info" => "Profile Information",

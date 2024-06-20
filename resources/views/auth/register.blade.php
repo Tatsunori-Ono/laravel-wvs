@@ -58,6 +58,15 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- is Enable Google2fa -->
+        <div class="block mt-4">
+            <label for="is_enable_google2fa" class="inline-flex items-center">
+                <input id="is_enable_google2fa" type="checkbox"
+                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="is_enable_google2fa" value="1">
+                <span class="ml-2 text-sm text-gray-600">{{ __('Enable Google 2fa') }}</span>
+            </label>
+        </div>
+
         <!-- 必須項目の注意書き -->
         <div class="mt-4 text-red-400 text-base">
             {{__('register.required')}}

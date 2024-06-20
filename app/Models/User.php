@@ -4,13 +4,16 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 
-class User extends Authenticatable implements FilamentUser
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -25,6 +28,9 @@ class User extends Authenticatable implements FilamentUser
         'warwick_id',
         'email',
         'password',
+        'profile_photo_path',
+        'google2fa_secret',
+        'is_enable_google2fa',
     ];
 
     /**
@@ -35,6 +41,8 @@ class User extends Authenticatable implements FilamentUser
     protected $hidden = [
         'password',
         'remember_token',
+        'google2fa_secret',
+        'is_enable_google2fa',
     ];
 
     /**
@@ -58,4 +66,18 @@ class User extends Authenticatable implements FilamentUser
 
         return true;
     }
+
+    /**
+     * Interact with the user's first name.
+     *
+     * @param  string  $value
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    // protected function google2faSecret(): Attribute
+    // {
+    //     return new Attribute(
+    //         get: fn ($value) =>  decrypt($value),
+    //         set: fn ($value) =>  encrypt($value),
+    //     );
+    // }
 }

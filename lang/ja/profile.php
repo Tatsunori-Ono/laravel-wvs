@@ -4,6 +4,7 @@ return [
     //edit.blade
     "title" => "プロフィール",
     "save" => "保存する",
+    "photo" => "プロフィール写真を変更する",
 
     //update-profile-information-form
     "info" => "プロフィール情報",
