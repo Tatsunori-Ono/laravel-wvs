@@ -51,7 +51,7 @@
                             @if(Auth::user()->profile_photo_path)
                                 <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
                             @else
-                                <img src="{{ asset('images/default-profile.png') }}" alt="Default Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
+                                <img src="{{ asset('images/user_icon.png') }}" alt="Default Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
                             @endif
                             <div>{{ Auth::user()->name }}</div>
 
@@ -117,7 +117,7 @@
                 @if(Auth::user()->profile_photo_path)
                     <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
                 @else
-                    <img src="{{ asset('images/default-profile.png') }}" alt="Default Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
+                    <img src="{{ asset('images/user_icon.png') }}" alt="Default Profile Photo" class="h-8 w-8 rounded-full object-cover me-2">
                 @endif
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <button id="responsive-dark-mode-toggle" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
