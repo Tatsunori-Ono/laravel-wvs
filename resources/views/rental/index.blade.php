@@ -16,11 +16,11 @@
                     
                     <form class="mb-8 mt-5" action="{{ route('rental.index') }}" method="get">
                         <!-- 検索バー -->
-                        <input type="text" name="search" placeholder="{{ __('rental.search') }}">
+                        <input type="text" name="search" class="dark:text-black" placeholder="{{ __('rental.search') }}">
                         <button class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded">{{ __('rental.search') }}</button>
                         
                         <!-- カテゴリ絞り -->
-                        <select name="category" class="ml-5">
+                        <select name="category" class="ml-5 dark:text-black">
                             <option value="">{{ __('All Categories') }}</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category }}">{{ $category }}</option>

@@ -30,7 +30,7 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="name" class="required leading-7 text-sm text-gray-600">{{__('contact.name')}}</label>
+                                        <label for="name" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.name')}}</label>
                                         <input type="text" id="name" name="name" value="{{old('name')}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                     </div>
@@ -38,7 +38,7 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="email" class="required leading-7 text-sm text-gray-600">{{__('contact.email')}}</label>
+                                        <label for="email" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.email')}}</label>
                                         <input type="email" id="email" name="email" value="{{old('email')}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
@@ -46,16 +46,16 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label class="required leading-7 text-sm text-gray-600">{{__('contact.warwick')}}</label><br>
-                                        <input type="radio" name="non_warwick_student" value="0" style="margin-right: .5rem;" {{old('non_warwick_student') == '0' ? 'checked' : ''}}>{{__('contact.warwick-student')}}<br>
-                                        <input type="radio" name="non_warwick_student" value="1" style="margin-right: .5rem;" {{old('non_warwick_student') == '1' ? 'checked' : ''}}>{{__('contact.non-warwick-student')}}
+                                        <label class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.warwick')}}</label><br>
+                                        <input type="radio" name="non_warwick_student" value="0" style="margin-right: .5rem;" {{old('non_warwick_student') == '0' ? 'checked' : ''}}><span class="dark:text-gray-200">{{__('contact.warwick-student')}}</span><br>
+                                        <input type="radio" name="non_warwick_student" value="1" style="margin-right: .5rem;" {{old('non_warwick_student') == '1' ? 'checked' : ''}}><span class="dark:text-gray-200">{{__('contact.non-warwick-student')}}</span>
                                         <x-input-error :messages="$errors->get('non_warwick_student')" class="mt-2" />
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="subject" class="required leading-7 text-sm text-gray-600">{{__('contact.subject')}}</label>
+                                        <label for="subject" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.subject')}}</label>
                                         <input type="text" id="subject" name="subject" value="{{old('subject')}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                         <x-input-error :messages="$errors->get('subject')" class="mt-2" />
                                     </div>
@@ -63,7 +63,7 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="contact" class="required leading-7 text-sm text-gray-600">{{__('contact.content')}}</label>
+                                        <label for="contact" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.content')}}</label>
                                         <textarea id="contact" name="contact" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{old('contact')}}</textarea>
                                         <x-input-error :messages="$errors->get('contact')" class="mt-2" />
                                     </div>
@@ -73,9 +73,9 @@
                                     <div class="relative">
                                         <input type="checkbox" id="caution" name="caution" style="margin-right: .2rem;" >
                                         @if(app()->getLocale() == 'ja')
-                                            <label class="required"><a href="{{ url('/terms-and-conditions') }}" class="text-blue-500">{{ __('contact.terms-and-conditions') }}</a>{{ __('contact.agree') }}</label>
+                                            <label class="required dark:text-gray-200"><a href="{{ url('/terms-and-conditions') }}" class="text-blue-500">{{ __('contact.terms-and-conditions') }}</a>{{ __('contact.agree') }}</label>
                                         @else
-                                            <label class="required">{{ __('contact.agree') }} <a href="{{ url('/terms-and-conditions') }}" class="text-blue-500">{{ __('contact.terms-and-conditions') }}</a>.</label>
+                                            <label class="required dark:text-gray-200">{{ __('contact.agree') }} <a href="{{ url('/terms-and-conditions') }}" class="text-blue-500">{{ __('contact.terms-and-conditions') }}</a>.</label>
                                         @endif
                                         <x-input-error :messages="$errors->get('caution')" class="mt-2" />
                                     </div>
