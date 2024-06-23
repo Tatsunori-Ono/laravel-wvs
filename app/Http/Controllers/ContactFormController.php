@@ -36,11 +36,13 @@ class ContactFormController extends Controller
             // アドミン（管理者）は全ての問い合わせを閲覧できる。
             $contacts = $query->search($search)
                 ->select('id', 'name', 'subject', 'created_at')
+                ->orderBy('id', 'desc')
                 ->paginate(10);
         } else {
             // その他のユーザーは自分自身の問い合わせのみ閲覧できる。
             $contacts = $query->where('user_id', Auth::id())
                 ->select('id', 'name', 'subject', 'created_at')
+                ->orderBy('id', 'desc')
                 ->paginate(10);
         }
 
