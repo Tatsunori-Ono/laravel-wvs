@@ -17,7 +17,7 @@
 </div>
 <br>
 
-<div style="--overlay-color:#F0665C;" class="box">
+<div style="--overlay-color:#FFCCCB;" class="box">
     <div class="box-info">
         <h2>{{ __('contact.create') }}</h2>
         {!! __('external-contact.inquiry_message') !!}

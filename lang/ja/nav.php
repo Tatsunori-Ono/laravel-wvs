@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'about' => 'アバウト',
+    'about' => 'WVSとは',
     'events' => 'イベント',
     'contact' => 'お問い合わせ',
     'showcase' => 'ショーケース',

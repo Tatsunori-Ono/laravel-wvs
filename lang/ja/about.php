@@ -1,13 +1,13 @@
 <?php
 
 return [
-    'title' => 'アバウト',
-    'about_nav' => 'アバウト',
+    'title' => '私たちについて',
+    'about_nav' => 'WVSとは',
     'welcome' => 'ようこそ',
-    'welcome_message' => 'Warwick Vocaloid Society（WVS）は、ボーカロイドに興味がある人のためのWarwickの学生運営の社会です。この社会は、これらの興味を共有する他の人に会いたい人や、私たちが毎学年開催する多くのイベントの一つに参加したい人のためのものです。',
-    'communications' => '私たちの社会の通信のほとんどは、<a href="https://www.instagram.com/warwick_vocaloid/">Instagram</a>や<a href="https://discord.gg/NXYVdzZpr5">Discordサーバー</a>を通じて行われます。Discordは他のメンバーとボーカロイドについて話し合う素晴らしい場所でもあります。',
-    'socials' => 'ソーシャル',
-    'socials_message' => '私たちは定期的にB2.02（Sci Conc）でソーシャルイベントを開催しています。学期中の毎週月曜日の19:00から開始します。バックグラウンドにボーカロイドが流れる中で、他の人と出会い、楽しむ絶好の機会です。これに加えて、年間を通して他の多くのソーシャルイベントも開催しています。',
+    'welcome_message' => 'Warwick Vocaloid Society（WVS）は、ボーカロイドに興味がある全ての人のために創られた、ウォーリック生が運営している部活です！この部では、ボカロ文化をさらに世の中に広めることを活動理念としています。ボカロを知らない方・ボカロに興味がない方でも大歓迎です！',
+    'communications' => 'SNSは、<a href="https://www.instagram.com/warwick_vocaloid/">Instagram</a>や<a href="https://discord.gg/NXYVdzZpr5">Discordサーバー</a>を中心に情報を発信しています。我々の<a href="https://discord.gg/NXYVdzZpr5">Discordサーバー</a>では他のメンバーともボカロについて話し合うことができます！',
+    'socials' => 'イベント',
+    'socials_message' => '私たちは定期的にウォーリック大のキャンパス内にあるB2.02（Sci Conc）という部屋でソーシャルイベントを開催しています。学期中の毎週月曜日19:00から開始しています。こちらの定期交流会に加えて、他にもクリエイティブなイベントを開催しています。詳しくはWVSのSNSをご参照ください。',
     'tutorials_projects' => 'チュートリアルとプロジェクト',
-    'tutorials_projects_message' => '私たちは、ボーカロイドを自分でプロデュースすることに興味がある人のために時折チュートリアルを開催しています。初心者から専門家まで、すべてのプロデューサーを歓迎しますので、ぜひご参加ください。また、開発したスキルを実践するための共同および個別のプロジェクトも時折開催しています。',
+    'tutorials_projects_message' => '私たちは、ボーカロイドを自分でプロデュースすることに興味がある人のためにチュートリアルも開催しています。初心者から上級者まで、すべてのボカロPを歓迎していますので、ぜひご参加ください！また、身につけたスキルを実践するための共同および個別のプロジェクトの制作をお手伝いしています。',
 ];
