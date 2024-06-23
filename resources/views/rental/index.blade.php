@@ -33,18 +33,18 @@
                         {{ __('My Favorites') }}
                     </a>
 
-                    <a href="{{ route('cart.index') }}" class="ml-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-4 text-lg">
+                    <a href="{{ route('cart.index') }}" class="ml-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-lg">
                         Go to Cart ({{ $cartItemCount }})
                     </a>
 
                     @if($equipmentItems->count())
-                        <div class="container px-5 py-20 mx-auto">
+                        <div class="container px-5 pt-19 mt-11 mx-auto">
                             <div class="flex flex-wrap -m-4">
                                 @foreach ($equipmentItems as $item)
                                     @php
                                         $availableQuantity = $item->quantity - $item->rented_quantity;
                                     @endphp
-                                    <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+                                    <div class="lg:w-1/4 p-3 w-full">
                                         <div class="relative">
                                             <!-- Slideshow container -->
                                             <div class="slideshow-container slideshow-container-{{ $item->id }}">
@@ -58,6 +58,7 @@
                                                             @else
                                                                 <img src="{{ asset('storage/' . $image->image_path) }}" style="width:100%">
                                                             @endif
+                                                            <div class="text">{{ $item->product_name }}</div>
                                                         </a>
                                                     </div>
                                                 @endforeach
@@ -75,7 +76,7 @@
                                                 @endforeach
                                             </div>
 
-                                            <div class="mt-4">
+                                            <div class="mt-1 mb-4">
                                                 <h3 class="text-gray-500 dark:text-gray-300 text-xs tracking-widest title-font mb-1">{{ $item->category }}</h3>
                                                 <h2 class="text-gray-900 dark:text-gray-100 title-font text-lg font-medium">{{ $item->product_name }}</h2>
                                                 @if ($availableQuantity > 0)
@@ -137,8 +138,7 @@
         .slideshow-container {
             max-width: 1000px;
             position: relative;
-            margin: auto;
-            margin-bottom: 10px; /* Adjusted bottom margin */
+            top: 18px;
         }
 
         /* Hide the images by default */
@@ -196,9 +196,8 @@
         /* The dots/bullets/indicators */
         .dot {
             cursor: pointer;
-            height: 10px;
-            width: 10px;
-            margin: 0 2px;
+            height: 9px;
+            width: 9px;
             background-color: #bbb;
             border-radius: 50%;
             display: inline-block;
@@ -223,7 +222,6 @@
         /* Dots section */
         .dots-container {
             text-align: center;
-            margin-top: 5px; /* Adjusted top margin */
         }
     </style>
 </x-app-layout>

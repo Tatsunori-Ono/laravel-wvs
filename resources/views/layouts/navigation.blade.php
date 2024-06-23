@@ -15,10 +15,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('platform.dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('rental.index')" :active="request()->routeIs('rental.index')">
+                    <!-- ルートがrental何々, cart何々, checkout何々だったら全てnavbarでEquipment Rentalがactive -->
+                    <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
                         {{ __('platform.rental') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.index')">
+                    <x-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.*')">
                         {{ __('platform.contact') }}
                     </x-nav-link>
                     <x-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
