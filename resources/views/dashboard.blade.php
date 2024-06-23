@@ -11,18 +11,36 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 text-lg">
 
                     @if($rentals->count())
-                        <h3 class="mt-4 mb-2">Your Rentals:</h3>
+                        <h3 class="mt-4 mb-2">{{__('dashboard.your-rental')}}</h3>
+                        
                         <ul>
-                            @foreach($rentals as $rental)
-                                <li>
-                                    Please return 
-                                    <span class="font-bold underline">{{ $rental->equipmentItem->product_name }}</span> 
-                                    by <span class="font-bold text-green-500">{{ $rental->return_by }}</span>
-                                    (<span class="countdown font-bold" data-return-by="{{ $rental->return_by }}"></span>
-                                    left)
-                                </li>
-                            @endforeach
+                            @if(app()->getLocale() == 'ja')
+                                @foreach($rentals as $rental)
+                                    <li>
+                                        <span class="font-bold underline">{{ $rental->equipmentItem->product_name }}</span> 
+                                        を
+                                        <span class="font-bold text-green-500">{{ $rental->return_by }}</span>
+                                        までにご返却ください。
+                                        （残り
+                                        <span class="countdown font-bold" data-return-by="{{ $rental->return_by }}"></span>
+                                        ）
+                                    </li>
+                                @endforeach
+                            @else
+                                @foreach($rentals as $rental)
+                                    <li>
+                                        Please return 
+                                        <span class="font-bold underline">{{ $rental->equipmentItem->product_name }}</span> 
+                                        by 
+                                        <span class="font-bold text-green-500">{{ $rental->return_by }}</span>
+                                        (
+                                        <span class="countdown font-bold" data-return-by="{{ $rental->return_by }}"></span>
+                                        left)
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
+
                     @else
                         <p>You have no active rentals.</p>
                     @endif
