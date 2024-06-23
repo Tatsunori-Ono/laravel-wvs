@@ -21,20 +21,20 @@
                         
                         <!-- カテゴリ絞り -->
                         <select name="category" class="ml-5 dark:text-black">
-                            <option value="">{{ __('All Categories') }}</option>
+                            <option value="">{{ __('rental.all-categories') }}</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category }}">{{ $category }}</option>
                             @endforeach
                         </select>
-                        <button class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded">{{ __('Filter') }}</button>
+                        <button class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded">{{ __('rental.filter') }}</button>
                     </form>
 
                     <a href="{{ route('rental.index', ['favorites' => 1]) }}" class="text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded">
-                        {{ __('My Favorites') }}
+                        {{ __('rental.favourites') }}
                     </a>
 
                     <a href="{{ route('cart.index') }}" class="ml-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-lg">
-                        Go to Cart ({{ $cartItemCount }})
+                        {{__('rental.go-to-cart')}} ({{ $cartItemCount }})
                     </a>
 
                     @if($equipmentItems->count())
@@ -79,10 +79,11 @@
                                             <div class="mt-1 mb-4">
                                                 <h3 class="text-gray-500 dark:text-gray-300 text-xs tracking-widest title-font mb-1">{{ $item->category }}</h3>
                                                 <h2 class="text-gray-900 dark:text-gray-100 title-font text-lg font-medium">{{ $item->product_name }}</h2>
+                                                <h3 class="text-gray-900 dark:text-gray-100 text-sm tracking-widest title-font mb-1">{{ $item->product_type }}</h3>
                                                 @if ($availableQuantity > 0)
-                                                    <p class="mt-1 text-green-500 font-bold">{{ $availableQuantity }} available</p>
+                                                    <p class="mt-1 text-green-500 font-bold">{{ $availableQuantity }} {{__('rental.status-available')}}</p>
                                                 @else
-                                                    <p class="mt-1 text-red-500 font-bold">Currently all rented</p>
+                                                    <p class="mt-1 text-red-500 font-bold">{{__('rental.status-rented')}}</p>
                                                 @endif
                                                 <a class="text-blue-500" href="{{ route('rental.show', ['id' => $item->id]) }}">{{ __('rental.details') }}</a>
                                             </div>

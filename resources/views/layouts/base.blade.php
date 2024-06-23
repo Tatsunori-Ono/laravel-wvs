@@ -55,6 +55,15 @@
                 <li class="nav-list-item">
                     <span class="nav-link">{{ __('nav.welcome') }} {{ auth()->user()->name }}</span>
                 </li>
+                @if(Auth::user()->profile_photo_path)
+                    <li class="nav-list-profile">
+                        <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" alt="Profile Photo" class="h-8 w-8 rounded-full object-cover me-2 custom-img">
+                    </li>
+                @else
+                    <li class="nav-list-profile">
+                        <img src="{{ asset('images/user_icon.png') }}" alt="Default Profile Photo" class="h-8 w-8 rounded-full object-cover me-2 custom-img">
+                    </li>
+                @endif
                 <li class="nav-list-item">
                     <a href="{{ route('dashboard') }}" class="nav-link-blue">{{ __('nav.platform') }}</a>
                 </li>

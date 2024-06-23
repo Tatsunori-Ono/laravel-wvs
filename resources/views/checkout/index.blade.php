@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Checkout') }}
+            {{ __('rental.checkout') }}
         </h2>
     </x-slot>
 
@@ -14,9 +14,9 @@
                             <table class="table-auto w-full">
                                 <thead>
                                     <tr>
-                                        <th class="px-4 py-2">Item</th>
-                                        <th class="px-4 py-2">Quantity</th>
-                                        <th class="px-4 py-2">Rental Days</th>
+                                        <th class="px-4 py-2">{{__('rental.item')}}</th>
+                                        <th class="px-4 py-2">{{__('rental.quantity')}}</th>
+                                        <th class="px-4 py-2">{{__('rental.rental_days')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,7 +33,7 @@
                         <div class="mt-4">
                             <form action="{{ route('checkout.process') }}" method="post">
                                 @csrf
-                                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Confirm Checkout</button>
+                                <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">{{__('rental.confirm')}}</button>
                             </form>
                         </div>
                     @else

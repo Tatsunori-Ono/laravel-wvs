@@ -15,7 +15,11 @@
                         <ul>
                             @foreach($rentals as $rental)
                                 <li>
-                                    Please return <span class="font-bold underline">{{ $rental->equipmentItem->product_name }}</span> in <span class="countdown font-bold" data-return-by="{{ $rental->return_by }}"></span>
+                                    Please return 
+                                    <span class="font-bold underline">{{ $rental->equipmentItem->product_name }}</span> 
+                                    by <span class="font-bold text-green-500">{{ $rental->return_by }}</span>
+                                    (<span class="countdown font-bold" data-return-by="{{ $rental->return_by }}"></span>
+                                    left)
                                 </li>
                             @endforeach
                         </ul>

@@ -19,6 +19,15 @@
                     <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
                         {{ __('platform.rental') }}
                     </x-nav-link>
+                    @if(Auth::user()->role === 'admin')
+                        <x-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">
+                            {{ __('platform.jukebox') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('jukebox.index')" :active="request()->routeIs('jukebox.index')">
+                            {{ __('platform.jukebox') }}
+                        </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.*')">
                         {{ __('platform.contact') }}
                     </x-nav-link>
@@ -36,7 +45,8 @@
 
                 <!-- Language Switcher -->
                 <div class="language-switcher inline-flex items-center ms-4">
-                    <a href="{{ route('change_language', ['locale' => 'en']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">EN</a>/
+                    <a href="{{ route('change_language', ['locale' => 'en']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">EN</a>
+                    <span class="dark:text-gray-200">/</span>
                     <a href="{{ route('change_language', ['locale' => 'ja']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">JA</a>
                 </div>
 
@@ -101,14 +111,26 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('platform.dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="url('/about')" :active="request()->is('about')">
-                {{ __('platform.main') }}
+            <x-responsive-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
+                {{ __('platform.rental') }}
             </x-responsive-nav-link>
+            @if(Auth::user()->role === 'admin')
+                <x-responsive-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">
+                    {{ __('platform.jukebox') }}
+                </x-responsive-nav-link>
+            @else
+                <x-responsive-nav-link :href="route('jukebox.index')" :active="request()->routeIs('jukebox.index')">
+                    {{ __('platform.jukebox') }}
+                </x-responsive-nav-link>
+            @endif
             <x-responsive-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.index')">
                 {{ __('platform.contact') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
                 {{ __('platform.donate') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/about')" :active="request()->is('about')">
+                {{ __('platform.main') }}
             </x-responsive-nav-link>
         </div>
 
@@ -125,9 +147,10 @@
                     <img id="responsive-dark-mode-icon" src="/images/icons/moon.svg" alt="Toggle Dark Mode" class="h-6 w-6">
                 </button>
             </div>
-            <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+            <div class="font-medium text-sm text-gray-500 dark:text-gray-400">{{ Auth::user()->email }}</div>
             <div class="language-switcher flex mt-3">
                 <a href="{{ route('change_language', ['locale' => 'en']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">EN</a>
+                <span class="dark:text-gray-400">/</span>
                 <a href="{{ route('change_language', ['locale' => 'ja']) }}" class="px-3 py-2 text-sm leading-4 font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">JA</a>
             </div>
         </div>

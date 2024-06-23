@@ -1,7 +1,7 @@
 <x-app-layout>
     <section class="text-gray-600 body-font overflow-hidden">
         <a href="{{ route('rental.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-4 px-8 text-base rounded">
-            < Back to Catalogue
+            < {{__('rental.back-to-catalogue')}}
         </a>
         <div class="container px-5 py-24 mx-auto">
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -50,7 +50,7 @@
                                     </svg>
                                 @endif
                             @endfor
-                            <span class="text-gray-600 dark:text-gray-200 ml-3">{{ $equipmentItem->rental_count }} Rentals</span>
+                            <span class="text-gray-600 dark:text-gray-200 ml-3">{{ $equipmentItem->rental_count }} {{__('rental.rented-times')}}</span>
                         </span>
                         <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                             <a class="text-gray-500">
@@ -73,24 +73,34 @@
                     <p class="leading-relaxed dark:text-gray-200">{{ $equipmentItem->description }}</p>
                     <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                         <div class="flex ml-6 items-center">
-                            <span class="mr-3 dark:text-gray-200">Location:</span>
+                            <span class="mr-3 dark:text-gray-200">{{__('rental.location_stored')}}:</span>
                             <span class="text-gray-700 dark:text-gray-300">{{ $equipmentItem->location_stored }}</span>
                         </div>
+                        <div class="flex ml-6 items-center">
+                            <span class="mr-3 dark:text-gray-200">{{__('rental.purchase_date')}}:</span>
+                            <span class="text-gray-700 dark:text-gray-300">{{ $equipmentItem->purchase_date }}</span>
+                        </div>
                     </div>
-                    <div class="flex">
-                        @php
-                            $availableQuantity = $equipmentItem->quantity - $equipmentItem->rented_quantity;
-                        @endphp
-                        <span class="title-font font-medium text-2xl text-green-600 dark:text-green-200">{{ $availableQuantity }} Available</span>
-                        
+
+                    @php
+                        $availableQuantity = $equipmentItem->quantity - $equipmentItem->rented_quantity;
+                    @endphp
+
+                    @if ($availableQuantity > 0)
+                        <p class="title-font font-medium text-2xl text-green-600 dark:text-green-200 font-bold">{{ $availableQuantity }} {{__('rental.status-available')}}</p>
+                    @else
+                        <p class="title-font font-medium text-2xl text-red-600 dark:text-red-200 font-bold">{{__('rental.status-rented')}}</p>
+                    @endif
+
+                    <div class="flex mt-5">
                         <form action="{{ route('cart.add') }}" method="post" class="ml-auto">
                             @csrf
                             <input type="hidden" name="equipment_item_id" value="{{ $equipmentItem->id }}">
-                            <label for="quantity" class="dark:text-gray-200">Quantity:</label>
-                            <input type="number" name="quantity" value="1" min="1" max="{{ $equipmentItem->quantity - $equipmentItem->rented_quantity }}">
-                            <label for="rental_days" class="dark:text-gray-200">Rental Days:</label>
+                            <label for="quantity" class="dark:text-gray-200">{{__('rental.quantity')}}:</label>
+                            <input type="number" class="mr-2" name="quantity" value="1" min="1" max="{{ $equipmentItem->quantity - $equipmentItem->rented_quantity }}">
+                            <label for="rental_days" class="dark:text-gray-200">{{__('rental.rental_days')}}:</label>
                             <input type="number" name="rental_days" value="1" min="1" max="{{ $equipmentItem->max_rental_days }}">
-                            <button type="submit" class="flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 mt-10 rounded">Add to Cart</button>
+                            <button type="submit" class="flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 mt-10 rounded">{{__('rental.add-to-cart')}}</button>
                         </form>
 
                         @if($isFavorited)

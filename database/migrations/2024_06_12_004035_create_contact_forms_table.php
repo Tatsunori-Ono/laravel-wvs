@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('name', 20);
             $table->string('email', 255);
             $table->boolean('non_warwick_student');
-            // $table->longText('url')->nullable();
-            // $table->tinyInteger('age');
             $table->string('contact', 200);
             $table->timestamps();
         });

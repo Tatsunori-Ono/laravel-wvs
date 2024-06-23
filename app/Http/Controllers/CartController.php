@@ -44,7 +44,7 @@ class CartController extends Controller
                 'user_id' => Auth::id(),
                 'equipment_item_id' => $request->equipment_item_id,
                 'quantity' => $request->quantity,
-                'rental_days' => $request->rental_days, // Set rental days
+                'rental_days' => $request->rental_days,
             ]);
         }
 

@@ -79,7 +79,7 @@ h2 {
 	position: relative;
 	box-sizing: border-box;
 	padding: 0;
-  overflow: hidden;
+  	overflow: hidden;
 }
 
 .nav-list:before {
@@ -96,6 +96,10 @@ h2 {
 }
 
 .nav-list-item {
+	display: inline-block;
+}
+
+.nav-list-profile {
 	display: inline-block;
 }
 

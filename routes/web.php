@@ -8,12 +8,11 @@ use App\Http\Controllers\RentalController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JukeboxController;
 
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Session;
-
-use App\Http\Controllers\JukeboxQueueController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -120,17 +119,13 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/jukebox', function () {
-    return view('jukebox');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::post('/queue', [JukeboxQueueController::class, 'addToQueue']);
-    Route::get('/queue', [JukeboxQueueController::class, 'getQueue']);
-    Route::post('/queue/play-next', [JukeboxQueueController::class, 'playNextVideo']);
-});
-
 // アドミン機能をテストするルート
 Route::get('/admin-test', function() {
     return 'You are an admin';
 })->middleware('auth', 'admin');
+
+Route::get('/jukebox', [JukeboxController::class, 'index'])->name('jukebox.index');
+Route::post('/jukebox', [JukeboxController::class, 'store'])->name('jukebox.store');
+Route::get('/jukebox/admin', [JukeboxController::class, 'admin'])->name('jukebox.admin');
+Route::post('/jukebox/admin/play', [JukeboxController::class, 'play'])->name('jukebox.play');
+Route::post('/jukebox/admin/pause', [JukeboxController::class, 'pause'])->name('jukebox.pause');

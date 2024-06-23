@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jukebox_queue', function (Blueprint $table) {
+        Schema::create('jukeboxes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('video_title');
-            $table->string('video_url');
-            $table->integer('video_length');
-            $table->enum('status', ['queued', 'playing', 'played'])->default('queued');
+            $table->string('youtube_url');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jukebox_queue');
+        Schema::dropIfExists('jukeboxes_tables');
     }
 };
