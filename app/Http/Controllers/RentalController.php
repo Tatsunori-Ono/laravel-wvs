@@ -99,6 +99,10 @@ class RentalController extends Controller
      */
     public function edit($id)
     {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to edit this item.');
+        }
+
         $equipmentItem = EquipmentItem::findOrFail($id);
         return view('rental.edit', compact('equipmentItem'));
     }
@@ -108,7 +112,41 @@ class RentalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validation and updating logic
+        $request->validate([
+            'product_name' => 'required|string|max:255',
+            'product_type' => 'required|string|max:255',
+            'manufacturer' => 'nullable|string|max:255',
+            'category' => 'required|string|max:255',
+            'location_stored' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'purchase_date' => 'nullable|date',
+            'quantity' => 'required|integer',
+            'max_rental_days' => 'required|integer',
+            'price' => 'required|numeric',
+            'images' => 'nullable|array|max:9',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $equipmentItem = EquipmentItem::findOrFail($id);
+        $equipmentItem->update($request->all());
+
+        // Remove selected images
+        if ($request->has('remove_images')) {
+            foreach ($request->input('remove_images') as $imageId) {
+                $image = EquipmentImage::findOrFail($imageId);
+                $image->delete();
+            }
+        }
+
+        // Add new images
+        if ($request->has('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('equipment_images', 'public');
+                $equipmentItem->images()->create(['image_path' => $path]);
+            }
+        }
+
+        return redirect()->route('rental.index')->with('success', 'Equipment item updated successfully.');
     }
 
     /**
@@ -116,7 +154,16 @@ class RentalController extends Controller
      */
     public function destroy($id)
     {
-        // Deleting logic
+        $equipmentItem = EquipmentItem::findOrFail($id);
+
+        // Delete associated images
+        foreach ($equipmentItem->images as $image) {
+            $image->delete();
+        }
+
+        $equipmentItem->delete();
+
+        return redirect()->route('rental.index')->with('success', 'Equipment item deleted successfully.');
     }
 
     public function addToFavorites($id)

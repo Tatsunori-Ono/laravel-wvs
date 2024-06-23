@@ -32,9 +32,13 @@ return [
     'rental_days' => 'レンタル日数',
     'add-to-cart' => 'カートに追加する',
     'rented-times' => '回レンタルされました',
+    'edit' => '編集する',
+    'delete' => '削除する',
 
     // edit画面
-    
+    'current-images' => '現在の画像',
+    'new-images' => '新しい画像',
+    'remove-image' => '削除',
 
     // cart/index.blade.php
     'cart' => 'カート',

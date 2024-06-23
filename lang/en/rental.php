@@ -32,9 +32,13 @@ return [
     'rental_days' => 'Days on Rental',
     'add-to-cart' => 'Add to Cart',
     'rented-times' => 'Total Rentals',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
 
     // edit画面
-
+    'current-images' => 'Current Images',
+    'new-images' => 'New Images',
+    'remove-image' => 'Remove',
 
     // cart/index.blade.php
     'cart' => 'Your Cart',

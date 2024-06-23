@@ -123,6 +123,16 @@
                             </form>
                         @endif
                     </div>
+                    @if (Auth::user()->role === 'admin')
+                        <div class="flex mt-5">
+                            <a href="{{ route('rental.edit', $equipmentItem->id) }}" class="flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">{{ __('rental.edit') }}</a>
+                            <form action="{{ route('rental.destroy', $equipmentItem->id) }}" method="post" class="ml-4">
+                                @csrf
+                                @method('post')
+                                <button type="submit" class="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">{{ __('rental.delete') }}</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

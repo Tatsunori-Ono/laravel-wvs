@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ContactFormController;
@@ -9,10 +10,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JukeboxController;
-
 use App\Http\Controllers\ProfileController;
-
-use Illuminate\Support\Facades\Session;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -72,9 +70,6 @@ Route::prefix('rental')
         Route::post('/favorite/{id}', 'addToFavorites')->name('addFavorite');
         Route::post('/unfavorite/{id}', 'removeFromFavorites')->name('removeFavorite');
 });
-
-Route::post('/rental/favorite/{id}', [RentalController::class, 'addToFavorites'])->name('rental.addFavorite');
-Route::post('/rental/unfavorite/{id}', [RentalController::class, 'removeFromFavorites'])->name('rental.removeFavorite');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('cart')->name('cart.')
