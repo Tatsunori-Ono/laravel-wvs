@@ -56,7 +56,31 @@ class RentalController extends Controller
      */
     public function store(Request $request)
     {
-        // Validation and storing logic
+        $request->validate([
+            'product_name' => 'required|string|max:255',
+            'product_type' => 'required|string|max:255',
+            'manufacturer' => 'nullable|string|max:255',
+            'category' => 'required|string|max:255',
+            'location_stored' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'purchase_date' => 'nullable|date',
+            'quantity' => 'required|integer',
+            'max_rental_days' => 'required|integer',
+            'price' => 'required|numeric',
+            'images' => 'nullable|array|max:9',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $equipmentItem = EquipmentItem::create($request->all());
+
+        if ($request->has('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('equipment_images', 'public');
+                $equipmentItem->images()->create(['image_path' => $path]);
+            }
+        }
+
+        return redirect()->route('rental.index')->with('success', 'Equipment item created successfully.');
     }
 
     /**
