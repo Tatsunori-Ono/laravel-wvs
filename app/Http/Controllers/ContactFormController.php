@@ -79,7 +79,7 @@ class ContactFormController extends Controller
     {
         $contact = ContactForm::find($id);
 
-        // Check if the user is the owner of the inquiry or an admin
+        // ユーザーがその問い合わせ主、またはアドミンではない場合
         if (Auth::user()->id !== $contact->user_id && Auth::user()->role !== 'admin') {
             return redirect()->route('contacts.index')->with('error', 'You do not have permission to view this contact.');
         }

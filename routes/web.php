@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\RentalController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\DashboardController;
 
 use App\Http\Controllers\ProfileController;
 
@@ -59,14 +62,36 @@ Route::prefix('rental')
     ->middleware(['auth', 'verified'])
     ->name('rental.')
     ->controller(RentalController::class)
-    ->group(function(){
-        Route::get('/','index')->name('index'); 
-        Route::get('/create','create')->name('create');
-        Route::post('/','store')->name('store'); 
+    ->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
         Route::get('/{id}', 'show')->name('show');
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::post('/{id}', 'update')->name('update');
         Route::post('/{id}/destroy', 'destroy')->name('destroy');
+        Route::post('/favorite/{id}', 'addToFavorites')->name('addFavorite');
+        Route::post('/unfavorite/{id}', 'removeFromFavorites')->name('removeFavorite');
+});
+
+Route::post('/rental/favorite/{id}', [RentalController::class, 'addToFavorites'])->name('rental.addFavorite');
+Route::post('/rental/unfavorite/{id}', [RentalController::class, 'removeFromFavorites'])->name('rental.removeFavorite');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('cart')->name('cart.')
+        ->controller(CartController::class)
+        ->group(function() {
+            Route::get('/', 'index')->name('index');
+            Route::post('/add', 'addToCart')->name('add');
+            Route::delete('/remove/{id}', 'remove')->name('remove');
+            Route::put('/update/{id}', 'update')->name('update');
+        });
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
+});
+
+Route::middleware(['auth', 'verified', 'google2fa'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::get('/donate', function () {
@@ -86,18 +111,6 @@ Route::get('lang/{locale}', function ($locale) {
 })->name('change_language');
 
 Route::get('tests/test', [TestController::class, 'index']);
-
-Route::middleware(['auth', 'verified', 'google2fa'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/2fa', function () {
-        return redirect(route('dashboard'));
-    })->name('2fa');
-    Route::post('/2fa', function () {
-        return redirect(route('dashboard'));
-    })->name('2fa');
-});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

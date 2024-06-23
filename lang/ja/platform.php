@@ -2,7 +2,7 @@
 
 return [
     'title' => 'WVSプラットフォーム',
-    'main' => 'メイン',
+    'main' => 'メインWEBサイト',
 
     // navigation
     'dashboard' => 'ダッシュボード',

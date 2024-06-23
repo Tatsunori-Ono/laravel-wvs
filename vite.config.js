@@ -16,7 +16,7 @@ export default defineConfig({
         react(),
     ],
     esbuild: {
-        loader: 'jsx',  // Add this line to enable JSX syntax
-        include: /src\/.*\.js$/,  // Apply this loader only to JS files in the src folder
+        loader: 'jsx',
+        include: /src\/.*\.js$/,
     },
 });

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\UpdateRentalStatus;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,11 +14,11 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
-    {
-        // Schedule the PlayNextVideo job to run every minute
-        $schedule->job(new \App\Jobs\PlayNextVideo)->everyMinute();
-    }
+    // protected function schedule(Schedule $schedule)
+    // {
+    //     // Schedule the PlayNextVideo job to run every minute
+    //     $schedule->job(new \App\Jobs\PlayNextVideo)->everyMinute();
+    // }
 
     /**
      * Register the commands for the application.
@@ -29,5 +30,11 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+    }
+
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('rental:update-status')->hourly();
+        $schedule->command(UpdateRentalStatus::class)->hourly();
     }
 }

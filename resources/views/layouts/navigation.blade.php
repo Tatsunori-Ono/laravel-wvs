@@ -15,9 +15,6 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('platform.dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="url('/about')" :active="request()->is('about')">
-                        {{ __('platform.main') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('rental.index')" :active="request()->routeIs('rental.index')">
                         {{ __('platform.rental') }}
                     </x-nav-link>
@@ -26,6 +23,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
                         {{ __('platform.donate') }}
+                    </x-nav-link>
+                    <x-nav-link :href="url('/about')" :active="request()->is('about')">
+                        {{ __('platform.main') }}
                     </x-nav-link>
                 </div>
             </div>

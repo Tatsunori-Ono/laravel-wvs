@@ -67,6 +67,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return true;
     }
 
+    public function favorites()
+    {
+        return $this->belongsToMany(EquipmentItem::class, 'favorites', 'user_id', 'equipment_item_id')->withTimestamps();
+    }
+
     /**
      * Interact with the user's first name.
      *
