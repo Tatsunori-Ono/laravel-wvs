@@ -21,6 +21,9 @@
                     </x-nav-link>
 
                     @if(Auth::user()->role === 'admin')
+                        <x-nav-link :href="route('admin.rental.log')" :active="request()->routeIs('admin.rental.log')">
+                            {{ __('platform.rental_log') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">
                             {{ __('platform.jukebox') }}
                         </x-nav-link>
@@ -131,6 +134,9 @@
             </x-responsive-nav-link>
             
             @if(Auth::user()->role === 'admin')
+                <x-responsive-nav-link :href="route('admin.rental.log')" :active="request()->routeIs('admin.rental.log')">
+                    {{ __('platform.rental_log') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">
                     {{ __('platform.jukebox') }}
                 </x-responsive-nav-link>

@@ -13,6 +13,7 @@ use App\Http\Controllers\JukeboxController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowcaseController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\RentalLogController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -138,4 +139,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+    // Rental Log Routes
+    Route::get('rental-log', [RentalLogController::class, 'index'])->name('rental.log');
+    Route::get('rental-log/{id}/edit', [RentalLogController::class, 'edit'])->name('rental.edit');
+    Route::patch('rental-log/{id}', [RentalLogController::class, 'update'])->name('rental.update');
+    Route::delete('rental-log/{id}', [RentalLogController::class, 'destroy'])->name('rental.destroy');
 });
