@@ -9,5 +9,10 @@ class Jukebox extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['youtube_url'];
+    protected $fillable = ['youtube_url', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

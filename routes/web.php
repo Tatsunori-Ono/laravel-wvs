@@ -133,6 +133,7 @@ Route::post('/jukebox', [JukeboxController::class, 'store'])->name('jukebox.stor
 Route::get('/jukebox/admin', [JukeboxController::class, 'admin'])->name('jukebox.admin');
 Route::post('/jukebox/admin/play', [JukeboxController::class, 'play'])->name('jukebox.play');
 Route::post('/jukebox/admin/pause', [JukeboxController::class, 'pause'])->name('jukebox.pause');
+Route::delete('/jukebox/{id}', [JukeboxController::class, 'destroy'])->name('jukebox.destroy');
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('users', [UserController::class, 'index'])->name('users.index');

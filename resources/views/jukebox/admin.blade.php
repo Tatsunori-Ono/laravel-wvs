@@ -17,17 +17,25 @@
                                     <tr>
                                         <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">{{ __('ID') }}</th>
                                         <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('YouTube URL') }}</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('Added By') }}</th>
                                         <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('Added At') }}</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('Actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jukeboxItems as $item)
-                                        <tr>
+                                    @foreach ($jukeboxItems as $index => $item)
+                                        <tr data-index="{{ $index }}">
                                             <td class="border-t-2 border-gray-200 px-4 py-3">{{ $item->id }}</td>
                                             <td class="border-t-2 border-gray-200 px-4 py-3">{{ $item->youtube_url }}</td>
+                                            <td class="border-t-2 border-gray-200 px-4 py-3">{{ $item->user->name }}</td>
                                             <td class="border-t-2 border-gray-200 px-4 py-3">{{ $item->created_at }}</td>
                                             <td class="border-t-2 border-gray-200 px-4 py-3">
-                                                <button class="text-blue-500" onclick="loadVideo('{{ $item->youtube_url }}')">{{ __('Play this') }}</button>
+                                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-3" onclick="loadVideo('{{ $item->youtube_url }}', {{ $index }})">{{ __('Jump here') }}</button>
+                                                <form action="{{ route('jukebox.destroy', $item->id) }}" method="POST" class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">{{ __('Delete') }}</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -56,6 +64,8 @@
     <script>
         var player;
         var playerReady = false;
+        var currentIndex = -1;
+        var jukeboxItems = @json($jukeboxItems);
 
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
@@ -71,32 +81,52 @@
 
         function onPlayerReady(event) {
             playerReady = true;
+            if (currentIndex !== -1) {
+                player.playVideo();
+            }
         }
 
         function onPlayerStateChange(event) {
-            // Player state changed
+            if (event.data === YT.PlayerState.ENDED) {
+                playNextVideo();
+            }
         }
 
-        function loadVideo(url) {
-            if (playerReady) {
-                var videoId = getYouTubeVideoId(url);
-                player.loadVideoById(videoId);
+        function loadVideo(url, index) {
+            var videoId = getYouTubeVideoId(url);
+            if (videoId) {
+                currentIndex = index;
+                if (playerReady) {
+                    player.loadVideoById(videoId);
+                } else {
+                    console.log('Player is not ready');
+                }
             } else {
-                console.log('Player is not ready');
+                console.log('Invalid YouTube URL:', url);
+                alert('Invalid YouTube URL. Please enter a valid YouTube video URL.');
             }
         }
 
         function getYouTubeVideoId(url) {
-            var videoId = url.split('v=')[1];
-            var ampersandPosition = videoId.indexOf('&');
-            if (ampersandPosition != -1) {
-                videoId = videoId.substring(0, ampersandPosition);
+            var videoId = null;
+            var urlObj = new URL(url);
+            if (urlObj.hostname === 'www.youtube.com' && urlObj.pathname === '/watch') {
+                videoId = urlObj.searchParams.get('v');
             }
             return videoId;
         }
 
+        function playNextVideo() {
+            if (currentIndex + 1 < jukeboxItems.length) {
+                var nextIndex = currentIndex + 1;
+                loadVideo(jukeboxItems[nextIndex].youtube_url, nextIndex);
+            }
+        }
+
         document.getElementById('play').addEventListener('click', function() {
-            if (playerReady) {
+            if (playerReady && currentIndex === -1 && jukeboxItems.length > 0) {
+                loadVideo(jukeboxItems[0].youtube_url, 0);
+            } else if (playerReady) {
                 player.playVideo();
             } else {
                 console.log('Player is not ready');

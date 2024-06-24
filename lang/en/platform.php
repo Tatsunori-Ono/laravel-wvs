@@ -7,6 +7,8 @@ return [
     // navigation
     'dashboard' => 'Dashboard',
     'rental' => 'Equipment Rental',
+    'jukebox' => 'Jukebox',
+    'submit_work' => 'Showcase Request',
     'contact' => 'Contact',
     'donate' => 'Donate',
     'profile' => 'Profile',
