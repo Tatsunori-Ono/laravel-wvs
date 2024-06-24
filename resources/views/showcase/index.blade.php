@@ -11,15 +11,12 @@
 <div style="--overlay-color: #ff9292;" class="sticker-box">
     <div class="box-info">
         <h2>{{ __('showcase.showcase_heading') }}</h2>
-
-        <p>
-            {{ __('showcase.showcase_message') }}
-        </p>
+        {{ __('showcase.showcase_message') }}
     </div>
-
     <img class="sticker" title="Kenny's BRILLIANT Matlab animation" alt="Kenny's Matlab animation" src="{{ asset('images/kenny-matlab.gif') }}">
 </div>
 <br>
+
 
 <div style="--overlay-color: #fcb5dc;" class="box">
   <h2 class="text-3xl">{{ __('showcase.world_is_mine_heading') }}</h2>

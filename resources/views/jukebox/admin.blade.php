@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Jukebox Admin') }}
+            {{ __('jukebox.admin') }}
         </h2>
     </x-slot>
 
@@ -9,17 +9,17 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <h2 class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">{{ __('Queue') }}</h2>
+                    <h2 class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">{{ __('jukebox.queue') }}</h2>
                     @if($jukeboxItems->count())
                         <div class="lg:w-2/3 w-full mx-auto overflow-auto mt-4">
                             <table class="table-auto w-full text-left whitespace-no-wrap">
                                 <thead>
                                     <tr>
-                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">{{ __('ID') }}</th>
-                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('YouTube URL') }}</th>
-                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('Added By') }}</th>
-                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('Added At') }}</th>
-                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('Actions') }}</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">{{ __('jukebox.id') }}</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('jukebox.url') }}</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('jukebox.by') }}</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('jukebox.at') }}</th>
+                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">{{ __('jukebox.actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,11 +30,11 @@
                                             <td class="border-t-2 border-gray-200 px-4 py-3">{{ $item->user->name }}</td>
                                             <td class="border-t-2 border-gray-200 px-4 py-3">{{ $item->created_at }}</td>
                                             <td class="border-t-2 border-gray-200 px-4 py-3">
-                                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-3" onclick="loadVideo('{{ $item->youtube_url }}', {{ $index }})">{{ __('Jump here') }}</button>
+                                                <button class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mb-3" onclick="loadVideo('{{ $item->youtube_url }}', {{ $index }})">{{ __('jukebox.jump') }}</button>
                                                 <form action="{{ route('jukebox.destroy', $item->id) }}" method="POST" class="inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">{{ __('Delete') }}</button>
+                                                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded">{{ __('jukebox.delete') }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -44,8 +44,8 @@
                         </div>
 
                         <div class="mt-4 flex justify-center space-x-4">
-                            <button id="play" class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">{{ __('Play') }}</button>
-                            <button id="pause" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">{{ __('Pause') }}</button>
+                            <button id="play" class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">{{ __('jukebox.play') }}</button>
+                            <button id="pause" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">{{ __('jukebox.pause') }}</button>
                         </div>
                         
                         <div class="flex justify-center mt-4">

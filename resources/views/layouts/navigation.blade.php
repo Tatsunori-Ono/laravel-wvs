@@ -11,16 +11,13 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-3 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('platform.dashboard') }}
-                    </x-nav-link>
-                    <!-- ルートがrental何々, cart何々, checkout何々だったら全てnavbarでEquipment Rentalがactive -->
-                    <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
-                        {{ __('platform.rental') }}
-                    </x-nav-link>
-
+                <div class="hidden space-x-2 sm:-my-px sm:ms-6 sm:flex">
+                    
                     @if(Auth::user()->role === 'admin')
+                        <!-- ルートがrental何々, cart何々, checkout何々だったら全てnavbarでEquipment Rentalがactive -->
+                        <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
+                            {{ __('platform.rental') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('admin.rental.log')" :active="request()->routeIs('admin.rental.log')">
                             {{ __('platform.rental_log') }}
                         </x-nav-link>
@@ -31,6 +28,12 @@
                             {{ __('platform.admin_showcase') }}
                         </x-nav-link>
                     @else
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('platform.dashboard') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
+                            {{ __('platform.rental') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('jukebox.index')" :active="request()->routeIs('jukebox.index')">
                             {{ __('platform.jukebox') }}
                         </x-nav-link>
@@ -47,11 +50,12 @@
                         <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                             {{ __('platform.user_control') }}
                         </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
+                            {{ __('platform.donate') }}
+                        </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
-                        {{ __('platform.donate') }}
-                    </x-nav-link>
                     <x-nav-link :href="url('/about')" :active="request()->is('about')">
                         {{ __('platform.main') }}
                     </x-nav-link>
@@ -126,14 +130,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('platform.dashboard') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
-                {{ __('platform.rental') }}
-            </x-responsive-nav-link>
             
             @if(Auth::user()->role === 'admin')
+                <x-responsive-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
+                    {{ __('platform.rental') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('admin.rental.log')" :active="request()->routeIs('admin.rental.log')">
                     {{ __('platform.rental_log') }}
                 </x-responsive-nav-link>
@@ -144,6 +145,12 @@
                     {{ __('platform.admin_showcase') }}
                 </x-responsive-nav-link>
             @else
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('platform.dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
+                    {{ __('platform.rental') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('jukebox.index')" :active="request()->routeIs('jukebox.index')">
                     {{ __('platform.jukebox') }}
                 </x-responsive-nav-link>
@@ -160,11 +167,12 @@
                 <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
                     {{ __('platform.user_control') }}
                 </x-responsive-nav-link>
+            @else
+                <x-responsive-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
+                    {{ __('platform.donate') }}
+                </x-responsive-nav-link>
             @endif
             
-            <x-responsive-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
-                {{ __('platform.donate') }}
-            </x-responsive-nav-link>
             <x-responsive-nav-link :href="url('/about')" :active="request()->is('about')">
                 {{ __('platform.main') }}
             </x-responsive-nav-link>

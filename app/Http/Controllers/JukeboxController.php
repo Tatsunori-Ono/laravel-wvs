@@ -18,7 +18,21 @@ class JukeboxController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'youtube_url' => 'required|url',
+            'youtube_url' => [
+                'required',
+                'url',
+                function ($attribute, $value, $fail) {
+                    $urlObj = parse_url($value);
+                    if (!isset($urlObj['host']) || $urlObj['host'] !== 'www.youtube.com' || !isset($urlObj['query'])) {
+                        $fail('The ' . $attribute . ' is not a valid YouTube URL.');
+                    }
+    
+                    parse_str($urlObj['query'], $queryParams);
+                    if (!isset($queryParams['v'])) {
+                        $fail('The ' . $attribute . ' is not a valid YouTube URL.');
+                    }
+                },
+            ],
         ]);
 
         Jukebox::create([
@@ -26,7 +40,7 @@ class JukeboxController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return redirect()->back()->with('success', 'YouTube URL added to the queue.');
+        return redirect()->back()->with('success', __('jukebox.success'));
     }
 
     public function admin()

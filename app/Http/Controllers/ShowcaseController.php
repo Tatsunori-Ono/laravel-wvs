@@ -7,6 +7,8 @@ use App\Models\ShowcaseItem;
 use App\Models\ShowcaseWork;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Log;
+
 class ShowcaseController extends Controller
 {
     public function index()
@@ -22,11 +24,13 @@ class ShowcaseController extends Controller
 
     public function store(Request $request)
     {
+        Log::info('Request received: ', $request->all());
+
         $request->validate([
             'name' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'file' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4|max:20480', // 20MB max
+            'file' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,wav,mp4|max:20480', // 20MB max
         ]);
 
         $showcaseItem = ShowcaseItem::create([
@@ -38,6 +42,8 @@ class ShowcaseController extends Controller
         ]);
 
         if ($request->hasFile('file')) {
+            Log::info('File found: ', ['file' => $request->file('file')]);
+
             $path = $request->file('file')->store('showcase_works', 'public');
             ShowcaseWork::create([
                 'showcase_item_id' => $showcaseItem->id,
