@@ -14,8 +14,8 @@ return [
 
     // Admin画面
     'admin' => 'ジュークボックス アドミン',
-    'actions' => 'アクション',
-    'jump' => 'ここに飛ぶ',
+    'actions' => '操作',
+    'jump' => 'この動画に飛ぶ',
     'delete' => '削除',
     'play' => '再生',
     'pause' => '停止',

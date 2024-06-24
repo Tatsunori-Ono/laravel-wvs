@@ -18,7 +18,7 @@
                         <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
                             {{ __('platform.rental') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('admin.rental.log')" :active="request()->routeIs('admin.rental.log')">
+                        <x-nav-link :href="route('admin.rental.log')" :active="request()->routeIs('admin.rental.*')">
                             {{ __('platform.rental_log') }}
                         </x-nav-link>
                         <x-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">

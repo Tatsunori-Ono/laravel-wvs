@@ -53,5 +53,14 @@ return [
     'checkout' => "Checkout",
     'confirm' => 'Confirm Checkout',
     
-    
+    // rentals/index.blade.php
+    'rental-log' => "Rental Log",
+    'user' => 'User',
+    'borrowed-at' => 'Borrowed At',
+    'return-by' => 'Return By',
+    'actions' => 'Actions',
+    'no-logs' => 'No rental logs found.',
+
+    // rentals/edit.blade.php
+    'edit-log' => 'Edit Rental Log',
 ];

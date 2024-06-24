@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Rental Log') }}
+            {{ __('rental.rental-log') }}
         </h2>
     </x-slot>
 
@@ -14,22 +14,22 @@
                             <thead class="bg-gray-50 dark:bg-gray-700">
                                 <tr>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                        User
+                                        {{__('rental.user')}}
                                     </th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                        Item
+                                        {{__('rental.item')}}
                                     </th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                        Quantity
+                                        {{__('rental.quantity')}}
                                     </th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                        Borrowed At
+                                        {{__('rental.borrowed-at')}}
                                     </th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                        Return By
+                                        {{__('rental.return-by')}}
                                     </th>
                                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Actions
+                                        {{__('rental.actions')}}
                                     </th>
                                 </tr>
                             </thead>
@@ -54,14 +54,14 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="{{ route('admin.rental.edit', $rental->id) }}" class="text-indigo-600 hover:text-indigo-900">
                                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                                    {{ __('Edit') }}
+                                                    {{ __('rental.edit') }}
                                                 </button>
                                             </a>
                                             <form action="{{ route('admin.rental.destroy', $rental->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                                    {{ __('Delete') }}
+                                                    {{ __('rental.delete') }}
                                                 </button>
                                             </form>
                                         </td>
@@ -74,7 +74,7 @@
                             {{ $rentals->links() }}
                         </div>
                     @else
-                        <p>{{ __('No rental logs found.') }}</p>
+                        <p>{{ __('rental.no-logs') }}</p>
                     @endif
                 </div>
             </div>

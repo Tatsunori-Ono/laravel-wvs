@@ -53,4 +53,14 @@ return [
     'checkout' => "注文の確認",
     'confirm' => '注文を確定する',
     
+    // rentals/index.blade.php
+    'rental-log' => "貸し出し記録",
+    'user' => 'ユーザー',
+    'borrowed-at' => '借りた日時',
+    'return-by' => '返却予定日',
+    'actions' => '操作',
+    'no-logs' => '貸し出し記録なし',
+
+    // rentals/edit.blade.php
+    'edit-log' => '貸し出し記録を編集する',
 ];

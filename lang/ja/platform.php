@@ -7,7 +7,7 @@ return [
     // navigation
     'dashboard' => 'ダッシュボード',
     'rental' => '機材貸し出し',
-    'rental_log' => '貸し出しログ',
+    'rental_log' => '貸し出し記録',
     'jukebox' => 'ジュークボックス',
     'submit_work' => '作品の提出',
     'admin_showcase' => '提出された作品',
