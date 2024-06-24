@@ -12,6 +12,7 @@ return [
     'details' => '詳細を表示する',
     'status-rented' => '現在、全て貸し出し中です',
     'status-available' => 'つ在庫あり',
+    'no-items' => '該当商品なし',
 
     // create画面
     'product_name' => '商品名',

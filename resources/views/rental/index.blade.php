@@ -9,11 +9,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    
-                    <a href="{{ route('rental.create') }}" class="text-blue-500">
-                        {{ __('rental.create') }}
-                    </a>
-                    
+
+                    @if(Auth::user()->role === 'admin')
+                        <a href="{{ route('rental.create') }}" class="text-blue-500">
+                            {{ __('rental.create') }}
+                        </a>
+                    @endif
+
                     <form class="mb-8 mt-5" action="{{ route('rental.index') }}" method="get">
                         <!-- 検索バー -->
                         <input type="text" name="search" class="dark:text-black" placeholder="{{ __('rental.search') }}">
@@ -125,7 +127,7 @@
                         <!-- Pagination -->
                         {{ $equipmentItems->links() }}
                     @else
-                        <p>{{ __('rental.no_items') }}</p>
+                        <p class="mt-8">{{ __('rental.no-items') }}</p>
                     @endif
                 </div>
             </div>

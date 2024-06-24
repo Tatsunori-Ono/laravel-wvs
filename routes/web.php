@@ -11,6 +11,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JukeboxController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShowcaseController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -24,8 +26,14 @@ Route::get('/events', function () {
     return view('events');
 });
 
-Route::get('/showcase', function () {
-    return view('showcase');
+Route::get('/showcase', [ShowcaseController::class, 'index'])->name('showcase.index');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/showcase/create', [ShowcaseController::class, 'create'])->name('showcase.create');
+    Route::post('/showcase', [ShowcaseController::class, 'store'])->name('showcase.store');
+    Route::get('/showcase/admin', [ShowcaseController::class, 'admin'])->name('showcase.admin');
+    Route::post('/showcase/approve/{id}', [ShowcaseController::class, 'approve'])->name('showcase.approve');
+    Route::post('/showcase/reject/{id}', [ShowcaseController::class, 'reject'])->name('showcase.reject');
 });
 
 //非メンバー向けの連絡先
@@ -124,3 +132,10 @@ Route::post('/jukebox', [JukeboxController::class, 'store'])->name('jukebox.stor
 Route::get('/jukebox/admin', [JukeboxController::class, 'admin'])->name('jukebox.admin');
 Route::post('/jukebox/admin/play', [JukeboxController::class, 'play'])->name('jukebox.play');
 Route::post('/jukebox/admin/pause', [JukeboxController::class, 'pause'])->name('jukebox.pause');
+
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+});

@@ -48,6 +48,10 @@ class RentalController extends Controller
      */
     public function create()
     {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->route('rental.index')->with('error', 'You do not have permission to create an item.');
+        }
+
         return view('rental.create');
     }
 
@@ -56,6 +60,10 @@ class RentalController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->route('rental.index')->with('error', 'You do not have permission to create an item.');
+        }
+
         $request->validate([
             'product_name' => 'required|string|max:255',
             'product_type' => 'required|string|max:255',

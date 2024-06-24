@@ -3,7 +3,7 @@
 return [
     // index画面
     'title' => 'Equipment Rental Service',
-    'create' => 'Add New Items to the Catalogue',
+    'create' => 'Add a New Item to the Catalogue',
     'search' => 'Search',
     'all-categories' => 'All Categories',
     'filter' => 'Filter',
@@ -12,6 +12,7 @@ return [
     'details' => 'Show more',
     'status-rented' => 'Currently all rented',
     'status-available' => 'available',
+    'no-items' => 'No Items Found',
 
     // create画面
     'product_name' => 'Name of the Product',

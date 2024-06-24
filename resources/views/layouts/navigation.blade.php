@@ -19,18 +19,33 @@
                     <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
                         {{ __('platform.rental') }}
                     </x-nav-link>
+
                     @if(Auth::user()->role === 'admin')
                         <x-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">
                             {{ __('platform.jukebox') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('showcase.admin')" :active="request()->routeIs('showcase.admin')">
+                            {{ __('platform.admin_showcase') }}
                         </x-nav-link>
                     @else
                         <x-nav-link :href="route('jukebox.index')" :active="request()->routeIs('jukebox.index')">
                             {{ __('platform.jukebox') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('showcase.create')" :active="request()->routeIs('showcase.create')">
+                            {{ __('platform.submit_work') }}
+                        </x-nav-link>
                     @endif
+                    
                     <x-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.*')">
                         {{ __('platform.contact') }}
                     </x-nav-link>
+
+                    @if(Auth::user()->role === 'admin')
+                        <x-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
+                            {{ __('platform.user_control') }}
+                        </x-nav-link>
+                    @endif
+
                     <x-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
                         {{ __('platform.donate') }}
                     </x-nav-link>
@@ -114,18 +129,33 @@
             <x-responsive-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
                 {{ __('platform.rental') }}
             </x-responsive-nav-link>
+            
             @if(Auth::user()->role === 'admin')
                 <x-responsive-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">
                     {{ __('platform.jukebox') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('showcase.admin')" :active="request()->routeIs('showcase.admin')">
+                    {{ __('platform.admin_showcase') }}
                 </x-responsive-nav-link>
             @else
                 <x-responsive-nav-link :href="route('jukebox.index')" :active="request()->routeIs('jukebox.index')">
                     {{ __('platform.jukebox') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('showcase.create')" :active="request()->routeIs('showcase.create')">
+                    {{ __('platform.submit_work') }}
+                </x-responsive-nav-link>
             @endif
+
             <x-responsive-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.index')">
                 {{ __('platform.contact') }}
             </x-responsive-nav-link>
+
+            @if(Auth::user()->role === 'admin')
+                <x-responsive-nav-link :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')">
+                    {{ __('platform.user_control') }}
+                </x-responsive-nav-link>
+            @endif
+            
             <x-responsive-nav-link :href="route('donate')" :active="request()->routeIs('donate')">
                 {{ __('platform.donate') }}
             </x-responsive-nav-link>
