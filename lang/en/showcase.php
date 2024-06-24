@@ -1,6 +1,7 @@
 <?php
 
 return [
+    // index.blade.php
     'title' => 'Showcase',
     'showcase_nav' => 'SHOWCASE',
     'showcase_heading' => 'Showcase',
@@ -14,4 +15,9 @@ return [
     'description' => 'Description',
     'file' => 'Upload Your Work (.jpeg, .png, .jpg, .gif, .svg, .mp3, .wav, .mp4)',
 
+    // admin.blade.php
+    'admin_showcase' => 'Showcase Submissions',
+    'no_submissions' => 'Currently, there are no submissions.',
+    'approve' => 'Approve',
+    'reject' => 'Reject',
 ];
