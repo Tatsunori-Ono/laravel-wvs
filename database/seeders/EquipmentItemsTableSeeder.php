@@ -227,6 +227,29 @@ class EquipmentItemsTableSeeder extends Seeder
                 ]
             ],
             [
+                'product_name' => 'Sony MDR-CD900ST',
+                'product_type' => 'Dynamic Stereo Headphones',
+                'manufacturer' => 'Sony',
+                'category' => 'Audio Equipment',
+                'location_stored' => 'President\'s House',
+                'description' => 'A professional-grade monitor headphone that is widely used in the music industry. It is a sealed dynamic type headphone with a 40mm dome type driver unit (with CCAW) that delivers high-quality sound.',
+                'purchase_date' => '2020-10-29',
+                'quantity' => 1,
+                'rented_quantity' => 1,
+                'max_rental_days' => 7,
+                'price' => 0.00,
+                'rental_count' => 5,
+                'average_rating' => 5.0,
+                'images' => [
+                    ['image_path' => 'seed_images/sony-1.png'],
+                    ['image_path' => 'seed_images/sony-2.png'],
+                    ['image_path' => 'seed_images/sony-3.png'],
+                    ['image_path' => 'seed_images/sony-4.png'],
+                    ['image_path' => 'seed_images/sony-5.png'],
+                    ['image_path' => 'seed_images/sony-6.png'],
+                ]
+            ],
+            [
                 'product_name' => 'Nicpro 6 Pack A4 Whiteboard',
                 'product_type' => 'Whiteboard',
                 'manufacturer' => 'Nicpro',

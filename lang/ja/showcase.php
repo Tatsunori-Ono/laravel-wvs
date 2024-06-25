@@ -19,5 +19,5 @@ return [
     'admin_showcase' => '提出された作品',
     'no_submissions' => '確認する作品は、現在ありません。',
     'approve' => '採用する',
-    'reject' => '非採用にする',
+    'reject' => '却下する',
 ];
