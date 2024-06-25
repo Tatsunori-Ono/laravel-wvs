@@ -91,7 +91,7 @@
 
                                         <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
                                             <a class="text-pink-500">warwickvocaloid@gmail.com</a>
-                                            <p class="leading-normal my-5">Warwick Vocaloid Society
+                                            <p class="leading-normal my-5 dark:text-white">Warwick Vocaloid Society
                                                 <br>University of Warwick CV4 7AL
                                             </p>
                                             <span class="inline-flex">

@@ -35,6 +35,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/showcase/admin', [ShowcaseController::class, 'admin'])->name('showcase.admin');
     Route::post('/showcase/approve/{id}', [ShowcaseController::class, 'approve'])->name('showcase.approve');
     Route::post('/showcase/reject/{id}', [ShowcaseController::class, 'reject'])->name('showcase.reject');
+    Route::get('/showcase/{id}/edit', [ShowcaseController::class, 'edit'])->name('showcase.edit');
+    Route::patch('/showcase/{id}', [ShowcaseController::class, 'update'])->name('showcase.update');
+    Route::delete('/showcase/{id}', [ShowcaseController::class, 'destroy'])->name('showcase.destroy');
+    Route::delete('/showcase/work/{id}', [ShowcaseController::class, 'deleteFile'])->name('showcase.deleteFile');
 });
 
 //非メンバー向けの連絡先

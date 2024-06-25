@@ -37,6 +37,7 @@ return [
     'delete' => 'Delete',
 
     // edit画面
+    'edit-equipment' => 'Edit Equipment',
     'current-images' => 'Current Images',
     'new-images' => 'New Images',
     'remove-image' => 'Remove',

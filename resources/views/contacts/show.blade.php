@@ -16,36 +16,36 @@
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                            <label for="name" class="leading-7 text-sm text-gray-600">{{ __('contact.name') }}</label>
-                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $contact->name }}</div>
+                                            <label for="name" class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.name') }}</label>
+                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 dark:text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $contact->name }}</div>
                                         </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                            <label for="email" class="leading-7 text-sm text-gray-600">{{ __('contact.email') }}</label>
-                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $contact->email }}</div>
+                                            <label for="email" class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.email') }}</label>
+                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 dark:text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $contact->email }}</div>
                                         </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                            <label class="leading-7 text-sm text-gray-600">{{ __('contact.warwick') }}</label><br>
-                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $non_warwick_student }}</div>
+                                            <label class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.warwick') }}</label><br>
+                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 dark:text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $non_warwick_student }}</div>
                                         </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                            <label for="subject" class="leading-7 text-sm text-gray-600">{{ __('contact.subject') }}</label>
-                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $contact->subject }}</div>
+                                            <label for="subject" class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.subject') }}</label>
+                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 dark:text-gray-300 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">{{ $contact->subject }}</div>
                                         </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                         <div class="relative">
-                                            <label for="contact" class="leading-7 text-sm text-gray-600">{{ __('contact.content') }}</label>
-                                            <div class="w-full rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ $contact->contact }}</div>
+                                            <label for="contact" class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.content') }}</label>
+                                            <textarea class="w-full rounded border border-gray-300 dark:bg-transparent focus:border-pink-500 focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 dark:text-gray-300 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ $contact->contact }}</textarea>
                                         </div>
                                     </div>
                                     
@@ -70,7 +70,7 @@
 
                                     <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
                                         <a class="text-pink-500">warwickvocaloid@gmail.com</a>
-                                        <p class="leading-normal my-5">Warwick Vocaloid Society
+                                        <p class="leading-normal my-5 dark:text-white">Warwick Vocaloid Society
                                             <br>University of Warwick CV4 7AL
                                         </p>
                                         <span class="inline-flex">

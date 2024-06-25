@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('rental.edit') }}
+            {{ __('rental.edit-equipment') }}
         </h2>
 
         <style>
@@ -37,7 +37,7 @@
                                     <div class="flex flex-wrap -m-2">
                                         <div class="p-2 w-full">
                                             <div class="relative">
-                                                <label for="product_name" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{ __('rental.product_name') }}</label>
+                                                <label for="product_name" class="required leading-7 text-sm text-gray-600 dark:text-gray-200 required">{{ __('rental.product_name') }}</label>
                                                 <input type="text" id="product_name" name="product_name" value="{{ old('product_name', $equipmentItem->product_name) }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                 <x-input-error :messages="$errors->get('product_name')" class="mt-2" />
                                             </div>
@@ -45,7 +45,7 @@
 
                                         <div class="p-2 w-full">
                                             <div class="relative">
-                                                <label for="product_type" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{ __('rental.product_type') }}</label>
+                                                <label for="product_type" class="required leading-7 text-sm text-gray-600 dark:text-gray-200 required">{{ __('rental.product_type') }}</label>
                                                 <input type="text" id="product_type" name="product_type" value="{{ old('product_type', $equipmentItem->product_type) }}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                 <x-input-error :messages="$errors->get('product_type')" class="mt-2" />
                                             </div>
@@ -135,6 +135,11 @@
                                                 <input type="file" id="images" name="images[]" multiple class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                                 <x-input-error :messages="$errors->get('images.*')" class="mt-2" />
                                             </div>
+                                        </div>
+
+                                        <!-- 必須項目の注意書き -->
+                                        <div class="mt-4 text-red-400 text-base">
+                                            {{__('register.required')}}
                                         </div>
 
                                         <div class="p-2 w-full">

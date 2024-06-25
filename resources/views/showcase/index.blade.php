@@ -45,7 +45,7 @@
             @elseif (str_contains($work->file_path, 'mp3') || str_contains($work->file_path, 'mp4'))
                 <audio controls class="w-full">
                     <source src="{{ asset('storage/' . $work->file_path) }}" type="audio/mpeg">
-                    Your browser does not support the audio element.
+                    {{__('showcase.no-support')}}
                 </audio>
             @endif
         @endforeach

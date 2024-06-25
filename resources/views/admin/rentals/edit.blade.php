@@ -3,6 +3,14 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('rental.edit-log') }}
         </h2>
+
+        <style>
+            .required:after {
+                content: '*';
+                color: red;
+                padding-left: 1px;
+            }
+        </style>
     </x-slot>
 
     <div class="py-12">
@@ -24,7 +32,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="quantity" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('rental.quantity') }}</label>
+                            <label for="quantity" class="required block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('rental.quantity') }}</label>
                             <input type="number" name="quantity" id="quantity" value="{{ old('quantity', $rental->quantity) }}" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             @if($errors->has('quantity'))
                                 <span class="text-red-500 text-sm">{{ $errors->first('quantity') }}</span>
@@ -32,11 +40,16 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="return_by" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('rental.return-by') }}</label>
+                            <label for="return_by" class="required block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('rental.return-by') }}</label>
                             <input type="datetime-local" name="return_by" id="return_by" value="{{ old('return_by', $rental->return_by) }}" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 text-gray-900 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             @if($errors->has('return_by'))
                                 <span class="text-red-500 text-sm">{{ $errors->first('return_by') }}</span>
                             @endif
+                        </div>
+
+                        <!-- 必須項目の注意書き -->
+                        <div class="mt-4 text-red-400 text-base">
+                            {{__('register.required')}}
                         </div>
 
                         <div class="flex justify-end">

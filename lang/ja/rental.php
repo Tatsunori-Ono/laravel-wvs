@@ -37,6 +37,7 @@ return [
     'delete' => '削除する',
 
     // edit画面
+    'edit-equipment' => '商品を編集する',
     'current-images' => '現在の画像',
     'new-images' => '新しい画像',
     'remove-image' => '削除',

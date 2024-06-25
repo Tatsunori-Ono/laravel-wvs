@@ -10,7 +10,7 @@ return [
     'rental_log' => 'Rental Log',
     'jukebox' => 'Jukebox',
     'submit_work' => 'Showcase Request',
-    'admin_showcase' => 'Showcase Submissions',
+    'admin_showcase' => 'Showcase',
     'contact' => 'Contact',
     'donate' => 'Donate',
     'user_control' => 'User Info',

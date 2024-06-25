@@ -122,6 +122,11 @@
                                             </div>
                                         </div>
 
+                                        <!-- 必須項目の注意書き -->
+                                        <div class="mt-4 text-red-400 text-base">
+                                            {{__('register.required')}}
+                                        </div>
+
                                         <div class="p-2 w-full">
                                             <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{ __('rental.submit') }}</button>
                                         </div>

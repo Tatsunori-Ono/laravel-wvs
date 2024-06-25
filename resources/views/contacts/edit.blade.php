@@ -3,6 +3,14 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('contact.editing-page') }}
         </h2>
+
+        <style>
+            .required:after {
+                content: '*';
+                color: red;
+                padding-left: 1px;
+            }
+        </style>
     </x-slot>
 
     <div class="py-12">
@@ -21,21 +29,21 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="name" class="leading-7 text-sm text-gray-600">{{__('contact.name')}}</label>
+                                        <label for="name" class="required dark:text-white leading-7 text-sm text-gray-600">{{__('contact.name')}}</label>
                                         <input type="text" id="name" name="name" value="{{$contact->name}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="email" class="leading-7 text-sm text-gray-600">{{__('contact.email')}}</label>
+                                        <label for="email" class="required dark:text-white leading-7 text-sm text-gray-600">{{__('contact.email')}}</label>
                                         <input type="email" id="email" name="email" value="{{$contact->email}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label class="leading-7 text-sm text-gray-600">{{__('contact.warwick')}}</label><br>
+                                        <label class="required dark:text-white leading-7 text-sm text-gray-600">{{__('contact.warwick')}}</label><br>
                                         <input type="radio" name="non_warwick_student" value="0" style="margin-right: .5rem;" @if($contact->non_warwick_student === 0) checked @endif>{{__('contact.warwick-student')}}<br>
                                         <input type="radio" name="non_warwick_student" value="1" style="margin-right: .5rem;" @if($contact->non_warwick_student === 1) checked @endif>{{__('contact.non-warwick-student')}}
                                     </div>
@@ -43,16 +51,21 @@
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="subject" class="leading-7 text-sm text-gray-600">{{__('contact.subject')}}</label>
+                                        <label for="subject" class="required dark:text-white leading-7 text-sm text-gray-600">{{__('contact.subject')}}</label>
                                         <input type="text" id="subject" name="subject" value="{{$contact->subject}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                                     </div>
                                     </div>
 
                                     <div class="p-2 w-full">
                                     <div class="relative">
-                                        <label for="contact" class="leading-7 text-sm text-gray-600">{{__('contact.content')}}</label>
+                                        <label for="contact" class="required dark:text-white leading-7 text-sm text-gray-600">{{__('contact.content')}}</label>
                                         <textarea id="contact" name="contact" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-pink-500 focus:bg-white focus:ring-2 focus:ring-pink-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{$contact->contact}}</textarea>
                                     </div>
+                                    </div>
+
+                                    <!-- 必須項目の注意書き -->
+                                    <div class="mt-4 text-red-400 text-base">
+                                        {{__('register.required')}}
                                     </div>
 
                                     <div class="p-2 w-full">
@@ -61,7 +74,7 @@
 
                                     <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
                                     <a class="text-pink-500">warwickvocaloid@gmail.com</a>
-                                    <p class="leading-normal my-5">Warwick Vocaloid Society
+                                    <p class="leading-normal my-5 dark:text-white">Warwick Vocaloid Society
                                         <br>University of Warwick CV4 7AL
                                     </p>
                                     <span class="inline-flex">
