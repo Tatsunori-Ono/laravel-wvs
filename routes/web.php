@@ -146,4 +146,5 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::get('rental-log/{id}/edit', [RentalLogController::class, 'edit'])->name('rental.edit');
     Route::patch('rental-log/{id}', [RentalLogController::class, 'update'])->name('rental.update');
     Route::delete('rental-log/{id}', [RentalLogController::class, 'destroy'])->name('rental.destroy');
+    Route::post('rental-log/{id}/cancel', [RentalLogController::class, 'cancel'])->name('rental.cancel');
 });

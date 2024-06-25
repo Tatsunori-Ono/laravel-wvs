@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('User Management') }}
+            {{ __('user-control.management') }}
         </h2>
     </x-slot>
 
@@ -13,19 +13,19 @@
                         <thead class="bg-gray-50 dark:bg-gray-700">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                    {{ __('Name') }}
+                                    {{ __('user-control.name') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                    {{ __('Email') }}
+                                    {{ __('user-control.email') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                    {{ __('Warwick ID') }}
+                                    {{ __('user-control.warwick-id') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                    {{ __('Role') }}
+                                    {{ __('user-control.role') }}
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 tracking-wider">
-                                    {{ __('Actions') }}
+                                    {{ __('user-control.actions') }}
                                 </th>
                             </tr>
                         </thead>
@@ -47,14 +47,14 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <a href="{{ route('admin.users.edit', $user->id) }}" class="text-indigo-600 hover:text-indigo-900">
                                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                                {{ __('Edit') }}
+                                                {{ __('user-control.edit') }}
                                             </button>
                                         </a>
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                                {{ __('Delete') }}
+                                                {{ __('user-control.delete') }}
                                             </button>
                                         </form>
                                     </td>

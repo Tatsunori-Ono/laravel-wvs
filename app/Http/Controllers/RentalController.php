@@ -120,6 +120,10 @@ class RentalController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to update this item.');
+        }
+
         $request->validate([
             'product_name' => 'required|string|max:255',
             'product_type' => 'required|string|max:255',
@@ -162,6 +166,10 @@ class RentalController extends Controller
      */
     public function destroy($id)
     {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to destroy this item.');
+        }
+
         $equipmentItem = EquipmentItem::findOrFail($id);
 
         // Delete associated images

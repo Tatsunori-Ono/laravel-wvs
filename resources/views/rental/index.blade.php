@@ -11,7 +11,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     @if(Auth::user()->role === 'admin')
-                        <a href="{{ route('rental.create') }}" class="text-blue-500">
+                        <a href="{{ route('admin.rental.log') }}" class="text-white bg-green-500 border-0 py-3 px-8 ml-5 focus:outline-none hover:bg-green-600 rounded">
+                            {{ __('platform.rental_log') }}
+                        </a>
+                        <a href="{{ route('rental.create') }}" class="text-white bg-pink-500 border-0 py-3 px-8 ml-5 focus:outline-none hover:bg-pink-600 rounded">
                             {{ __('rental.create') }}
                         </a>
                     @endif
@@ -31,13 +34,15 @@
                         <button class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded">{{ __('rental.filter') }}</button>
                     </form>
 
-                    <a href="{{ route('rental.index', ['favorites' => 1]) }}" class="text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded">
-                        {{ __('rental.favourites') }}
-                    </a>
+                    @if(Auth::user()->role === 'user')
+                        <a href="{{ route('rental.index', ['favorites' => 1]) }}" class="text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded">
+                            {{ __('rental.favourites') }}
+                        </a>
 
-                    <a href="{{ route('cart.index') }}" class="ml-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-lg">
-                        {{__('rental.go-to-cart')}} ({{ $cartItemCount }})
-                    </a>
+                        <a href="{{ route('cart.index') }}" class="ml-5 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-lg">
+                            {{__('rental.go-to-cart')}} ({{ $cartItemCount }})
+                        </a>
+                    @endif
 
                     @if($equipmentItems->count())
                         <div class="container px-5 pt-19 mt-11 mx-auto">

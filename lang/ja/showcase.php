@@ -16,7 +16,7 @@ return [
     'file' => '作品をアップロードする (.jpeg, .png, .jpg, .gif, .svg, .mp3, .wav, .mp4)',
 
     // admin.blade.php
-    'admin_showcase' => '提出された作品',
+    'admin_showcase' => 'ショーケース用に提出された作品一覧',
     'no_submissions' => '確認する作品は、現在ありません。',
     'approve' => '採用する',
     'reject' => '却下する',

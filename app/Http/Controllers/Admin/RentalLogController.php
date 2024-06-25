@@ -71,4 +71,26 @@ class RentalLogController extends Controller
 
         return redirect()->route('admin.rental.log')->with('success', 'Rental deleted successfully.');
     }
+
+    /**
+     * Cancel the specified rental and revive the stock.
+     */
+    public function cancel($id)
+    {
+        if (Auth::user()->role !== 'admin') {
+            return redirect()->route('dashboard')->with('error', 'You do not have permission to visit the admin page.');
+        }
+
+        $rental = Rental::findOrFail($id);
+
+        // Increase the stock of the equipment item
+        $equipmentItem = $rental->equipmentItem;
+        $equipmentItem->quantity += $rental->quantity;
+        $equipmentItem->save();
+
+        // Delete the rental log
+        $rental->delete();
+
+        return redirect()->route('admin.rental.log')->with('success', 'Rental log has been canceled and stock has been updated.');
+    }
 }

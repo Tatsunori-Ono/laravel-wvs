@@ -11,7 +11,7 @@ return [
     'go-to-cart' => 'カートへ移動する',
     'details' => '詳細を表示する',
     'status-rented' => '現在、全て貸し出し中です',
-    'status-available' => 'つ在庫あり',
+    'status-available' => '個 在庫あり',
     'no-items' => '該当商品なし',
 
     // create画面
@@ -59,6 +59,7 @@ return [
     'borrowed-at' => '借りた日時',
     'return-by' => '返却予定日',
     'actions' => '操作',
+    'cancel' => 'キャンセルする',
     'no-logs' => '貸し出し記録なし',
 
     // rentals/edit.blade.php

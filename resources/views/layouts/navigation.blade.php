@@ -15,11 +15,8 @@
                     
                     @if(Auth::user()->role === 'admin')
                         <!-- ルートがrental何々, cart何々, checkout何々だったら全てnavbarでEquipment Rentalがactive -->
-                        <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
+                        <x-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*', 'admin.rental.*'])">
                             {{ __('platform.rental') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('admin.rental.log')" :active="request()->routeIs('admin.rental.*')">
-                            {{ __('platform.rental_log') }}
                         </x-nav-link>
                         <x-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">
                             {{ __('platform.jukebox') }}
@@ -132,11 +129,8 @@
         <div class="pt-2 pb-3 space-y-1">
             
             @if(Auth::user()->role === 'admin')
-                <x-responsive-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*'])">
+                <x-responsive-nav-link :href="route('rental.index')" :active="request()->routeIs(['rental.*', 'cart.*', 'checkout.*', 'admin.rental.*'])">
                     {{ __('platform.rental') }}
-                </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('admin.rental.log')" :active="request()->routeIs('admin.rental.log')">
-                    {{ __('platform.rental_log') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('jukebox.admin')" :active="request()->routeIs(['jukebox.admin', 'jukebox.index'])">
                     {{ __('platform.jukebox') }}
