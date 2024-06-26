@@ -1,4 +1,4 @@
-# Warwick Vocaloid Society Webプロジェクト
+# Warwick Vocaloid Society WEBプロジェクト
 
 <div align="center">
     <a href="https://www.warwicksu.com/societies-sports/societies/vocaloid/" target="_blank">
