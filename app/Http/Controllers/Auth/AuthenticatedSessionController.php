@@ -12,7 +12,10 @@ use Illuminate\View\View;
 class AuthenticatedSessionController extends Controller
 {
     /**
+     * ログイン画面を表示する。
      * Display the login view.
+     * 
+     * @return \Illuminate\View\View
      */
     public function create(): View
     {
@@ -20,7 +23,11 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
+     * 認証要求を処理する。
      * Handle an incoming authentication request.
+     * 
+     * @param \App\Http\Requests\Auth\LoginRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(LoginRequest $request): RedirectResponse
     {
@@ -32,7 +39,11 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
+     * 認証されたセッションを破棄する。
      * Destroy an authenticated session.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request): RedirectResponse
     {

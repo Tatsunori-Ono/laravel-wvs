@@ -9,20 +9,24 @@
     font-weight: bold;
 }
 
+/* ルート変数 */
 :root {
 	--overlay-color: #bbe6e0;
 }
 
 br {
+	/* brタグを選択不可にする */
 	/* make brrs unselectable */
 	user-select: none;
 }
 
 body {
+	/* デフォルトのフォント設定 */
 	/* default font */
 	font-family: 'Roboto Condensed', serif;
 	font-size: 20px;
 
+	/* 背景パターン */
 	/* background */
 	background: linear-gradient(135deg, #c1d6d8 25%, transparent 25%) -30px 0,
 		linear-gradient(-135deg, #c1d6d8 25%, transparent 25%) -30px 0,
@@ -31,6 +35,7 @@ body {
 	background-size: 100px 100px;
 	background-color: #eee;
 
+	/* その他のスタイリング */
 	/* other */
 	margin: 0;
 	min-height: 100vh;
@@ -43,34 +48,39 @@ h2 {
 }
 
 #navbar {
+	/* スクロール時のトランジション時間 */
 	/* scroll transition time */
 	transition: top 0.2s;
 
+	/* サイズと構造 */
 	/* sizing/structure */
 	font-size: 16px;
 	height: 70px;
 	padding: 0;
 	align-items: center;
 
-
+	/* 背景 */
 	/* background */
 	background-color: #fff;
 
-
+	/* 動的な表示設定 */
 	/* dynamic display settings */
 	display: flex;
 	justify-content: center;
 	overflow: hidden;
 
+	/* 固定位置 */
 	/* fixed positioning */
 	position: fixed;
 	top: 0;
 	width: 100%;
 	z-index: 1000;
 
+	/* ナビバーの下に影効果を追加 */
 	/* add shadow effect below navbar */
 	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 
+	/* テキストを選択不可にする */
 	/* make text unselectable */
 	user-select: none;
 }
@@ -110,55 +120,67 @@ h2 {
 
 
 .nav-link {
+	/* テキストのスタイリング */
 	/* text styling */
 	color: black;
 	text-decoration: none;
 
+	/* テキストのパディング */
 	/* text padding */
 	padding: 0 12px;
 
+	/* 動的な表示設定 */
 	/* dynamic display settings */
 	display: inline;
 }
 
 .nav-link-blue {
+	/* テキストのスタイリング */
 	/* text styling */
 	color: #342fcb;
 	font-weight: bold;
 	text-decoration: underline;
 
+	/* テキストのパディング */
 	/* text padding */
 	padding: 0 12px;
 
+	/* 動的な表示設定 */
 	/* dynamic display settings */
 	display: inline;
 }
 
 .nav-text:hover {
+	/* スタイリング */
 	/* styling */
 	text-shadow: 0px 0px 1px black;
 }
 
 #navbar-logo {
+	/* サイズ */
 	/* sizing */
 	height: 60%;
 
+	/* パディング */
 	/* padding */
 	padding-left: 10px;
 	padding-right: 5px;
 }
 
 #navbar-logo>img {
+	/* サイズ */
 	/* sizing */
 	height: 100%;
 }
 
 #content {
-	padding-top: 70px;
+	/* ナビバーの高さに合わせて調整 */
 	/* Adjust this value to match the height of your navbar */
+	padding-top: 70px;
 }
 
 #content>.sticker-box {
+	/* 背景 */
 	/* background */
 	background: linear-gradient(135deg, var(--overlay-color) 25%, transparent 25%) -30px 0,
 		linear-gradient(-135deg, var(--overlay-color) 25%, transparent 25%) -30px 0,
@@ -167,32 +189,39 @@ h2 {
 	background-color: #eee;
 	background-size: 80px 80px;
 
+	/* ボックス構造 */
 	/* box structure */
 	padding: 7px 11px;
 	border: 0px;
 	border-radius: 10px;
 
+	/* 表示オプション */
 	/* display options */
 	overflow: auto;
 	display: flex;
 	width: fit-content;
 
+	/* ボックスの周りに影効果を追加 */
 	/* add shadow effect around box */
 	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
 .sticker-box>.sticker {
+	/* マージン */
 	/* margin */
 	margin-left: 20px;
 
+	/* 配置 */
 	/* location */
 	align-self: flex-end;
 
+	/* サイズ */
 	/* sizing */
 	max-height: 200px;
 }
 
 #content>.box {
+	/* 背景 */
 	/* background */
 	background: linear-gradient(135deg, var(--overlay-color) 25%, transparent 25%) -30px 0,
 		linear-gradient(-135deg, var(--overlay-color) 25%, transparent 25%) -30px 0,
@@ -201,16 +230,19 @@ h2 {
 	background-color: #eee;
 	background-size: 80px 80px;
 
+	/* ボックス構造 */
 	/* box structure */
 	padding: 7px 11px;
 	border: 0px;
 	border-radius: 10px;
 
+	/* 表示オプション */
 	/* display options */
 	overflow: auto;
 	width: border-box;
 	height: fit-content;
 
+	/* ボックスの周りに影効果を追加 */
 	/* add shadow effect around box */
 	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
 }
@@ -226,6 +258,7 @@ iframe {
 }
 
 #content {
+	/* マージン */
 	/* margin */
 	margin: auto;
 	margin-top: 20px;
@@ -234,10 +267,12 @@ iframe {
 
 	max-width: 1000px;
 
+	/* テキストのスタイリング */
 	/* text styling */
 	font-weight: 500;
 }
 
+/* 小さな画面向けのオーバーライド */
 /* overrides for small screen */
 @media (max-width: 600px) {
 	#content>.sticker-box {
@@ -260,14 +295,17 @@ iframe {
   }
 
   #navbar-logo {
+	/* サイズ */
     /* sizing */
     height: 50%;
 
+	/* パディング */
     /* padding */
     padding-right: 3px;
   }
 }
 
+/* スクロールバー */
 /* scrollbar */
 ::-webkit-scrollbar {
 	width: 12px;
@@ -290,6 +328,7 @@ iframe {
 	background-color: #f1f1f1;
 }
 
+/* 順序付きリストのスタイリング */
 /* Ordered list styling */
 ol {
     list-style-type: decimal;
@@ -297,6 +336,7 @@ ol {
     padding-left: 20px; /* Adjust as necessary for your design */
 }
 
+/* フッター */
 /* Footer */
 
 footer a {

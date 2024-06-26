@@ -19,10 +19,12 @@ use App\Http\Controllers\TwoFactorController;
 use PragmaRX\Google2FALaravel\Middleware;
 use PragmaRX\Google2FALaravel\Middleware as Google2FAMiddleware;
 
+// ウェルカムページのルート
 Route::get('/welcome', function () {
     return view('welcome');
 });
 
+// 認証、メール認証、2FAミドルウェアをグループに適用
 Route::middleware(['auth', 'verified', Middleware::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/2fa', [TwoFactorController::class, 'index'])->name('2fa');
@@ -33,16 +35,20 @@ Route::middleware(['auth', 'verified', Middleware::class])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Aboutページのルート
 Route::get('/about', function () {
     return view('about');
 });
 
+// Eventsページのルート
 Route::get('/events', function () {
     return view('events');
 });
 
+// Showcaseページのルート
 Route::get('/showcase', [ShowcaseController::class, 'index'])->name('showcase.index');
 
+// 登録が必要なShowcase関連のルート
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/showcase/create', [ShowcaseController::class, 'create'])->name('showcase.create');
     Route::post('/showcase', [ShowcaseController::class, 'store'])->name('showcase.store');
@@ -55,19 +61,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/showcase/work/{id}', [ShowcaseController::class, 'deleteFile'])->name('showcase.deleteFile');
 });
 
-//非メンバー向けの連絡先
+// 非メンバー向けの連絡先ページのルート
 Route::get('/external-contact', function () {
     return view('external-contact');
 });
 
+// プライバシーポリシーページのルート
 Route::get('/privacy-policy', function () {
     return view('privacy-policy');
 });
 
+// 利用規約ページのルート
 Route::get('/terms-and-conditions', function () {
     return view('terms-and-conditions');
 });
 
+// Contactフォームのルート
 Route::prefix('contacts') //頭にcontactsをつける
     ->middleware(['auth', 'verified']) //認証と管理者権限
     ->name('contacts.') //ルート名
@@ -82,6 +91,7 @@ Route::prefix('contacts') //頭にcontactsをつける
         Route::post('/{id}/destroy', 'destroy')->name('destroy'); //destroy名前付きルート
 });
 
+// レンタル関連のルート
 Route::prefix('rental')
     ->middleware(['auth', 'verified'])
     ->name('rental.')
@@ -98,6 +108,7 @@ Route::prefix('rental')
         Route::post('/unfavorite/{id}', 'removeFromFavorites')->name('removeFavorite');
 });
 
+// カート関連のルート
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('cart')->name('cart.')
         ->controller(CartController::class)
@@ -111,16 +122,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 });
 
-Route::middleware(['auth', 'verified', Google2FAMiddleware::class])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
-
+// 寄付ページのルート
 Route::get('/donate', function () {
     return view('donate');
 })->middleware(['auth', 'verified'])->name('donate');
 
+// ルートディレクトリにアクセスした場合、/aboutにリダイレクト
 Route::get('/', function () {
     return redirect('/about');
+});
+
+// 2FAミドルウェアを使用するダッシュボード関連のルート
+Route::middleware(['auth', 'verified', Google2FAMiddleware::class])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 // 言語設定変更のルート
@@ -131,8 +145,10 @@ Route::get('lang/{locale}', function ($locale) {
     return redirect()->back();
 })->name('change_language');
 
+// テスト用のルート
 Route::get('tests/test', [TestController::class, 'index']);
 
+// 認証が必要なプロフィール関連のルート
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -141,6 +157,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+// ジュークボックス関連のルート
 Route::get('/jukebox', [JukeboxController::class, 'index'])->name('jukebox.index');
 Route::post('/jukebox', [JukeboxController::class, 'store'])->name('jukebox.store');
 Route::get('/jukebox/admin', [JukeboxController::class, 'admin'])->name('jukebox.admin');
@@ -148,6 +165,7 @@ Route::post('/jukebox/admin/play', [JukeboxController::class, 'play'])->name('ju
 Route::post('/jukebox/admin/pause', [JukeboxController::class, 'pause'])->name('jukebox.pause');
 Route::delete('/jukebox/{id}', [JukeboxController::class, 'destroy'])->name('jukebox.destroy');
 
+// 管理者専用のルート
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');

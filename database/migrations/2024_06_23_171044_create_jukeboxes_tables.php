@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // jukeboxes テーブルを作成
         Schema::create('jukeboxes', function (Blueprint $table) {
             $table->id();
             $table->string('youtube_url');

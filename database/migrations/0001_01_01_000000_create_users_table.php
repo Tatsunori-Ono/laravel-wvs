@@ -7,10 +7,12 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
+     * マイグレーションを実行する。
      * Run the migrations.
      */
     public function up(): void
     {
+        // ユーザーテーブルの作成
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -23,12 +25,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // パスワードリセットトークンテーブルの作成
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
+        // セッションテーブルの作成
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
@@ -40,6 +44,7 @@ return new class extends Migration
     }
 
     /**
+     * マイグレーションをリバースする。
      * Reverse the migrations.
      */
     public function down(): void

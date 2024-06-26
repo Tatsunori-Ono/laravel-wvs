@@ -10,10 +10,12 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100 text-lg">
 
+                    <!-- ユーザーにレンタルアイテムがあるかどうかを確認 -->
                     @if($rentals->count())
                         <h3 class="mt-4 mb-2">{{__('dashboard.your-rental')}}</h3>
                         
                         <ul>
+                            <!-- アプリの言語が日本語の場合のレンタル情報の表示 -->
                             @if(app()->getLocale() == 'ja')
                                 @foreach($rentals as $rental)
                                     <li>
@@ -26,6 +28,7 @@
                                         ）
                                     </li>
                                 @endforeach
+                            <!-- アプリの言語が英語の場合のレンタル情報の表示 -->
                             @else
                                 @foreach($rentals as $rental)
                                     <li>
@@ -41,8 +44,9 @@
                             @endif
                         </ul>
 
+                    <!-- ユーザーにレンタルアイテムがない場合のメッセージ -->
                     @else
-                        <p>You have no active rentals.</p>
+                        <p>{{__('rental.no-rental')}}</p>
                     @endif
                 </div>
             </div>

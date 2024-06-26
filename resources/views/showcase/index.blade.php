@@ -8,6 +8,7 @@
 
 @section('content')
 
+<!-- ショーケースの仕組み説明 -->
 <div style="--overlay-color: #ff9292;" class="sticker-box">
     <div class="box-info">
         <h2>{{ __('showcase.showcase_heading') }}</h2>
@@ -17,6 +18,7 @@
 </div>
 <br>
 
+<!-- ショーケースのサンプル -->
 <div style="--overlay-color: #fcb5dc;" class="box">
   <h2 class="text-3xl">{{ __('showcase.world_is_mine_heading') }}</h2>
   <iframe width="826" height="693" src="https://www.youtube.com/embed/KW6xktv2mz8" title="World is Mine Orchestra with WVSloids" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -28,6 +30,7 @@
     $colorIndex = 0;
 @endphp
 
+<!-- ショーケースアイテムのループ -->
 @foreach($showcaseItems as $item)
     @php
         $currentColor = $pastelColors[$colorIndex];

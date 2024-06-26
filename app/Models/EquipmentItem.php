@@ -9,6 +9,11 @@ class EquipmentItem extends Model
 {
     use HasFactory;
 
+    /**
+     * 一括割り当て可能な属性
+     *
+     * @var array
+     */
     protected $fillable = [
         'product_name',
         'product_type',
@@ -25,14 +30,24 @@ class EquipmentItem extends Model
         'average_rating',
     ];
 
+    /**
+     * EquipmentItem と EquipmentImage モデルの関係性を定義する。
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function images()
     {
         return $this->hasMany(EquipmentImage::class);
     }
 
+    /**
+     * EquipmentItem と User モデルの多対多の関係性を定義する（お気に入り機能）。
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function favoritedBy()
-{
-    return $this->belongsToMany(User::class, 'favorites', 'equipment_item_id', 'user_id')->withTimestamps();
-}
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'equipment_item_id', 'user_id')->withTimestamps();
+    }
 }
 

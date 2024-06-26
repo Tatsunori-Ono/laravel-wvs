@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Auth;
 class ContactFormController extends Controller
 {
     /**
+     * 問い合わせ一覧を表示する。
      * Display a listing of the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
@@ -50,7 +54,10 @@ class ContactFormController extends Controller
     }
 
     /**
+     * 新しい問い合わせを作成するフォームを表示する。
      * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -59,6 +66,10 @@ class ContactFormController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 新しい問い合わせを保存する。
+     *
+     * @param \App\Http\Requests\StoreContactRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreContactRequest $request)
     {
@@ -75,7 +86,11 @@ class ContactFormController extends Controller
     }
 
     /**
+     * 特定の問い合わせを表示する。
      * Display the specified resource.
+     *
+     * @param string $id
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function show(string $id)
     {
@@ -92,7 +107,11 @@ class ContactFormController extends Controller
     }
 
     /**
+     * 問い合わせの編集フォームを表示する。
      * Show the form for editing the specified resource.
+     *
+     * @param string $id
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit(string $id)
     {
@@ -106,7 +125,12 @@ class ContactFormController extends Controller
     }
 
     /**
+     * 特定の問い合わせを更新する。
      * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, string $id)
     {
@@ -127,7 +151,11 @@ class ContactFormController extends Controller
     }
 
     /**
+     * 特定の問い合わせを削除する。
      * Remove the specified resource from storage.
+     *
+     * @param string $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(string $id)
     {

@@ -19,7 +19,7 @@
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            @isset($header)
+            @isset($header) <!-- $headerが設定されている場合にのみヘッダーを表示 -->
                 <header class="bg-white dark:bg-gray-800 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
@@ -29,7 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                {{ $slot }} <!-- メインコンテンツを表示 -->
             </main>
         </div>
     </body>

@@ -10,6 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
+                    <!-- アドミンのみアクセス可能 -->
                     @if(Auth::user()->role === 'admin')
                         <a href="{{ route('admin.rental.log') }}" class="text-white bg-green-500 border-0 py-3 px-8 ml-5 focus:outline-none hover:bg-green-600 rounded">
                             {{ __('platform.rental_log') }}
@@ -34,6 +35,7 @@
                         <button class="text-white bg-blue-500 border-0 py-2 px-8 focus:outline-none hover:bg-blue-600 rounded">{{ __('rental.filter') }}</button>
                     </form>
 
+                    <!-- 一般ユーザーなら表示 -->
                     @if(Auth::user()->role === 'user')
                         <a href="{{ route('rental.index', ['favorites' => 1]) }}" class="text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded">
                             {{ __('rental.favourites') }}
@@ -98,29 +100,40 @@
                                     </div>
 
                                     <script>
-                                        let slideIndex{{ $item->id }} = 1;
-                                        showSlides(slideIndex{{ $item->id }}, {{ $item->id }});
+                                        let slideIndex{{ $item->id }} = 1; // このアイテム用のスライドインデックスを初期化
+                                        showSlides(slideIndex{{ $item->id }}, {{ $item->id }}); // 最初のスライドを表示
 
+                                        // スライドを前後に移動する関数
                                         function plusSlides(n, id) {
                                             showSlides(slideIndex{{ $item->id }} += n, id);
                                         }
 
+                                        // 特定のスライドを表示する関数
                                         function currentSlide(n, id) {
                                             showSlides(slideIndex{{ $item->id }} = n, id);
                                         }
 
+                                        // スライドショーの表示を制御する関数
                                         function showSlides(n, id) {
                                             let i;
                                             let slides = document.querySelectorAll('.slideshow-' + id);
                                             let dots = document.querySelectorAll('.dot-' + id);
+
+                                            // スライド数を超えた場合はインデックスをリセット
                                             if (n > slides.length) {slideIndex{{ $item->id }} = 1}
                                             if (n < 1) {slideIndex{{ $item->id }} = slides.length}
+
+                                            // すべてのスライドを非表示にする
                                             for (i = 0; i < slides.length; i++) {
                                                 slides[i].style.display = "none";
                                             }
+
+                                            // すべてのドットから "active" クラスを削除する
                                             for (i = 0; i < dots.length; i++) {
                                                 dots[i].className = dots[i].className.replace(" active", "");
                                             }
+                                            
+                                            // 現在のスライドを表示し、対応するドットを "active" にする
                                             slides[slideIndex{{ $item->id }}-1].style.display = "block";
                                             dots[slideIndex{{ $item->id }}-1].className += " active";
                                         }

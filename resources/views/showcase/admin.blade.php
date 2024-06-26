@@ -10,6 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
+                     <!-- ショーケースの候補のセクション -->
                     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">{{ __('showcase.candidates') }}</h2>
                     <h3 class="font-semibold text-sm text-gray-800 dark:text-gray-200 leading-tight mb-4">{{ __('showcase.instruction') }}</h3>
                     @if($submissions->count())
@@ -57,6 +58,7 @@
                         <p class="text-red-500">{{ __('showcase.no_submissions') }}</p>
                     @endif
 
+                    <!-- ショーケースの採用した作品のセクション -->
                     <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mt-6 mb-4">{{ __('showcase.showcase-edit') }}</h2>
                     @if($approvedSubmissions->count())
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

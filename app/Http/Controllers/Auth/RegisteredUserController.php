@@ -17,7 +17,10 @@ use PragmaRX\Google2FALaravel\Support\Authenticator;
 class RegisteredUserController extends Controller
 {
     /**
+     * 登録ビューを表示する。
      * Display the registration view.
+     * 
+     * @return \Illuminate\View\View
      */
     public function create(): View
     {
@@ -25,8 +28,11 @@ class RegisteredUserController extends Controller
     }
 
     /**
+     * 受信した登録リクエストを処理する。
      * Handle an incoming registration request.
      *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse

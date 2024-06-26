@@ -12,11 +12,12 @@ use App\Models\ContactForm;
 class UserSeeder extends Seeder
 {
     /**
+     * データベースのシードを実行します。
      * Run the database seeds.
      */
     public function run(): void
     {
-
+        // ユーザーの作成
         $user = User::create([
             'name' => 'user',
             'role' => 'user',
@@ -26,6 +27,7 @@ class UserSeeder extends Seeder
             'is_enable_google2fa' => false, // 開発用なので2FAは無効化
         ]);
 
+        // 管理者の作成
         $admin = User::create([
             'name' => 'admin',
             'role' => 'admin',
@@ -36,6 +38,7 @@ class UserSeeder extends Seeder
             'is_enable_google2fa' => false, // 開発用なので2FAは無効化
         ]);
 
+        // 各ユーザーのための問い合わせフォームのシード
         // Seed some contact forms for each user
         ContactForm::create([
             'name' => 'Sample Inquiry User',
@@ -43,7 +46,7 @@ class UserSeeder extends Seeder
             'non_warwick_student' => 0,
             'subject' => 'Sample Inquiry Subject',
             'contact' => 'This is a sample inquiry for a regular user.',
-            'user_id' => $user->id, // Linking to user
+            'user_id' => $user->id, // ユーザーにリンク　Linking to user
         ]);
 
         ContactForm::create([
@@ -52,7 +55,7 @@ class UserSeeder extends Seeder
             'non_warwick_student' => 0,
             'subject' => 'Sample Inquiry Subject for Admin',
             'contact' => 'This is a sample inquiry for an admin.',
-            'user_id' => $admin->id, // Linking to admin
+            'user_id' => $admin->id, // 管理者にリンク　Linking to admin
         ]);
 
         // DB::table('users') -> insert([

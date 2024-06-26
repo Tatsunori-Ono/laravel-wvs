@@ -1,12 +1,14 @@
 @extends('layouts.base')
 
 <x-guest-layout>
+    <!-- セッションステータス -->
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        <!-- メールアドレス -->
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('login.email')" />
@@ -14,6 +16,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- パスワード -->
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('login.password')" />
@@ -26,6 +29,7 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
+        <!-- ログイン状態を保持する -->
         <!-- Remember Me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">

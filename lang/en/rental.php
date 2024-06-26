@@ -65,4 +65,7 @@ return [
 
     // admin/rentals/edit.blade.php
     'edit-log' => 'Edit Rental Log',
+
+    //dashboard.blade.php
+    'no-rental' => 'You have no active rentals.',
 ];

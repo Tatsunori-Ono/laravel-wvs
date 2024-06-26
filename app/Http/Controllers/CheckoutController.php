@@ -11,12 +11,23 @@ use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
+    /**
+     * チェックアウトページを表示する。
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $cartItems = CartItem::where('user_id', Auth::id())->with('equipmentItem')->get();
         return view('checkout.index', compact('cartItems'));
     }
 
+    /**
+     * チェックアウト処理を実行する。
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function process(Request $request)
     {
         $cartItems = CartItem::where('user_id', Auth::id())->with('equipmentItem')->get();

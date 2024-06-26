@@ -18,6 +18,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     use HasFactory, Notifiable;
 
     /**
+     * 一括割り当て可能な属性
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -34,6 +35,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     ];
 
     /**
+     * シリアル化時に隠蔽する属性
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
@@ -45,6 +47,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     ];
 
     /**
+     * キャストする属性
      * Get the attributes that should be cast.
      *
      * @return array<string, string>
@@ -58,6 +61,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         ];
     }
 
+    /**
+     * Google 2FAシークレットの取得と設定
+     *
+     * @return Attribute
+     */
     protected function google2faSecret(): Attribute {
         return new Attribute(
             get: fn ($value) => decrypt($value),
@@ -65,6 +73,12 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         );
     }
 
+    /**
+     * Filamentのパネルアクセス権限を確認する
+     *
+     * @param Panel $panel
+     * @return bool
+     */
     public function canAccessPanel(Panel $panel): bool
     {
         if ($panel->getId() === config('filament.id')) {
@@ -74,6 +88,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return true;
     }
 
+    /**
+     * お気に入りの装置アイテムを取得するリレーション
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function favorites()
     {
         return $this->belongsToMany(EquipmentItem::class, 'favorites', 'user_id', 'equipment_item_id')->withTimestamps();

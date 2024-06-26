@@ -9,10 +9,12 @@ use App\Models\EquipmentImage;
 class EquipmentItemsTableSeeder extends Seeder
 {
     /**
+     * データベースのシードを実行します。
      * Run the database seeds.
      */
     public function run(): void
     {
+        // デフォルトの機材アイテムを作成
         // Create default equipment items
         $equipmentItems = [
             [

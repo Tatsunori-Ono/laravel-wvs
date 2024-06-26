@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // equipment_items テーブルの作成
         Schema::create('equipment_items', function (Blueprint $table) {
             $table->id();
             $table->string('product_name');
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // equipment_images テーブルの作成
         // Create the equipment_images table
         Schema::create('equipment_images', function (Blueprint $table) {
             $table->id();

@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
+    /**
+     * カートにアイテムを追加する。
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addToCart(Request $request)
     {
         $request->validate([
@@ -51,6 +57,12 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Item added to cart.');
     }
 
+    /**
+     * カートからアイテムを削除する。
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function remove($id)
     {
         $cartItem = CartItem::where('user_id', Auth::id())->where('id', $id)->firstOrFail();
@@ -59,12 +71,24 @@ class CartController extends Controller
         return back()->with('success', 'Item removed from cart.');
     }
 
+    /**
+     * カートのアイテム一覧を表示する。
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $cartItems = CartItem::where('user_id', Auth::id())->with('equipmentItem')->get();
         return view('cart.index', compact('cartItems'));
     }
 
+    /**
+     * カートのアイテムの貸出日数を更新する。
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
         $cartItem = CartItem::where('user_id', Auth::id())->where('id', $id)->firstOrFail();

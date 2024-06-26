@@ -65,4 +65,7 @@ return [
 
     // rentals/edit.blade.php
     'edit-log' => '貸し出し記録を編集する',
+
+    //dashboard.blade.php
+    'no-rental' => '現在、あなたが借りている機材はありません。',
 ];

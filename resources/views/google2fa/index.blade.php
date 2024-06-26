@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <!-- セッションのステータス -->
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -29,6 +30,7 @@
                 <input type="text" id="one_time_password" name="one_time_password" class="block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
             </div>
 
+            <!-- 入力エラー -->
             <!-- Validation Errors -->
             @if ($errors->any())
                 <x-input-error :messages="$errors->first()" />
@@ -44,6 +46,7 @@
         </form>
         <div class="mt-4 flex items-center justify-start">
             <div>
+                <!-- ログアウトフォーム -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="route('logout')"

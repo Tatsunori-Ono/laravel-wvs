@@ -5,6 +5,7 @@
         </h2>
 
         <style>
+            /* 必須項目のスタイリング */
             .required:after {
                 content: '*';
                 color: red;
@@ -21,24 +22,29 @@
                         @csrf
                         @method('PATCH')
 
+                        <!-- 名前入力フィールド -->
                         <div class="mb-4">
                             <label for="name" class="required block text-base font-medium text-gray-700 dark:text-gray-300">{{ __('showcase.name-admin') }}</label>
                             <input type="text" name="name" id="name" value="{{ old('name', $submission->name) }}" class="mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
                         </div>
 
+                        <!-- タイトル入力フィールド -->
                         <div class="mb-4">
                             <label for="title" class="required block text-base font-medium text-gray-700 dark:text-gray-300">{{ __('showcase.showcase_name_admin') }}</label>
                             <input type="text" name="title" id="title" value="{{ old('title', $submission->title) }}" class="mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" required>
                         </div>
 
+                        <!-- 説明入力フィールド -->
                         <div class="mb-4">
                             <label for="description" class="block text-base font-medium text-gray-700 dark:text-gray-300">{{ __('showcase.description') }}</label>
                             <textarea name="description" id="description" rows="3" class="mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">{{ old('description', $submission->description) }}</textarea>
                         </div>
 
+                        <!-- ファイルアップロードフィールド -->
                         <div class="mb-4">
                             <label for="file" class="required block text-base font-medium text-gray-700 dark:text-gray-300">{{ __('showcase.file_admin') }}</label>
                             <input type="file" name="file" id="file" class="mt-1 block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <!-- 現在のファイルを表示 -->
                             @if ($submission->works->isNotEmpty())
                                 <div class="mt-2">
                                     <p class="text-base">{{ __('showcase.current-file') }}</p>
@@ -73,6 +79,7 @@
                             {{__('register.required')}}
                         </div>
 
+                        <!-- 更新ボタン -->
                         <div class="mb-4">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                                 {{ __('showcase.update') }}

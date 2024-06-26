@@ -1,16 +1,21 @@
 <x-app-layout>
     <section class="text-gray-600 body-font overflow-hidden">
+        <!-- カタログ一覧に戻るリンク -->
         <a href="{{ route('rental.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-4 px-8 text-base rounded">
             < {{__('rental.back-to-catalogue')}}
         </a>
         <div class="container px-5 py-24 mx-auto">
             <div class="lg:w-4/5 mx-auto flex flex-wrap">
+                <!-- 商品画像のスライドショーを含むコンテナ -->
                 <!-- Slideshow container for the product images -->
                 <div class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded">
                     <div class="slideshow-container">
                         @foreach($equipmentItem->images as $index => $image)
+                            <!-- 各スライドの画像 -->
                             <div class="mySlides fade">
+                                <!-- 画像のインデックスと総数を表示 -->
                                 <div class="numbertext">{{ $index + 1 }} / {{ $equipmentItem->images->count() }}</div>
+                                <!-- 画像のパスに応じて表示 -->
                                 @if (str_contains($image->image_path, 'seed_images'))
                                     <img src="{{ asset($image->image_path) }}" style="width:100%">
                                 @else
@@ -19,12 +24,14 @@
                             </div>
                         @endforeach
 
+                        <!-- 前後のスライド切り替えボタン -->
                         <!-- Next and previous buttons -->
                         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                         <a class="next" onclick="plusSlides(1)">&#10095;</a>
                     </div>
                     <br>
 
+                    <!-- ドット/サークルのインジケータ -->
                     <!-- The dots/circles -->
                     <div style="text-align:center">
                         @foreach($equipmentItem->images as $index => $image)
@@ -33,11 +40,15 @@
                     </div>
                 </div>
 
+                <!-- 商品情報の詳細 -->
                 <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                    <!-- 商品カテゴリ -->
                     <h2 class="text-sm title-font text-gray-500 dark:text-gray-200 tracking-widest">{{ $equipmentItem->category }}</h2>
+                    <!-- 商品名 -->
                     <h1 class="text-gray-900 dark:text-gray-200 text-3xl title-font font-medium mb-1">{{ $equipmentItem->product_name }}</h1>
                     <div class="flex mb-4">
                         <span class="flex items-center">
+                            <!-- 平均評価を星で表示 -->
                             <!-- Display average rating using stars -->
                             @for ($i = 0; $i < 5; $i++)
                                 @if ($i < $equipmentItem->average_rating)
@@ -50,8 +61,10 @@
                                     </svg>
                                 @endif
                             @endfor
+                            <!-- レンタル回数の表示 -->
                             <span class="text-gray-600 dark:text-gray-200 ml-3">{{ $equipmentItem->rental_count }} {{__('rental.rented-times')}}</span>
                         </span>
+                        <!-- アイコンの表示 -->
                         <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                             <a class="text-gray-500">
                                 <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
@@ -70,7 +83,9 @@
                             </a>
                         </span>
                     </div>
+                    <!-- 商品の説明 -->
                     <p class="leading-relaxed dark:text-gray-200">{{ $equipmentItem->description }}</p>
+                    <!-- 位置と購入日の表示 -->
                     <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                         <div class="flex ml-6 items-center">
                             <span class="mr-3 dark:text-gray-200">{{__('rental.location_stored')}}:</span>
@@ -82,6 +97,7 @@
                         </div>
                     </div>
 
+                    <!-- 在庫の状態を表示 -->
                     @php
                         $availableQuantity = $equipmentItem->quantity - $equipmentItem->rented_quantity;
                     @endphp
@@ -92,6 +108,7 @@
                         <p class="title-font font-medium text-2xl text-red-600 dark:text-red-200 font-bold">{{__('rental.status-rented')}}</p>
                     @endif
 
+                    <!-- カートに追加フォーム -->
                     <div class="flex mt-5">
                         <form action="{{ route('cart.add') }}" method="post" class="ml-auto">
                             @csrf
@@ -103,6 +120,7 @@
                             <button type="submit" class="flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 mt-10 rounded">{{__('rental.add-to-cart')}}</button>
                         </form>
 
+                        <!-- お気に入りボタン -->
                         @if($isFavorited)
                             <form action="{{ route('rental.removeFavorite', $equipmentItem->id) }}" method="post">
                                 @csrf
@@ -123,9 +141,12 @@
                             </form>
                         @endif
                     </div>
+                    <!-- 管理者向けの編集/削除ボタン -->
                     @if (Auth::user()->role === 'admin')
                         <div class="flex mt-5">
+                            <!-- 商品の編集リンク -->
                             <a href="{{ route('rental.edit', $equipmentItem->id) }}" class="flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">{{ __('rental.edit') }}</a>
+                            <!-- 商品の削除フォーム -->
                             <form action="{{ route('rental.destroy', $equipmentItem->id) }}" method="post" class="ml-4">
                                 @csrf
                                 @method('post')
@@ -138,6 +159,7 @@
         </div>
     </section>
 
+    <!-- スライドショーのJavaScriptとスタイル -->
     <script>
         let slideIndex = 1;
         showSlides(slideIndex);
@@ -167,9 +189,11 @@
         }
     </script>
 
+    <!-- スライドショーのスタイル -->
     <style>
         * {box-sizing:border-box}
 
+        /* スライドショーのコンテナ */
         /* Slideshow container */
         .slideshow-container {
             max-width: 100%;
@@ -177,11 +201,13 @@
             margin: auto;
         }
 
+        /* 画像はデフォルトで非表示 */
         /* Hide the images by default */
         .mySlides {
             display: none;
         }
 
+        /* 前後のボタン */
         /* Next & previous buttons */
         .prev, .next {
             cursor: pointer;
@@ -198,17 +224,20 @@
             user-select: none;
         }
 
+        /* 右寄せの「次へ」ボタン */
         /* Position the "next button" to the right */
         .next {
             right: 0;
             border-radius: 3px 0 0 3px;
         }
 
+        /* ホバー時のスタイル */
         /* On hover, add a black background color with a little bit see-through */
         .prev:hover, .next:hover {
             background-color: rgba(0,0,0,0.8);
         }
 
+        /* キャプションテキスト */
         /* Caption text */
         .text {
             color: #f2f2f2;
@@ -220,6 +249,7 @@
             text-align: center;
         }
 
+        /* 番号テキスト (1/3など) */
         /* Number text (1/3 etc) */
         .numbertext {
             color: #f2f2f2;
@@ -229,6 +259,7 @@
             top: 0;
         }
 
+        /* ドット/バレット/インジケータ */
         /* The dots/bullets/indicators */
         .dot {
             cursor: pointer;
@@ -245,6 +276,7 @@
             background-color: #717171;
         }
 
+        /* フェードインアニメーション */
         /* Fading animation */
         .fade {
             animation-name: fade;

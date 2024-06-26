@@ -8,6 +8,7 @@ class CreateRentalsTable extends Migration
 {
     public function up()
     {
+        // rentals テーブルを作成
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');

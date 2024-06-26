@@ -14,6 +14,7 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        <!-- 名前 -->
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('register.name')" class="required"/>
@@ -21,6 +22,7 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- ウォーリックID -->
         <!-- Warwick ID -->
         <div class="mt-4">
             <x-input-label for="warwick_id" :value="__('register.warwick-id')" />
@@ -28,6 +30,7 @@
             <x-input-error :messages="$errors->get('warwick_id')" class="mt-2" />
         </div>
 
+        <!-- メールアドレス -->
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('register.email')" class="required"/>
@@ -35,6 +38,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- パスワード -->
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('register.password')" class="required"/>
@@ -47,6 +51,7 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
+        <!-- パスワード確認 -->
         <!-- Confirm Password -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('register.confirm-password')" class="required"/>
@@ -58,6 +63,7 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- Google2faを有効にする -->
         <!-- is Enable Google2fa -->
         <div class="block mt-4">
             <label for="is_enable_google2fa" class="inline-flex items-center">

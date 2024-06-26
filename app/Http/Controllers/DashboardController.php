@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {
+    /**
+     * ダッシュボードページを表示する。
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $rentals = Rental::where('user_id', Auth::id())->with('equipmentItem')->get();

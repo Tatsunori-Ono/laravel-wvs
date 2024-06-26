@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // users テーブルに role カラムを追加
         Schema::table('users', function (Blueprint $table) {
             $table->string('role')->default('user')->after('name');
         });

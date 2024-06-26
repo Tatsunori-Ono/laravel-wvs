@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // contact_forms テーブルに subject カラムを追加
         Schema::table('contact_forms', function (Blueprint $table) {
             $table->string('subject', 50)->after('non_warwick_student');
         });

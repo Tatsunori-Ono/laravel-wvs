@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // contact_forms テーブルの作成
         Schema::create('contact_forms', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);

@@ -5,12 +5,14 @@
         {{ __('forgot.description') }}
     </div>
 
+    <!-- セッションステータス -->
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
 
+        <!-- メールアドレス -->
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('register.email')" />

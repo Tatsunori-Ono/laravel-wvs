@@ -27,6 +27,7 @@
                                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                     <div class="flex flex-wrap -m-2">
 
+                                        <!-- 名前入力 -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="name" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.name')}}</label>
@@ -35,6 +36,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- メールアドレス入力 -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="email" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.email')}}</label>
@@ -43,6 +45,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- ワーリック大学生かどうかの選択 -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.warwick')}}</label><br>
@@ -52,6 +55,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- お問い合わせの件名入力 -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="subject" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.subject')}}</label>
@@ -60,6 +64,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- お問い合わせ内容入力 -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="contact" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{__('contact.content')}}</label>
@@ -68,6 +73,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- 利用規約への同意 -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <input type="checkbox" id="caution" name="caution" style="margin-right: .2rem;">
@@ -85,6 +91,7 @@
                                             {{__('register.required')}}
                                         </div>
 
+                                        <!-- 送信ボタン -->
                                         <div class="p-2 w-full">
                                             <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{__('contact.submit')}}</button>
                                         </div>

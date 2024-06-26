@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class RentalLogController extends Controller
 {
     /**
+     * レンタルログの一覧を表示する。
      * Display a listing of the rental logs.
+     * 
+     * @return \Illuminate\View\View | \Illuminate\Http\RedirectResponse
      */
     public function index()
     {
@@ -25,7 +28,11 @@ class RentalLogController extends Controller
     }
 
     /**
+     * 指定されたレンタルの編集フォームを表示する。
      * Show the form for editing the specified rental.
+     * 
+     * @param int $id
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
@@ -38,7 +45,12 @@ class RentalLogController extends Controller
     }
 
     /**
+     * 指定されたレンタルを更新する。
      * Update the specified rental in storage.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
@@ -58,7 +70,11 @@ class RentalLogController extends Controller
     }
 
     /**
+     * 指定されたレンタルを削除する。
      * Remove the specified rental from storage.
+     * 
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
@@ -73,7 +89,11 @@ class RentalLogController extends Controller
     }
 
     /**
+     * 指定されたレンタルをキャンセルし、在庫を復活させる。
      * Cancel the specified rental and revive the stock.
+     * 
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function cancel($id)
     {
@@ -83,11 +103,13 @@ class RentalLogController extends Controller
 
         $rental = Rental::findOrFail($id);
 
+        // 備品アイテムの在庫を増やす
         // Increase the stock of the equipment item
         $equipmentItem = $rental->equipmentItem;
         $equipmentItem->quantity += $rental->quantity;
         $equipmentItem->save();
 
+        // レンタルログを削除する
         // Delete the rental log
         $rental->delete();
 

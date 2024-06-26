@@ -10,6 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if($cartItems->count())
+                        <!-- カートアイテムがある場合 -->
                         <div class="overflow-x-auto">
                             <table class="table-auto w-full">
                                 <thead>
@@ -26,6 +27,7 @@
                                             <td class="border px-4 py-2">{{ $cartItem->equipmentItem->product_name }}</td>
                                             <td class="border px-4 py-2">{{ $cartItem->quantity }}</td>
                                             <td class="border px-4 py-2">
+                                                <!-- レンタル日数更新フォーム -->
                                                 <form action="{{ route('cart.update', $cartItem->id) }}" method="post">
                                                     @csrf
                                                     @method('put')
@@ -34,6 +36,7 @@
                                                 </form>
                                             </td>
                                             <td class="border px-4 py-2">
+                                                <!-- アイテム削除フォーム -->
                                                 <form action="{{ route('cart.remove', $cartItem->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
@@ -45,14 +48,19 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- ボタン -->
                         <div class="mt-4 flex justify-between">
+                            <!-- カタログへ戻るリンク -->
                             <a href="{{ route('rental.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                                 < {{__('rental.back-to-catalogue')}}
                             </a>
+                            <!-- チェックアウトへ進むリンク -->
                             <a href="{{ route('checkout.index') }}" class="bg-green-500 text-white px-4 py-2 rounded">{{__('rental.checkout-next')}}</a>
                         </div>
                     @else
+                        <!-- カートが空の場合 -->
                         <p>{{__('rental.empty')}}</p>
+                        <!-- カタログへ戻るリンク -->
                         <a href="{{ route('rental.index') }}" class="mt-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             < {{__('rental.back-to-catalogue')}}
                         </a>

@@ -15,7 +15,11 @@ use PragmaRX\Google2FALaravel\Support\Authenticator;
 class ProfileController extends Controller
 {
     /**
+     * ユーザーのプロフィールフォームを表示する。
      * Display the user's profile form.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\View\View
      */
     public function edit(Request $request): View
     {
@@ -25,18 +29,24 @@ class ProfileController extends Controller
     }
 
     /**
+     * ユーザーのプロフィール情報を更新する。
      * Update the user's profile information.
+     *
+     * @param \App\Http\Requests\ProfileUpdateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
 
+        // プロフィール写真が提供された場合の更新
         // Update profile photo if provided
         if ($request->hasFile('picture')) {
             $path = $request->file('picture')->store('profile-icons', 'public');
             $user->profile_photo_path = $path;
         }
 
+        // 2FA設定の更新
         // Update 2FA settings
         $google2fa = app('pragmarx.google2fa');
         if ($request->is_enable_google2fa) {
@@ -47,6 +57,7 @@ class ProfileController extends Controller
             $user->is_enable_google2fa = false;
         }
 
+        // 他のユーザー情報の更新
         // Update other user information
         $user->fill($request->safe()->only(['name', 'email']));
 
@@ -60,7 +71,11 @@ class ProfileController extends Controller
     }
 
     /**
+     * ユーザーのアカウントを削除する。
      * Delete the user's account.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request): RedirectResponse
     {

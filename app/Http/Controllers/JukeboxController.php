@@ -9,12 +9,23 @@ use Illuminate\Support\Facades\Auth;
 
 class JukeboxController extends Controller
 {
+    /**
+     * ジュークボックスアイテムの一覧を表示する。
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $jukeboxItems = Jukebox::all();
         return view('jukebox.index', compact('jukeboxItems'));
     }
 
+    /**
+     * 新しいジュークボックスアイテムを保存する。
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -43,6 +54,11 @@ class JukeboxController extends Controller
         return redirect()->back()->with('success', __('jukebox.success'));
     }
 
+    /**
+     * 管理者用のジュークボックスページを表示する。
+     *
+     * @return \Illuminate\View\View|\Illuminate\Http\RedirectResponse
+     */
     public function admin()
     {
         if (Auth::user()->role !== 'admin') {
@@ -53,6 +69,11 @@ class JukeboxController extends Controller
         return view('jukebox.admin', compact('jukeboxItems'));
     }
 
+    /**
+     * ジュークボックスアイテムを再生する。
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
     public function play()
     {
         if (Auth::user()->role !== 'admin') {
@@ -63,6 +84,11 @@ class JukeboxController extends Controller
         return response()->json(['status' => 'Playing']);
     }
 
+    /**
+     * ジュークボックスアイテムを一時停止する。
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
     public function pause()
     {
         if (Auth::user()->role !== 'admin') {
@@ -73,6 +99,12 @@ class JukeboxController extends Controller
         return response()->json(['status' => 'Paused']);
     }
 
+    /**
+     * 指定されたジュークボックスアイテムを削除する。
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         if (Auth::user()->role !== 'admin') {

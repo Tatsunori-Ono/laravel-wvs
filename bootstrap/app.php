@@ -12,11 +12,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // Webミドルウェアを設定する
         $middleware->web([
             SetLanguage::class,
+            // 必要に応じて他のミドルウェアを追加
             // Add other middleware here if necessary
         ]);
 
+        // ミドルウェアのエイリアスを設定する
         $middleware->alias([
             'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
             'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -29,6 +32,6 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        // 例外ハンドリングの設定
     })
     ->create();

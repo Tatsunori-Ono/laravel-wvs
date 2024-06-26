@@ -10,6 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @if($cartItems->count())
+                        <!-- カートにアイテムがある場合 -->
                         <div class="overflow-x-auto">
                             <table class="table-auto w-full">
                                 <thead>
@@ -30,6 +31,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- チェックアウト処理フォーム -->
                         <div class="mt-4">
                             <form action="{{ route('checkout.process') }}" method="post">
                                 @csrf
@@ -37,6 +39,7 @@
                             </form>
                         </div>
                     @else
+                        <!-- カートが空の場合 -->
                         <p>Your cart is empty.</p>
                     @endif
                 </div>

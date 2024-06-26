@@ -12,17 +12,33 @@ use Illuminate\Support\Facades\Log;
 
 class ShowcaseController extends Controller
 {
+    /**
+     * 機材の一覧を表示する。
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $showcaseItems = ShowcaseItem::where('approved', true)->with('works')->get();
         return view('showcase.index', compact('showcaseItems'));
     }
 
+    /**
+     * 新しい機材の作成フォームを表示する。
+     *
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         return view('showcase.create');
     }
 
+    /**
+     * 新しく作成された機材をストレージに保存する。
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         Log::info('Request received: ', $request->all());
@@ -55,6 +71,11 @@ class ShowcaseController extends Controller
         return redirect()->route('showcase.index')->with('success', 'Your work has been submitted and is awaiting approval.');
     }
 
+    /**
+     * 採用と却下のための管理者ページを表示する。
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function admin()
     {
         if (Auth::user()->role !== 'admin') {
@@ -67,6 +88,12 @@ class ShowcaseController extends Controller
         return view('showcase.admin', compact('submissions', 'approvedSubmissions'));
     }
 
+    /**
+     * 提出物を採用する。
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function approve($id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -80,6 +107,12 @@ class ShowcaseController extends Controller
         return redirect()->route('showcase.admin')->with('success', 'The submission has been approved.');
     }
 
+    /**
+     * 提出物を却下する（非採用にする）。
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function reject($id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -92,6 +125,12 @@ class ShowcaseController extends Controller
         return redirect()->route('showcase.admin')->with('success', 'The submission has been rejected.');
     }
 
+    /**
+     * 提出物の編集フォームを表示する。
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function edit($id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -102,6 +141,13 @@ class ShowcaseController extends Controller
         return view('showcase.edit', compact('submission'));
     }
 
+    /**
+     * 指定された機材を更新する。
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -138,6 +184,12 @@ class ShowcaseController extends Controller
         return redirect()->route('showcase.admin')->with('success', 'Submission updated successfully.');
     }
 
+    /**
+     * 指定された機材を削除する。
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy($id)
     {
         if (Auth::user()->role !== 'admin') {
@@ -150,6 +202,12 @@ class ShowcaseController extends Controller
         return redirect()->route('showcase.admin')->with('success', 'Submission deleted successfully.');
     }
 
+    /**
+     * 指定されたファイルを削除する。
+     *
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function deleteFile($id)
     {
         if (Auth::user()->role !== 'admin') {

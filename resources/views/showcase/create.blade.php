@@ -5,6 +5,7 @@
         </h2>
 
         <style>
+            /* 必須項目のスタイリング */
             .required:after {
                 content: '*';
                 color: red;
@@ -21,6 +22,7 @@
                         <form action="{{ route('showcase.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
 
+                            <!-- エラーメッセージの表示 -->
                             @if ($errors->any())
                                 <div class="bg-red-500 text-white p-4 mb-4 rounded">
                                     <ul>
@@ -34,6 +36,8 @@
                             <div class="container px-5 mx-auto">
                                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                     <div class="flex flex-wrap -m-2">
+
+                                        <!-- 名前入力フィールド -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="name" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{ __('showcase.name') }}</label>
@@ -42,6 +46,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- タイトル入力フィールド -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="title" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{ __('showcase.showcase_name') }}</label>
@@ -50,6 +55,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- 説明入力フィールド -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="description" class="leading-7 text-sm text-gray-600 dark:text-gray-200">{{ __('showcase.description') }}</label>
@@ -58,6 +64,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- ファイルアップロードフィールド -->
                                         <div class="p-2 w-full">
                                             <div class="relative">
                                                 <label for="file" class="required leading-7 text-sm text-gray-600 dark:text-gray-200">{{ __('showcase.file') }}</label>
@@ -66,6 +73,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- 送信ボタン -->
                                         <div class="p-2 w-full">
                                             <button class="flex mx-auto text-white bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">{{ __('showcase.submit') }}</button>
                                         </div>

@@ -14,6 +14,7 @@
                             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                 <div class="flex flex-wrap -m-2">
 
+                                    <!-- 名前 -->
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="name" class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.name') }}</label>
@@ -21,6 +22,7 @@
                                         </div>
                                     </div>
 
+                                    <!-- メール -->
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="email" class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.email') }}</label>
@@ -28,6 +30,7 @@
                                         </div>
                                     </div>
 
+                                    <!-- ウォーリック -->
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.warwick') }}</label><br>
@@ -35,6 +38,7 @@
                                         </div>
                                     </div>
 
+                                    <!-- 件名 -->
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="subject" class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.subject') }}</label>
@@ -42,6 +46,7 @@
                                         </div>
                                     </div>
 
+                                    <!-- 内容 -->
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="contact" class="leading-7 text-sm text-gray-600 dark:text-white">{{ __('contact.content') }}</label>
@@ -49,6 +54,7 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- 管理者用の編集・削除ボタン -->
                                     @if (Auth::user()->role === 'admin')
                                         <div class="p-2 w-full">
                                             <div class="relative">
@@ -58,6 +64,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- 削除フォーム -->
                                         <form id="delete_{{ $contact->id }}" action="{{ route('contacts.destroy', ['id' => $contact->id]) }}" method="post">
                                             @csrf
                                             <div class="p-2 w-full flex justify-center">

@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // キャッシュテーブルの作成
         Schema::create('cache', function (Blueprint $table) {
             $table->string('key')->primary();
             $table->mediumText('value');
             $table->integer('expiration');
         });
 
+        // キャッシュロックテーブルの作成
         Schema::create('cache_locks', function (Blueprint $table) {
             $table->string('key')->primary();
             $table->string('owner');

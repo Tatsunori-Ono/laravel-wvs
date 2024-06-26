@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // contact_forms テーブルに user_id カラムを追加し、外部キー制約を設定
         Schema::table('contact_forms', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->nullable(); // Adding user_id column
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); // Setting up foreign key relationship

@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+<!-- "ようこそ"セクション -->
 <div style="--overlay-color: #aae5e0;" class="sticker-box">
     <div class="box-info">
         <h2>{{ __('about.welcome') }}</h2>
@@ -22,6 +23,7 @@
 </div>
 <br>
 
+<!-- "ソーシャル"セクション -->
 <div style="--overlay-color: #fcf8a8;" class="sticker-box">
     <div class="box-info">
         <h2>{{ __('about.socials') }}</h2>
@@ -34,6 +36,7 @@
 </div>
 <br>
 
+<!-- "チュートリアルとプロジェクト"セクション -->
 <div style="--overlay-color: #ffb3b3;" class="sticker-box">
     <div class="box-info">
         <h2>{{ __('about.tutorials_projects') }}</h2>

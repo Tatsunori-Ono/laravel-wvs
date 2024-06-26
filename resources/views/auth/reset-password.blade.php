@@ -4,9 +4,11 @@
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
+        <!-- パスワードリセットトークン -->
         <!-- Password Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
+        <!-- メールアドレス -->
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -14,6 +16,7 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- パスワード -->
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
@@ -21,6 +24,7 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
+        <!-- パスワードの確認 -->
         <!-- Confirm Password -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />

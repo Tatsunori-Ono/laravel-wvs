@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     /**
+     * ユーザーの一覧を表示する。
      * Display a listing of the users.
+     * 
+     * @return \Illuminate\View\View | \Illuminate\Http\RedirectResponse
      */
     public function index()
     {
@@ -24,7 +27,11 @@ class UserController extends Controller
     }
 
     /**
+     * 指定されたユーザーの編集フォームを表示する。
      * Show the form for editing the specified user.
+     * 
+     * @param \App\Models\User $user
+     * @return \Illuminate\View\View | \Illuminate\Http\RedirectResponse
      */
     public function edit(User $user)
     {
@@ -36,7 +43,12 @@ class UserController extends Controller
     }
 
     /**
+     * 指定されたユーザーを更新する。
      * Update the specified user in storage.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {
@@ -55,6 +67,13 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
 
+    /**
+     * 指定されたユーザーを削除する。
+     * Delete the specified user in storage.
+     *
+     * @param \App\Models\User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(User $user)
     {
         if (Auth::user()->role !== 'admin') {

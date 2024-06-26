@@ -10,6 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void {
+        // users テーブルに google2fa_secret と is_enable_google2fa カラムを追加
         Schema::table('users', function (Blueprint $table) {
             $table->string('google2fa_secret')->nullable()->after('remember_token');
             $table->boolean('is_enable_google2fa')->default(false)->after('google2fa_secret');

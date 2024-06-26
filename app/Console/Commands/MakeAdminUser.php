@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Validation\Rules\Password;
 use function Laravel\Prompts\form;
 
+/**
+ * Laravel filamentでアドミンを作るコマンド
+ * php artisan make:admin-user
+ */
 class MakeAdminUser extends Command
 {
     /**
@@ -30,7 +34,7 @@ class MakeAdminUser extends Command
      */
     public function handle()
     {
-        // 入力：name, email, password
+        // 入力事項：name, email, password
         list($name, $email, $password) = form()
             ->text(
                 label: 'ユーザー名を入力してください。',
@@ -69,24 +73,24 @@ class MakeAdminUser extends Command
 
         // 結果確認
         if ($exitCode) {
-            echo "❌ユーザー作成に失敗しました。" . PHP_EOL;
+            echo "ユーザー作成に失敗しました。" . PHP_EOL;
             exit(1);
         }
 
         // 管理権限付与
         $user = User::where('email', $email)->first();
         if (!$user) {
-            echo "❌ユーザー情報の取得に失敗しました。" . PHP_EOL;
+            echo "ユーザー情報の取得に失敗しました。" . PHP_EOL;
             exit(1);
         }
         $user->role = 'admin';
         $updated = $user->save();
         if (!$updated) {
-            echo "❌ユーザー {$name} への管理者権限付与に失敗しました。" . PHP_EOL;
+            echo "ユーザー {$name} への管理者権限付与に失敗しました。" . PHP_EOL;
             exit(1);
         }
-        echo "🎉管理者ユーザーの作成が完了しました。" . PHP_EOL;
+        echo "管理者ユーザーの作成が完了しました！" . PHP_EOL;
         $adminUrl = env('APP_URL') . '/' . config('filament.id');
-        echo $user->email . ' は ' . $adminUrl . ' からログインできます。🌈' . PHP_EOL;
+        echo $user->email . ' は ' . $adminUrl . ' からログインできます。' . PHP_EOL;
     }
 }
