@@ -78,7 +78,7 @@
 
    ```bash
    git clone https://github.com/Tatsunori-Ono/laravel-wvs.git
-   cd wvs-web
+   cd laravel-wvs
    ```
 2. 依存パッケージをインストールします。
 
@@ -101,7 +101,8 @@
    #APP_KEYは次のステップ(4)で生成します
    APP_KEY=
    # 開発者向け: Laravel Debugbarの表示(true)・非表示(false)です
-   APP_DEBUG=true
+   APP_DEBUG=false
+   APP_TIMEZONE=UTC
    APP_URL=http://localhost
 
    DB_CONNECTION=mysql
@@ -109,7 +110,7 @@
    DB_PORT=3306
    #以下の3項目を記入してください
    DB_DATABASE=your_database_name
-   DB_USERNAME=your_database_name
+   DB_USERNAME=your_database_username
    DB_PASSWORD=your_database_password
 
    MAIL_MAILER=smtp
@@ -134,12 +135,16 @@
    ```bash
    php artisan migrate:fresh --seed
    ```
-6. ローカルサーバーを起動します。
+6. ストレージのシンボリックリンクを作成
+    ```bash
+   php artisan storage:link
+   ```
+7. ローカルサーバーを起動します。
 
    ```bash
    php artisan serve
    ```
-7. ブラウザで`http://127.0.0.1:8000/about`にアクセスして本WEBサイトを使用できます！日本語設定にするにはnavbarの「JA」を選択してください。
+8. ブラウザで`http://127.0.0.1:8000/about`にアクセスして本WEBサイトを使用できます！日本語設定にするにはnavbarの「JA」を選択してください。
 
 ## 開発者向け情報
 
