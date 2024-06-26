@@ -53,7 +53,7 @@
                         </div>
 
                     @else
-                        <p>{{ __('No items in the queue.') }}</p>
+                        <p class="text-red-500 mt-5">{{ __('jukebox.no-items') }}</p>
                     @endif
                 </div>
             </div>

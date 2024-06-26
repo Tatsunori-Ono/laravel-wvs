@@ -45,13 +45,24 @@
                                     @php
                                         $filePath = $submission->works->first()->file_path;
                                     @endphp
-                                    @if (str_contains($filePath, 'jpeg') || str_contains($filePath, 'png') || str_contains($filePath, 'jpg') || str_contains($filePath, 'gif') || str_contains($filePath, 'svg'))
-                                        <img src="{{ asset('storage/' . $filePath) }}" alt="{{ $submission->title }}" class="w-full h-auto mt-2">
-                                    @elseif (str_contains($filePath, 'mp3') || str_contains($filePath, 'wav') || str_contains($filePath, 'mp4'))
-                                        <audio controls class="w-full mt-2">
-                                            <source src="{{ asset('storage/' . $filePath) }}" type="audio/mpeg">
-                                            {{ __('showcase.no-support') }}
-                                        </audio>
+                                    @if (str_contains($filePath, 'showcase_seed'))
+                                        @if (str_contains($filePath, 'jpeg') || str_contains($filePath, 'png') || str_contains($filePath, 'jpg') || str_contains($filePath, 'gif') || str_contains($filePath, 'svg'))
+                                            <img src="{{ asset($filePath) }}" alt="{{ $submission->title }}" class="w-full h-auto mt-2">
+                                        @elseif (str_contains($filePath, 'mp3') || str_contains($filePath, 'wav') || str_contains($filePath, 'mp4'))
+                                            <audio controls class="w-full mt-2">
+                                                <source src="{{ asset($filePath) }}" type="audio/mpeg">
+                                                {{ __('showcase.no-support') }}
+                                            </audio>
+                                        @endif
+                                    @else
+                                        @if (str_contains($filePath, 'jpeg') || str_contains($filePath, 'png') || str_contains($filePath, 'jpg') || str_contains($filePath, 'gif') || str_contains($filePath, 'svg'))
+                                            <img src="{{ asset('storage/' . $filePath) }}" alt="{{ $submission->title }}" class="w-full h-auto mt-2">
+                                        @elseif (str_contains($filePath, 'mp3') || str_contains($filePath, 'wav') || str_contains($filePath, 'mp4'))
+                                            <audio controls class="w-full mt-2">
+                                                <source src="{{ asset('storage/' . $filePath) }}" type="audio/mpeg">
+                                                {{ __('showcase.no-support') }}
+                                            </audio>
+                                        @endif
                                     @endif
                                 </div>
                             @endif

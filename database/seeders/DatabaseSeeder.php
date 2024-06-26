@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             TestSeeder::class,
             UserSeeder::class,
             EquipmentItemsTableSeeder::class,
+            ShowcaseSeeder::class,
         ]);
 
         ContactForm::factory(15)->create();

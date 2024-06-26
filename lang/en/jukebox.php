@@ -19,5 +19,5 @@ return [
     'delete' => 'Delete',
     'play' => 'Play',
     'pause' => 'Pause',
-    'no-item' => 'No items in the queue.',
+    'no-items' => 'No items in the queue.',
 ];

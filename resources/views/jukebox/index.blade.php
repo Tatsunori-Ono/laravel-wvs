@@ -45,7 +45,7 @@
                             </table>
                         </div>
                     @else
-                        <p>{{ __('jukebox.no-item') }}</p>
+                        <p class="text-red-500 mt-4">{{ __('jukebox.no-items') }}</p>
                     @endif
                 </div>
             </div>

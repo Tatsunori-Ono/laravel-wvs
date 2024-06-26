@@ -17,7 +17,6 @@
 </div>
 <br>
 
-
 <div style="--overlay-color: #fcb5dc;" class="box">
   <h2 class="text-3xl">{{ __('showcase.world_is_mine_heading') }}</h2>
   <iframe width="826" height="693" src="https://www.youtube.com/embed/KW6xktv2mz8" title="World is Mine Orchestra with WVSloids" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -34,19 +33,30 @@
         $currentColor = $pastelColors[$colorIndex];
         $colorIndex = ($colorIndex + 1) % count($pastelColors);
     @endphp
-    <div style="--overlay-color: {{ $currentColor }};" class="box" >
+    <div style="--overlay-color: {{ $currentColor }};" class="box">
         <h3 class="text-3xl font-bold">{{ $item->title }}</h3>
-        <h3 class="text-xl font-bold">By {{ $item->name }}</h3>
+        <h3 class="text-xl font-bold">{{__('showcase.display_by')}} {{ $item->name }}</h3>
         <p class="mt-2">{{ $item->description }}</p>
-        <p class="mt-2 text-sm">Posted on {{ $item->created_at }}</p>
+        <p class="mt-2 text-sm">{{__('showcase.display_posted')}} {{ $item->created_at }}</p>
         @foreach($item->works as $work)
-            @if (str_contains($work->file_path, 'jpeg') || str_contains($work->file_path, 'png') || str_contains($work->file_path, 'jpg') || str_contains($work->file_path, 'gif') || str_contains($work->file_path, 'svg'))
-                <img src="{{ asset('storage/' . $work->file_path) }}" alt="{{ $item->title }}" class="w-full h-auto mt-2">
-            @elseif (str_contains($work->file_path, 'mp3') || str_contains($work->file_path, 'mp4'))
-                <audio controls class="w-full">
-                    <source src="{{ asset('storage/' . $work->file_path) }}" type="audio/mpeg">
-                    {{__('showcase.no-support')}}
-                </audio>
+            @if (str_contains($work->file_path, 'showcase_seed'))
+                @if (str_contains($work->file_path, 'jpeg') || str_contains($work->file_path, 'png') || str_contains($work->file_path, 'jpg') || str_contains($work->file_path, 'gif') || str_contains($work->file_path, 'svg'))
+                    <img src="{{ asset($work->file_path) }}" alt="{{ $item->title }}" class="w-full h-auto mt-2">
+                @elseif (str_contains($work->file_path, 'mp3') || str_contains($work->file_path, 'wav') || str_contains($work->file_path, 'mp4'))
+                    <audio controls class="w-full">
+                        <source src="{{ asset($work->file_path) }}" type="audio/mpeg">
+                        {{ __('showcase.no-support') }}
+                    </audio>
+                @endif
+            @else
+                @if (str_contains($work->file_path, 'jpeg') || str_contains($work->file_path, 'png') || str_contains($work->file_path, 'jpg') || str_contains($work->file_path, 'gif') || str_contains($work->file_path, 'svg'))
+                    <img src="{{ asset('storage/' . $work->file_path) }}" alt="{{ $item->title }}" class="w-full h-auto mt-2">
+                @elseif (str_contains($work->file_path, 'mp3') || str_contains($work->file_path, 'wav') || str_contains($work->file_path, 'mp4'))
+                    <audio controls class="w-full">
+                        <source src="{{ asset('storage/' . $work->file_path) }}" type="audio/mpeg">
+                        {{ __('showcase.no-support') }}
+                    </audio>
+                @endif
             @endif
         @endforeach
     </div>

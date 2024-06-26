@@ -235,7 +235,7 @@ class EquipmentItemsTableSeeder extends Seeder
                 'description' => 'A professional-grade monitor headphone that is widely used in the music industry. It is a sealed dynamic type headphone with a 40mm dome type driver unit (with CCAW) that delivers high-quality sound.',
                 'purchase_date' => '2020-10-29',
                 'quantity' => 1,
-                'rented_quantity' => 1,
+                'rented_quantity' => 0,
                 'max_rental_days' => 7,
                 'price' => 0.00,
                 'rental_count' => 5,

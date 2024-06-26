@@ -7,6 +7,8 @@ return [
     'showcase_heading' => 'Showcase',
     'showcase_message' => 'On this page, you can see a showcase of amazing vocaloid-related works made by our members.',
     'world_is_mine_heading' => 'World is Mine Orchestra with WVSloids',
+    'display_by' => 'By',
+    'display_posted' => 'Posted on',
 
     // create.blade.php
     'create' => 'Showcase Submission',
