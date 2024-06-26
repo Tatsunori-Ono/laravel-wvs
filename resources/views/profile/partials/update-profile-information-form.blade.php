@@ -52,6 +52,28 @@
             @endif
         </div>
 
+        <!-- is Enable Google2fa -->
+        <div>
+            <label for="is_enable_google2fa" class="inline-flex items-center">
+                <input id="is_enable_google2fa" type="checkbox"
+                    class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
+                    name="is_enable_google2fa" value="1" {{ $user->is_enable_google2fa ? 'checked' : '' }}>
+                <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{{ __('profile.g2fa') }}</span>
+            </label>
+
+            @if($user->is_enable_google2fa)
+                <div class="mt-4">
+                    <p class="text-sm text-gray-800 dark:text-gray-200">{{ __('profile.qr') }}</p>
+                    @php
+                        $qrCodeUrl = Google2FA::getQRCodeInline(config('app.name'), $user->email, $user->google2fa_secret);
+                    @endphp
+                    <div class="flex items-center justify-center mt-2">
+                        {!! $qrCodeUrl !!}
+                    </div>
+                </div>
+            @endif
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('profile.save') }}</x-primary-button>
 
@@ -62,7 +84,7 @@
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Saved.') }}</p>
+                >{{ __('profile-saved') }}</p>
             @endif
         </div>
     </form>

@@ -9,4 +9,5 @@ return [
     'register' => '登録',
     'warwick-id' => 'ウォーリックID (ウォーリック生の場合のみ)',
     'required' => '* 必須項目',
+    'g2fa' => 'Google Authenticatorの2段階認証を使う',
 ];

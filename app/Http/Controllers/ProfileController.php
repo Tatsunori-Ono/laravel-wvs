@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use PragmaRX\Google2FALaravel\Google2FA;
+use PragmaRX\Google2FALaravel\Support\Authenticator;
+
 class ProfileController extends Controller
 {
     /**
@@ -26,19 +29,32 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->safe()->only(['name', 'email']));
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $path = null;
+        // Update profile photo if provided
         if ($request->hasFile('picture')) {
-           $path = $request->file('picture')->store('profile-icons', 'public');
-           $request->user()->profile_photo_path = $path;
+            $path = $request->file('picture')->store('profile-icons', 'public');
+            $user->profile_photo_path = $path;
         }
 
-        $request->user()->save();
+        // Update 2FA settings
+        $google2fa = app('pragmarx.google2fa');
+        if ($request->is_enable_google2fa) {
+            $user->google2fa_secret = $google2fa->generateSecretKey();
+            $user->is_enable_google2fa = true;
+        } else {
+            $user->google2fa_secret = null;
+            $user->is_enable_google2fa = false;
+        }
+
+        // Update other user information
+        $user->fill($request->safe()->only(['name', 'email']));
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

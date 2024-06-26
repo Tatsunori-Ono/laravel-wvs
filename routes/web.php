@@ -14,9 +14,23 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShowcaseController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RentalLogController;
+use App\Http\Controllers\TwoFactorController;
+
+use PragmaRX\Google2FALaravel\Middleware;
+use PragmaRX\Google2FALaravel\Middleware as Google2FAMiddleware;
 
 Route::get('/welcome', function () {
     return view('welcome');
+});
+
+Route::middleware(['auth', 'verified', Middleware::class])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/2fa', [TwoFactorController::class, 'index'])->name('2fa');
+    Route::post('/2fa', [TwoFactorController::class, 'verify'])->name('2fa');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::get('/about', function () {
@@ -97,7 +111,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout.process');
 });
 
-Route::middleware(['auth', 'verified', 'google2fa'])->group(function () {
+Route::middleware(['auth', 'verified', Google2FAMiddleware::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
@@ -126,11 +140,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-// アドミン機能をテストするルート
-Route::get('/admin-test', function() {
-    return 'You are an admin';
-})->middleware('auth', 'admin');
 
 Route::get('/jukebox', [JukeboxController::class, 'index'])->name('jukebox.index');
 Route::post('/jukebox', [JukeboxController::class, 'store'])->name('jukebox.store');

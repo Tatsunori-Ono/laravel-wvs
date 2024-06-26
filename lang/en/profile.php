@@ -11,6 +11,9 @@ return [
     "description" => "Update your account's profile information and email address.",
     "name" => "Name",
     "email" => "Email",
+    "g2fa" => "Enable Google 2fa",
+    "qr" => "Scan this QR code with your Google Authenticator app.",
+    "saved" => "Saved.",
 
     //update-password-form
     "update" => "Update Password",

@@ -11,6 +11,9 @@ return [
     "description" => "こちらからアカウントのプロフィール情報とメールアドレスを更新できます。",
     "name" => "氏名",
     "email" => "メールアドレス",
+    "g2fa" => "Google Authenticatorの2段階認証を有効化する",
+    "qr" => "Google AuthenticatorアプリでこのQRコード読み込んでください。",
+    "saved" => "保存しました。",
 
     //update-password-form
     "update" => "パスワードを変更する",

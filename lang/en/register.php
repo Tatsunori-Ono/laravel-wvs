@@ -9,4 +9,5 @@ return [
     'register' => 'Register',
     'warwick-id' => 'Warwick ID (only if you are a Warwick student)',
     'required' => '* required',
+    'g2fa' => 'Enable Google 2fa',
 ];

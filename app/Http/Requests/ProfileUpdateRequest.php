@@ -19,6 +19,7 @@ class ProfileUpdateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'picture' => ['file', 'mimes:gif,png,jpg,webp', 'max:3072'],
+            'is_enable_google2fa' => ['nullable', 'boolean'],
         ];
     }
 }

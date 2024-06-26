@@ -42,7 +42,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'password',
         'remember_token',
         'google2fa_secret',
-        'is_enable_google2fa',
     ];
 
     /**
@@ -55,7 +54,15 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_enable_google2fa' => 'boolean',
         ];
+    }
+
+    protected function google2faSecret(): Attribute {
+        return new Attribute(
+            get: fn ($value) => decrypt($value),
+            set: fn ($value) => encrypt($value),
+        );
     }
 
     public function canAccessPanel(Panel $panel): bool
@@ -72,17 +79,4 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return $this->belongsToMany(EquipmentItem::class, 'favorites', 'user_id', 'equipment_item_id')->withTimestamps();
     }
 
-    /**
-     * Interact with the user's first name.
-     *
-     * @param  string  $value
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
-     */
-    // protected function google2faSecret(): Attribute
-    // {
-    //     return new Attribute(
-    //         get: fn ($value) =>  decrypt($value),
-    //         set: fn ($value) =>  encrypt($value),
-    //     );
-    // }
 }

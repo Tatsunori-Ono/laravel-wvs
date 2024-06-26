@@ -21,7 +21,9 @@ class UserSeeder extends Seeder
             'name' => 'user',
             'role' => 'user',
             'email' => 'tatsunori.no1@gmail.com',
-            'password' => Hash::make('user')
+            'password' => Hash::make('user'),
+            'google2fa_secret' => null, // 開発用なので2FAは無効化
+            'is_enable_google2fa' => false, // 開発用なので2FAは無効化
         ]);
 
         $admin = User::create([
@@ -29,7 +31,9 @@ class UserSeeder extends Seeder
             'role' => 'admin',
             'warwick_id' => '5513312',
             'email' => 'tatsunorionoastroid@gmail.com',
-            'password' => Hash::make('admin')
+            'password' => Hash::make('admin'),
+            'google2fa_secret' => null, // 開発用なので2FAは無効化
+            'is_enable_google2fa' => false, // 開発用なので2FAは無効化
         ]);
 
         // Seed some contact forms for each user

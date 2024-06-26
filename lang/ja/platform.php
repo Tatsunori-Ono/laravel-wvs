@@ -2,7 +2,7 @@
 
 return [
     'title' => 'WVSプラットフォーム',
-    'main' => 'メインWEBサイト',
+    'main' => 'メインWEB',
 
     // navigation
     'dashboard' => 'ダッシュボード',
@@ -12,7 +12,7 @@ return [
     'submit_work' => '作品の提出',
     'admin_showcase' => 'ショーケース',
     'contact' => 'お問い合わせ',
-    'donate' => '寄付する',
+    'donate' => '寄付',
     'user_control' => 'ユーザー情報',
     'profile' => 'プロフィール',
     'logout' => 'ログアウト',

@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+use PragmaRX\Google2FALaravel\Support\Authenticator;
+
 class RegisteredUserController extends Controller
 {
     /**
