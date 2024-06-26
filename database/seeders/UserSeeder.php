@@ -17,22 +17,24 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // ユーザーの作成
+        // 一般ユーザー（メンバー）の作成
         $user = User::create([
             'name' => 'user',
             'role' => 'user',
             'email' => 'tatsunori.no1@gmail.com',
+            'email_verified_at' => now(), // 開発用なのでメール認証はスキップ
             'password' => Hash::make('user'),
             'google2fa_secret' => null, // 開発用なので2FAは無効化
             'is_enable_google2fa' => false, // 開発用なので2FAは無効化
         ]);
 
-        // 管理者の作成
+        // アドミン（管理者）の作成
         $admin = User::create([
             'name' => 'admin',
             'role' => 'admin',
             'warwick_id' => '5513312',
             'email' => 'tatsunorionoastroid@gmail.com',
+            'email_verified_at' => now(), // 開発用なのでメール認証はスキップ
             'password' => Hash::make('admin'),
             'google2fa_secret' => null, // 開発用なので2FAは無効化
             'is_enable_google2fa' => false, // 開発用なので2FAは無効化

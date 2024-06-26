@@ -42,13 +42,13 @@
                 @show
             </li>
             <li class="nav-list-item">
-                @section('contact_nav')
-                <a href="{{ url('/external-contact') }}" class="nav-link">{{ __('nav.contact') }}</a>
+                @section('showcase_nav')
+                <a href="{{ url('/showcase') }}" class="nav-link">{{ __('nav.showcase') }}</a>
                 @show
             </li>
             <li class="nav-list-item">
-                @section('showcase_nav')
-                <a href="{{ url('/showcase') }}" class="nav-link">{{ __('nav.showcase') }}</a>
+                @section('contact_nav')
+                <a href="{{ url('/external-contact') }}" class="nav-link">{{ __('nav.contact') }}</a>
                 @show
             </li>
             @if (auth()->check())
