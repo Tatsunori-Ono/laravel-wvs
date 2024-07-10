@@ -47,9 +47,7 @@ class RegisteredUserController extends Controller
 
         $google2fa = app('pragmarx.google2fa');
         $google2faSecret = "";
-        if (!is_null($request->is_enable_google2fa)) {
-            $google2faSecret = $google2fa->generateSecretKey();
-        }
+        $isEnableGoogle2fa = $request->has('is_enable_google2fa') ? $request->is_enable_google2fa : false;
 
         $user = User::create([
             'name' => $request->name,
@@ -57,7 +55,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'google2fa_secret' => $google2faSecret,
-            'is_enable_google2fa' => $request->is_enable_google2fa,
+            'is_enable_google2fa' => $isEnableGoogle2fa,
         ]);
 
         event(new Registered($user));
