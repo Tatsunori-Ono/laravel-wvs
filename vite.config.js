@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/css/style.css',
                 'resources/css/loader.css',
                 'resources/js/app.js',
+                'resources/js/navbar.js',
             ],
             refresh: true,
         }),
