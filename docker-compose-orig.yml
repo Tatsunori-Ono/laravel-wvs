@@ -1,0 +1,42 @@
+# This file is used when you want to build the app
+
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    container_name: laravel-wvs-app
+    ports:
+      - "8732:80"
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/public
+      - APP_ENV=local
+      - APP_DEBUG=true
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=wvs
+      - DB_USERNAME=user
+      - DB_PASSWORD=Tail6needle#
+      - VIRTUAL_HOST=vocasoc
+    depends_on:
+      - db
+    command: |
+      bash -c "chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache && chmod -R 775 /var/www/storage /var/www/bootstrap/cache && apache2-foreground"
+
+  db:
+    image: mysql:8.0
+    container_name: laravel_vite_db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wvs
+      MYSQL_USER: user
+      MYSQL_PASSWORD: Tail6needle#
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:
