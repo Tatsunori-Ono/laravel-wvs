@@ -1,4 +1,4 @@
---- Building docker container ---
+# Building docker container
 ```
 docker compose build
 ```
@@ -21,7 +21,7 @@ docker tag laravel-wvs-app:latest vocaloidsoc/laravel_vite_app:latest
 docker push vocaloidsoc/laravel_vite_app:latest
 ```
 
---- Running on UWCS ---
+# Running on UWCS
 You cannot directly build on UWCS as that is too CPU intensive (this is what we tried to do on docker-compose.yml)
 So it is circumvented by building the docker image separately on a local machine and pushing it to a registry
 
