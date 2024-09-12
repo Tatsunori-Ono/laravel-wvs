@@ -19,6 +19,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+	// Use X-Forwarded-Host header to correctly determine base URL
+	if (request()->header('X-Forwarded-Proto')) {
+	    URL::forceScheme(request()->header('X-Forwarded-Proto'));
+	}
+	    if (request()->header('X-Forwarded-Host')) {
+		    URL::forceRootUrl(request()->header('X-Forwarded-Proto') . '://' . request()->header('X-Forwarded-Host'));
+	}
     }
 }
