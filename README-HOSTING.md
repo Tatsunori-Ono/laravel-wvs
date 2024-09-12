@@ -22,8 +22,8 @@ docker push vocaloidsoc/laravel_vite_app:latest
 ```
 
 # Running on UWCS
-You cannot directly build on UWCS as that is too CPU intensive (this is what we tried to do on docker-compose.yml)
-So it is circumvented by building the docker image separately on a local machine and pushing it to a registry
+You cannot directly build on UWCS as that is too CPU intensive
+So it is circumvented by building the docker image separately on a local machine and pushing it to the registry (this is what we tried to do on docker-compose.yml)
 
 - Then make sure the latest version of the image has been loaded
 - Use custom template on account to deploy
