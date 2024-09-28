@@ -30,6 +30,13 @@ return Application::configure(basePath: dirname(__DIR__))
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
             'google2fa' => \PragmaRX\Google2FALaravel\Middleware::class,
         ]);
+        $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_FOR |
+        Request::HEADER_X_FORWARDED_HOST |
+        Request::HEADER_X_FORWARDED_PORT |
+        Request::HEADER_X_FORWARDED_PROTO |
+        Request::HEADER_X_FORWARDED_AWS_ELB);
+
+        $middleware->append(\App\Http\Middleware\ChangePort::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // 例外ハンドリングの設定
