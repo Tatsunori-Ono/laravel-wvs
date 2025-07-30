@@ -1,3 +1,6 @@
+🌐 このドキュメントは、以下の言語で利用可能です。
+[English🇬🇧](README.md) | [日本語🇯🇵](README.ja.md)
+
 # Warwick Vocaloid Society WEBプロジェクト
 
 <div align="center">
