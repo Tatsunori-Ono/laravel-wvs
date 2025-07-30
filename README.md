@@ -1,3 +1,5 @@
+🌐 This documentation is available in the following languages: [English🇬🇧](README.md) | [日本語🇯🇵](README.ja.md)
+
 # Warwick Vocaloid Society WEB Project
 
 <div align="center">
